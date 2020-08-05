@@ -1,0 +1,218 @@
+﻿@model IMS_IMS_MODEL.RegisterModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdminLte.cshtml";
+    // Layout = null;
+}
+
+@{
+    ViewBag.Title = "AdminRegistration";
+}
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+@*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<link type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet" />*@
+@*<script src="https://use.fontawesome.com/d94f445648.js"></script>*@
+
+<style>
+    .glyphicon-envelope {
+        color: white;
+    }
+
+    .glyphicon-lock {
+        color: white;
+    }
+
+    .glyphicon-user {
+        color: white;
+    }
+
+    #bgcolorspan {
+        background-color: darkturquoise;
+    }
+
+    .required::after {
+        margin: 2px;
+        content: "*";
+        color: red;
+    }
+    #containerdiv {
+        height: 550px;
+        width: 800px;
+        
+    }
+    #MyForm{
+        text-align:center;
+    }
+    .textAlign{
+        text-align:left;
+    }
+</style>
+<div class="container-fluid" id="containerdiv">
+    <div class="panel panel-primary">
+        <div class="panel panel-heading" id="Panelid">Registration</div>
+        <div class="panel-body">
+
+
+            @using (Ajax.BeginForm("AdminRegistration", "Account", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "OnSuccess",
+                OnFailure = "OnFailure",
+                LoadingElementId = "progress",
+                OnComplete = "OnComplete"
+            }, new { id = "MyForm" }))
+
+            {
+
+                @*<form id="myForm">*@
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3 required textAlign" })
+                    <div class="input-group col-md-9">
+                        <span class="input-group-addon" id="bgcolorspan"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "User Name", id = "UserName" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger textAlign" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3 required textAlign" })
+                    <div class="input-group col-md-9">
+                        <span class="input-group-addon" id="bgcolorspan"><i class="glyphicon glyphicon-envelope"></i></span>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email Address", id = "EmailAddress" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("EmailExist", new { @class = "text-danger textAlign" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3 required textAlign" })
+                    <div class="input-group col-md-9">
+                        <span class="input-group-addon" id="bgcolorspan"><i class="glyphicon glyphicon-lock"></i></span>
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", id = "Password" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger textAlign" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RetypePassword, htmlAttributes: new { @class = "control-label col-md-3 required textAlign" })
+                    <div class="input-group col-md-9">
+                        <span class="input-group-addon" id="bgcolorspan"><i class="glyphicon glyphicon-lock"></i></span>
+                        @Html.EditorFor(model => model.RetypePassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirm Password", id = "ConfirmPassword" } })
+                        @Html.ValidationMessageFor(model => model.RetypePassword, "", new { @class = "text-danger textAlign" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input type="submit" value="Register" class="btn btn-block btn-primary" id="btnSubmit" data-disable-with="<i class='fa fa-spinner fa-spin'></i>Uploading please wait..." />
+
+                    </div>
+                    <div style="text-align:center;display:none" id="loaderDiv">
+                        <img src="~/Content/images/circle-3.gif" width="70" />
+                    </div>
+                    <h5 id="success" style="color:green">@ViewBag.Issuccess</h5>
+                </div>
+                <div>
+
+                </div>
+
+
+            }
+            @*</form>*@
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+
+    $("#container").width('650px').height('600px');
+
+    function OnSuccess(result) {
+
+        console.log(result);
+        if (result.result == "Registration Successful") {
+
+            toastr.success(result.result, "Message");
+            document.getElementById("MyForm").reset();
+        }
+        else {
+
+            toastr.error(result.result, "Error Message", { timeOut: 10000 });
+        }
+
+
+    }
+
+
+    function OnFailure() {
+
+        toastr.error("Error Occured", "Error Message");
+
+
+    }
+
+    function OnComplete() {
+
+        document.getElementById("MyForm").reset();
+
+    }
+
+
+
+</script>
+
+
+
+
+
+
+@*<script>
+    $("#container").width('800px').height('600px');
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function (e) {
+          // e.preventDefault();
+    //var serializedForm = $(this).serialize();
+            $("#loaderDiv").show();
+
+           //  var data = $("#myForm").serialize();
+            var dataObject = {
+
+                UserName: $("#UserName").val(),
+                EmailAddress: $("#EmailAddress").val(),
+                Password: $("#Password").val(),
+                ConfirmPassword: $("#ConfirmPassword").val(),
+
+            }
+            console.log(dataObject);
+            $.ajax({
+
+                type: "POST",
+                url: "/Account/AdminRegistration",
+               // dataType: "json",
+               // contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(dataObject),
+                success: function (response) {
+                    console.log(response)
+                }
+
+
+            });
+
+        });
+
+
+    });*@
+

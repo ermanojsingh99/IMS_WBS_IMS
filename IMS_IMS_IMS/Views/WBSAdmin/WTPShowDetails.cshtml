@@ -1,0 +1,114 @@
+﻿@*@{
+
+    Layout = "~/Views/Shared/_LayoutAdminLteWater.cshtml";
+
+}*@
+
+<div class=" col-md-6 offset-md-4">
+    @Html.ActionLink(" Download XLSX File", "ExportSpeardSheetWTP", "WBSAdmin", null, new { @style = "text-transform:capitalize;", @class = "btn btn-success btn-lg  fa fa-file-excel-o large pull-right" })
+    <h6 id="ItemName" style="color:Highlight;font-weight:900"><span style="color:Highlight;font-weight:900">ITEM NAME :</span> @ViewBag.WTPDetails</h6>
+</div>
+
+<div class="container-fluid" style="background-color:lightgrey">
+    <table class="table table-bordered table-hover table-responsive table-striped" id="MyDataTableWTP" style="width:100%; text-align:center;border:1px solid">
+        <thead>
+            <tr style="text-align:center">
+                <th style="text-align:center">Item Serial</th>
+                <th style="text-align:center">Location</th>
+                @*<th style="text-align:center">Item Name</th>*@
+                <th style="text-align:center">Diameter</th>
+                <th style="text-align:center">Capacity</th>
+                <th style="text-align:center">Quantity</th>
+                <th style="text-align:center">Description</th>
+                <th style="text-align:center">User Name</th>
+                <th style="text-align:center">Action</th>
+                <th style="text-align:center">Action</th>
+
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+
+    </table>
+    <div style="text-align:center;display:none" id="loaderDiv">
+        <img src="~/Content/images/circle-3.gif" width="70" />
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("#loaderDiv").show();
+        ShowAssetDetailsWTP();
+         $("#MyDataTableWTP").DataTable().clear();
+        $("#MyDataTableWTP").DataTable().destroy();
+
+    });
+    var responseData = '';
+    var ShowAssetDetailsWTP = function () {
+       // var location = window.localStorage.getItem('LocationStorage');
+         var location = "BASAI";
+        var Loct = { location: location }
+        var data = JSON.stringify(Loct);
+        $.ajax({
+
+            type: "POST",
+            url: "/WBSAdmin/ShowWTP_Details",
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            data: data,
+            success: function (response) {
+
+                response = JSON.parse(BindDataTableWTP(response));
+
+                $("#MyDataTableWTP").append(response)
+
+            }
+        });
+    }
+
+    var BindDataTableWTP = function (response) {
+
+        $("#MyDataTableWTP").DataTable({
+
+            "aaData": response,
+            "aoColumns": [
+
+                { "mData": "ItemCode" },
+                { "mData": "Location" },
+                //{ "mData": "ItemName" },
+                { "mData": "Diameter" },
+                { "mData": "Capacity" },
+                { "mData": "Quantity" },
+                { "mData": "Description" },
+                 { "mData": "username" },
+                 {
+                    "render": function (data, type, full, meta) {
+                        return '<a  class="btn btn-block btn-primary" name="btnEdit" id="btnView" ><i class="fa fa-edit "></i></a>';
+
+                    }
+                },
+                 {
+                    "render": function (data, type, full, meta) {
+                        return '<a class="btn btn-block btn-danger delete" name="btnDelete" id="btnDeleteUser" > <i class="fa fa-trash"></i></a>';
+
+                    }
+                }
+
+
+            ]
+
+
+
+        });
+
+
+        $("#loaderDiv").hide();
+    }
+
+
+</script>
+

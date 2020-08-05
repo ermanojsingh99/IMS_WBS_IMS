@@ -1,0 +1,322 @@
+﻿
+@model IMS_IMS_MODEL.WaterBoostingInventory
+
+
+<div class="container-fluid">
+
+    @using (Ajax.BeginForm("AddWaterDetailsModal", "WBS", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "progress",
+        OnComplete = "OnComplete"
+    }, new { @id = "FormWaterDetails" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row ">
+            <div class="form-group green-border-focus col-md-6 ">
+                @Html.LabelFor(model => model.Location, "Location", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Location, Enumerable.Empty<SelectListItem>(), "--Select Location--", new { @class = "form-control", @id = "location" })
+                    @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group green-border-focus col-md-6 ">
+                @Html.LabelFor(model => model.ItemType, "Item Type", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.ItemType, Enumerable.Empty<SelectListItem>(), "--Select Item Type--", new { @class = "form-control", @id = "ItemType" })
+                    @Html.ValidationMessageFor(model => model.ItemType, "", new { @class = "text-danger" })
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Category, "Category", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Category, Enumerable.Empty<SelectListItem>(), "--Select Category--", new { @class = "form-control", @id = "Category" })
+                    @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.ItemName, "Item Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control", placeholder = "Item Name" } })
+                    @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.PumpHouseName, "PumpHouse Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.PumpHouseName, new { htmlAttributes = new { @class = "form-control", placeholder = "PumpHouse Name",@id="PumpHouseName" } })
+                    @Html.ValidationMessageFor(model => model.PumpHouseName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.PumpHouseWTP, "PumpHouse WTP", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.PumpHouseWTP, new { htmlAttributes = new { @class = "form-control", placeholder = "PumpHouse WTP",@id="PumpHouseWTP"  } })
+                    @Html.ValidationMessageFor(model => model.PumpHouseWTP, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.PumpReferenceName, "PumpReference Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.PumpReferenceName, new { htmlAttributes = new { @class = "form-control", placeholder = "PumpReference Name", @id = "PumpReferenceName" } })
+                    @Html.ValidationMessageFor(model => model.PumpReferenceName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.RatedPower, "Rated Power", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.RatedPower, new { htmlAttributes = new { @class = "form-control", placeholder = "Rated Power in HP", @id = "RatedPower" } })
+                    @Html.ValidationMessageFor(model => model.RatedPower, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.RatedHead, "Rated Head", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.RatedHead, new { htmlAttributes = new { @class = "form-control", placeholder = "Rated Head", @id = "RatedHead" } })
+                    @Html.ValidationMessageFor(model => model.RatedHead, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.RatedFlow, "Rated Flow", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.RatedFlow, new { htmlAttributes = new { @class = "form-control", placeholder = "Rated Flow", @id = "RatedFlow" } })
+                    @Html.ValidationMessageFor(model => model.RatedFlow, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.TypeOfPump, "Pump Type", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.TypeOfPump, new { htmlAttributes = new { @class = "form-control", placeholder = "Type Of Pump", @id = "TypeOfPump" } })
+                    @Html.ValidationMessageFor(model => model.TypeOfPump, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Make, "Make", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control", placeholder = "Make", @id = "Make" } })
+                    @Html.ValidationMessageFor(model => model.Make, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Quantity, "Quantity", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Quantity", @id = "Quantity" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.UOM, "Unit Of Measurement", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.UOM, new { htmlAttributes = new { @class = "form-control", placeholder = "UOM", @id = "UOM" } })
+                    @Html.ValidationMessageFor(model => model.UOM, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="row">
+            <div class="form-group green-border-focus col-md-12">
+                @Html.LabelFor(model => model.Description, "Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-9">
+                  
+                    @Html.TextAreaFor(model=>model.Description,new {@id="description",rows=3,cols=90,@value="Description",@title="Description"})
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class=" col-md-12">
+            <div class=" col-md-6">
+                <input type="submit" value="Submit Details" class="col-md-offset-6 btn btn-success btn-block" id="btnSubmit" />
+            </div>
+
+        </div>
+
+
+    }
+
+</div>
+
+
+
+<script>
+
+    function OnSuccess(result) {
+
+        console.log(result);
+        if (result.result == "Asset Added Successfully") {
+
+            toastr.success(result.result, "Message");
+           // document.getElementById("FormDetailSubmission").reset();
+        }
+        else if (result.result == "Something Went wrong") {
+
+            toastr.error(result.result, "Error Message", { timeOut: 10000 });
+        }
+       
+
+
+        else {
+            toastr.error("Something Went wrong !!", "Error Message", { timeOut: 10000 });
+        }
+
+
+    }
+
+
+    function OnFailure(result) {
+
+        toastr.error("Something Went Wrong", "Error Message");
+
+
+    }
+
+</script>
+<script>
+
+    $(function () {
+        $('#Category').change(function () {
+            // var value = $(this).find("option:selected").text()
+            var value = $("#Category option:selected").text();
+            //ups
+            if (value == "Other") {
+                $("#PumpHouseName").attr("disabled", true);
+                $("#PumpHouseName").empty();
+                $("#PumpHouseWTP").attr("disabled", true);
+                $("#PumpHouseWTP").empty()
+                $("#PumpReferenceName").attr("disabled", true);
+                $("#PumpReferenceName").empty()
+                $("#RatedPower").attr("disabled", true);
+                $("#RatedPower").empty()
+                $("#RatedHead").attr("disabled", true);
+                $("#RatedHead").empty()
+                $("#RatedFlow").attr("disabled", true);
+                $("#RatedFlow").empty()
+                 $("#TypeOfPump").attr("disabled", true);
+                $("#TypeOfPump").empty()
+               
+            }
+            else {
+
+                $("#PumpHouseName").attr("disabled", false);
+                $("#PumpHouseWTP").attr("disabled", false);
+                $("#PumpReferenceName").attr("disabled", false);
+                $("#RatedPower").attr("disabled", false);
+                $("#RatedHead").attr("disabled", false);
+                $("#RatedFlow").attr("disabled", false);
+                $("#TypeOfPump").attr("disabled", false);
+
+            }
+
+            });
+
+
+});
+       
+</script>
+
+<script>
+
+
+
+    $(document).ready(function () {
+
+
+      
+
+        $.getJSON("/WBS/DDLlocation", function (data) {
+            $.each(data, function (i, data) {      // bind the dropdown list using json result
+                $('<option>',
+                    {
+                        value: data.locationName,
+                        text: data.locationName
+                    }).html(data.locationName).appendTo("#location");
+            });
+        });
+
+        //------------------------------------------------------
+
+        $.getJSON("/WBS/DDLCategory", function (data) {
+            $.each(data, function (i, data) {      // bind the dropdown list using json result
+                $('<option>',
+                    {
+                        value: data.Category,
+                        text: data.Category
+                    }).html(data.Category).appendTo("#Category");
+            });
+        });
+        //---------------------------------------------------------
+
+        $.getJSON("/WBS/DDLItemType", function (data) {
+            $.each(data, function (i, data) {      // bind the dropdown list using json result
+                $('<option>',
+                    {
+                        value: data.ItemType,
+                        text: data.ItemType
+                    }).html(data.ItemType).appendTo("#ItemType");
+            });
+        });
+        //---------------------------------------------------------
+
+
+
+
+
+    });
+
+    
+
+
+
+
+
+
+</script>

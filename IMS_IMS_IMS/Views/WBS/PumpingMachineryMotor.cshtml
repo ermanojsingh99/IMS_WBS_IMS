@@ -1,0 +1,346 @@
+﻿
+@model IMS_IMS_MODEL.PumpingMachineryMotorModel
+
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+
+<script>
+
+      $('.txtMakeMotor').bind('keyup blur',function(){ 
+    var node = $(this);
+       node.val(node.val().replace(/[^a-zA-Z ]/g, ''));
+      });
+
+      $('.txtItemTypeMotor').bind('keyup blur',function(){ 
+    var node = $(this);
+       node.val(node.val().replace(/[^a-zA-Z ]/g, ''));
+      });
+
+    
+</script>
+
+@using (Ajax.BeginForm("PumpingMachineryMotor", "WBS", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnSuccess",
+    OnFailure = "OnFailure",
+    LoadingElementId = "progress",
+    OnComplete = "OnComplete"
+}, new { @id = "FormCreateItem" }))
+{
+    @Html.AntiForgeryToken()
+
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="container-fluid">
+        <div class="row " style="display:none">
+
+
+            <div class="form-group green-border-focus col-md-6 ">
+                @Html.LabelFor(model => model.Location, "Location", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @*@Html.DropDownListFor(model => model.Location, Enumerable.Empty<SelectListItem>(), "--Select Location--", new { @class = "form-control", @id = "location1" })*@
+                    @*@Html.DropDownListFor(model => model.Location, new SelectList(ViewBag.LocationList, "Value", "Text"), "---Select Location ---", new { @class = "form-control", @id = "location" })*@
+                    @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control locationddl", placeholder = "Location", @id = "location" } })
+                    @*@Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.ItemName, "Item Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @*@Html.DropDownListFor(model => model.ItemName, new SelectList(ViewBag.ItemList, "Value", "Text"), "---Select Item Name ---", new { @class = "form-control", @id = "itemNameDDL" })*@
+                    @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control itemnameddl", placeholder = "Item Name", @id = "itemname" } })
+                    @*@Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row ">
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.SubLocation, "Sub Location", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.SubLocation, Enumerable.Empty<SelectListItem>(), "---Select---", new { @class = "form-control", @id = "SubLocation" })
+
+                    @Html.ValidationMessageFor(model => model.SubLocation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.BHP, "BHP", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.BHP, new { htmlAttributes = new { @class = "form-control", placeholder = "BHP" } })
+                    @Html.ValidationMessageFor(model => model.BHP, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Make, "Make", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control txtMakeMotor", placeholder = "Make", @id = "Make" } })
+                    @Html.ValidationMessageFor(model => model.Make, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group green-border-focus col-md-6 ">
+                @Html.LabelFor(model => model.Itemtype, "Item Type", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Itemtype, new { htmlAttributes = new { @class = "form-control txtItemTypeMotor", @id = "ItemType", placeholder = "Item Type" } })
+                    @Html.ValidationMessageFor(model => model.Itemtype, "", new { @class = "text-danger" })
+                </div>
+            </div>
+           
+
+        </div>
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Quantity, "Quantity", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Quantity", @id = "Quantity" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Status, "Status", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Status, Enumerable.Empty<SelectListItem>(), "--Select Status--", new { @class = "form-control", @id = "Status" })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="form-group green-border-focus col-md-12">
+                @Html.LabelFor(model => model.Description, "Remarks", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control green-border-focus",@placeholder="Write Something ...", @id = "description", rows = 3, cols = 90, @value = "Description", @title = "Description" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class=" col-md-12">
+            <div class=" col-md-6">
+                <input type="submit" value="Submit Details" class="col-md-offset-6 btn btn-success btn-block" id="btnSubmit" />
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+}
+<hr class="style-eight" />
+
+<div class=" col-md-6 offset-md-4">
+    @Html.ActionLink(" Download XLSX File", "ExportSpeardSheetPumpMachineryMotor", "WBS", null, new { @style = "text-transform:capitalize;", @class = "btn btn-success btn-lg  fa fa-file-excel-o large pull-right" })
+    <h6 id="ItemName" style="color:Highlight;font-weight:900"><span style="color:Highlight;font-weight:900">ITEM NAME :</span> @ViewBag.ItemName</h6>
+</div>
+
+
+<div class="container-fluid" style="background-color:lightgrey">
+    <table class="table table-bordered table-hover table-responsive table-striped" id="MyDataTablePumpingMotor" style="width:100%; text-align:center;border:1px solid">
+        <thead>
+            <tr style="text-align:center">
+                <th style="text-align:center">Item Code</th>
+
+                @*<th style="text-align:center">Item Name</th>
+                <th style="text-align:center">Location</th>*@
+                <th style="text-align:center">BHP</th>
+                <th style="text-align:center">Item Type</th>
+                <th style="text-align:center">Make</th>
+                <th style="text-align:center">Quantity</th>
+                <th style="text-align:center">Status</th>
+                <th style="text-align:center">Description</th>
+
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+
+    </table>
+    <div style="text-align:center;display:none" id="loaderDiv">
+        <img src="~/Content/images/circle-3.gif" width="70" />
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("#loaderDiv").show();
+        ShowPumpingMotorDetails();
+        $("#MyDataTablePumpingMotor").DataTable().clear();
+        $("#MyDataTablePumpingMotor").DataTable().destroy();
+
+    });
+    var responseData = '';
+    var ShowPumpingMotorDetails = function () {
+
+        $.ajax({
+
+            type: "POST",
+            url: "/WBS/ShowPumpMotorDetails",
+            success: function (response) {
+
+                response = JSON.parse(BindDataTablePumpingMotor(response));
+
+                $("#MyDataTablePumpingMotor").append(response)
+
+            }
+        });
+    }
+
+    var BindDataTablePumpingMotor = function (response) {
+
+      
+
+        $("#MyDataTablePumpingMotor").DataTable({
+
+            "aaData": response,
+            "aoColumns": [
+
+                { "mData": "ItemCode" },
+                //{ "mData": "ItemName" },
+                //{ "mData": "Location" },
+                { "mData": "BHP" },
+                { "mData": "ItemType" },
+                { "mData": "Make" },
+                { "mData": "Quantity" },
+                { "mData": "Status" },
+                { "mData": "Description" }
+
+
+            ]
+
+
+
+        });
+
+
+        $("#loaderDiv").hide();
+    }
+
+
+</script>
+
+
+<script>
+
+   $(document).ready(function () {
+
+        var SessionValueLocation = '@Request.RequestContext.HttpContext.Session["location"]';
+
+
+    if (typeof (Storage) !== "undefined") {
+        var ItemNameStore = window.localStorage.getItem('ItemNameStorage');
+       // var LocationStore = window.localStorage.getItem('LocationStorage');
+
+        $(".itemnameddl").val(ItemNameStore);
+        $(".locationddl").val(SessionValueLocation);
+
+
+
+    }
+    else {
+        alert("This browser does  not support local storage");
+    }
+ });
+</script>
+
+
+
+<script>
+
+    $.getJSON("/WBS/DDLItemType", function (data) {
+        $.each(data, function (i, data) {      // bind the dropdown list using json result
+            $('<option>',
+                {
+                    value: data.ItemType,
+                    text: data.ItemType
+                }).html(data.ItemType).appendTo("#ItemType1");
+        });
+    });
+    //---------------------------------------------------------
+
+    $.getJSON("/WBS/DDLStatus", function (data) {
+        $.each(data, function (i, data) {      // bind the dropdown list using json result
+            $('<option>',
+                {
+                    value: data.status,
+                    text: data.status
+                }).html(data.status).appendTo("#Status");
+        });
+    });
+    //---------------------------------------------------------
+</script>
+<script>
+
+    function OnSuccess(result) {
+
+        console.log(result);
+        if (result.message == "Asset Added Successfully") {
+
+            toastr.success(result.message, "Message", { timeOut: 4000 });
+            window.localStorage.removeItem("ItemNameStorage");
+            window.localStorage.removeItem("LocationStorage");
+            // document.getElementById("FormDetailSubmission").reset();
+            // window.location.reload();
+        }
+        else if (result.result == false) {
+
+            toastr.error("Somthing Wrong !!", "Error Message", { timeOut: 7000 });
+        }
+    }
+
+
+    function OnFailure(result) {
+
+        toastr.error("Something Went Wrong", "Error Message");
+
+
+    }
+    function OnComplete(result) {
+
+
+        document.getElementById("FormCreateItem").reset();
+        setTimeout(function () { location.reload(); }, 1000);
+
+    }
+
+</script>
+<script>
+
+
+
+    $.getJSON("/WBS/DDLSubLocation", function (data) {
+        $.each(data, function (i, data) {      // bind the dropdown list using json result
+            $('<option>',
+                {
+                    value: data.SubLocation,
+                    text: data.SubLocation
+                }).html(data.status).appendTo("#SubLocation");
+        });
+    });
+</script>

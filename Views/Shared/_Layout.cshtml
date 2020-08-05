@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - IMS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="~/Content/css/jquery.dataTables.css" rel="stylesheet" />
+    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
+
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <link href="~/Content/css/footer_index.css" rel="stylesheet" />
+    <link href="~/Content/css/carousel.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/carousel.js"></script>
+    <style type="text/css">
+
+        .navbar_inv {
+            background-color: #74a2ca;
+        }
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: #f5f5f5;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: 500;
+        }
+
+        .footer-top {
+            background-color: #286090;
+            border-bottom: 1px solid rgba(25, 52, 132, .64);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top navbar_inv">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @* @Html.ActionLink( "GMDA", "Index", "Home",new { @class = "navbar-brand" },htmlAttributes:new {@class ="addimg" })*@
+                <a href='@Url.Action("Index", "Home")'>
+                    <img height="50" width="50" src='@Url.Content("~/Image/gmda_logo_trans.png")' />
+                </a>
+
+            </div>
+           
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Show Asset Details", "GetDetailsErpId1", "Home")</li>
+                  
+                    
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>@Html.ActionLink("Admin Login", "Login", "Account")</li>
+                </ul>
+               
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+        @*Footer start*@
+
+        <div class="container-fluid" style="width:100%">
+            <div class="row footer-top">
+                <div class="col-sm-4 text-center">
+                    <h4 class="ft-text-title">Media Name</h4>
+                    <h6 class="ft-desp">
+                        Company Name
+                        <br>Country Name
+                    </h6>
+                    <h4 class="details">
+                        <a class="contact" href="tel:+977-1-4107223">
+                            <i class="fa fa-phone" aria-hidden="true"></i> +977-000000
+                        </a>
+                    </h4>
+                </div>
+                <div class="col-sm-4 text-center border-left">
+                    <h4 class="ft-text-title">Our Team</h4>
+                    <div class="address-member">
+                        <p class="member">
+                            <b>Director</b> :
+                        </p>
+                        <p class="member">
+                            <b>Editor</b> :
+                        </p>
+                        <p class="member">
+                            <b>Reporter</b> :
+                        </p>
+                        <p class="member">
+                            <b>Reporter</b> :
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12 text-center border-left">
+                    <h4 class="ft-text-title">About</h4>
+                    <div class="pspt-dtls">
+                        <a href="#" class="about">About</a>
+                        <a href="#" class="team">Team</a>
+                        <a href="#" class="advertise">Advertise</a>
+                        <br><br><br><br><br><br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row ft-copyright pt-2 pb-2" style="padding-left: 25px;">
+                <div class="col-sm-4 text-pp-crt">cpoyright 2018 All  Rights Reserved</div>
+                <div class="col-sm-4 text-pp-crt-rg">Department of Information Reg No :</div>
+                <div class="col-sm-4 developer">
+                    <a href="https://topline-tech.com" target="_blank" class="text-pp-crt">By : <b>T</b>op<b>L</b>ine</a>
+                </div>
+            </div>
+        </div>
+        @*footer ends*@
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

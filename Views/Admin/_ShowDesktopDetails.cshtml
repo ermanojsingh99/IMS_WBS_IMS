@@ -1,0 +1,137 @@
+﻿
+@model IEnumerable<IMS_IMS_MODEL.AssetDetailsModel>
+@{
+    Layout = "~/Views/Shared/_LayoutAdminLte.cshtml";
+    // Layout = null;
+}
+
+<div class="container-fluid">
+    <table class="table table-bordered display" id="MyDataTable" width="100%" style="border:1px solid">
+        <thead>
+            <tr>
+                <th>Employee id</th>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Asset Id</th>
+                <th>Asset Name</th>
+                <th>Serial No</th>
+                <th>IP Address</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+
+    </table>
+    <div style="text-align:center;display:none" id="loaderDiv">
+        <img src="~/Content/images/circle-3.gif" width="70" />
+    </div>
+</div>
+
+
+
+<script>
+
+     $(document).ready(function () {
+
+        $("#loaderDiv").show();
+        ShowAssetDetails();
+    })
+    var responseData = '';
+    var ShowAssetDetails = function () {
+
+        $.ajax({
+
+            type: "Get",
+            url: "/Admin/ShowDesktopDetails/",
+            success: function (response) {
+
+                response = JSON.parse(BindDataTable(response));
+
+             
+                
+                $("#MyDataTable").append(response)
+               
+
+
+            }
+        })
+    }
+
+    var BindDataTable = function (response) {
+       
+        $("#MyDataTable").DataTable({
+
+            "aaData": response,
+            "aoColumns": [
+
+                { "mData": "EmployeeId" },
+                { "mData": "EmployeeName" },
+                
+                { "mData": "Department" },
+                { "mData": "Designation" },
+                { "mData": "AssetId" },
+                { "mData": "AssetName" },
+                { "mData": "SerialNo" },
+                { "mData": "IP" }
+               
+
+
+            ]
+
+            
+
+        });
+
+         
+        $("#loaderDiv").hide();
+    }
+
+
+
+
+    //$(document).ready(function () {
+    //    $("#loaderDiv").show();
+    //    $("#MyDataTable").dataTable();
+                   
+            
+    //});
+
+    //var ShowResult= $.ajax({
+
+    //            type: "GET",
+    //            url: "/Admin/ShowDesktopDetails/",
+    //            contentType: "application/json;charset=utf-8",
+    //            dataType: "json",
+    //            data: "result",
+    //            success: function (result) {
+                   
+    //                console.log(result);
+                    
+    //                var row1 = "";
+
+    //                $.each(result, function (index, result) {
+
+                      
+    //                    row1 += "<tr><td>" + result.EmployeeId + "</td><td>" + result.EmployeeName + "</td><td>" + result.Department + "</td><td>" + result.Designation + "</td><td>" + result.AssetId + "</td><td>" + result.AssetName + "</td><td>" + result.SerialNo + "</td><td>" + result.IP + "</td></tr>";
+
+    //                    console.log(result.AssetName);
+    //                });
+                
+    //                $("#MydataTable tbody").append(row1);
+                    
+                   
+
+    //                $("#loaderDiv").hide();
+
+    //            },
+    //            error: function (error) {
+    //                alert('error; ' + eval(error));
+
+    //            }
+    //        });
+</script>
+
+

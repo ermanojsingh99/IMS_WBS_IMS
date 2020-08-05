@@ -1,0 +1,350 @@
+﻿@model IEnumerable<IMS_IMS_MODEL.AssetDetailsFileIdModel>
+@{
+    Layout = "~/Views/Shared/_LayoutAdminLte.cshtml";
+    // Layout = null;
+}
+
+    <div class="container-fluid">
+        <table class="display" id="MyDataTable" width="100%">
+            <thead>
+                <tr>
+                    <th>Employee id</th>
+                    <th>Asset id</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Details</th>
+                    <th>Update</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+
+
+        </table>
+        <div style="text-align:center;display:none" id="loaderDiv">
+            <img src="~/Content/images/circle-3.gif" width="70" />
+        </div>
+
+        <div class="modal" id="myModal">
+            <div class="modal-dialog" style="width: fit-content;">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="background-color:#00ace6;height:35px;padding-left:10px;padding-top:3px">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:white">Employee Asset Details</h5>
+
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body" style="width:650px;height:auto">
+                        <div class="panel panel-success" style="width:550px;height:auto">
+                            <div class="panel-heading" style="height:35px">Personal Details</div>
+                            <table class="table table-bordered table-hover table-striped table-responsive" id="EmployeeTable">
+                                <thead>
+                                    <tr>
+                                        <th>Employee Name</th>
+                                        <th>Email Address</th>
+                                        <th>Department</th>
+                                        <th>Date Of Joining</th>
+                                        <th>Date Of Birth</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+
+
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading" style="height:35px">Asset Details</div>
+                            <table class="table table-bordered table-hover table-responsive table-striped" id="AssetTable">
+                                <thead>
+                                    <tr>
+
+                                        <th>Asset Id</th>
+                                        <th>Name</th>
+                                        <th>Serial</th>
+                                        <th>RAM</th>
+                                        <th>HDD</th>
+                                        <th>DOI</th>
+                                        <th>W_Start</th>
+                                        <th>W_End</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer" style="background-color:#00ace6">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="modal" id="myModalUpdate">
+            <div class="modal-dialog" style="width: fit-content;">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="background-color:#00ace6;height:35px;padding-left:10px;padding-top:3px">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:white">Update Details</h5>
+
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body" style="width:650px;height:auto">
+                        <div class="panel panel-success">
+
+                            <div class="panel-body">
+                                @*@using (Html.BeginForm("AddFileDetailsSubmission","Admin",FormMethod.Post, new { @enctype = "multipart/form-data", @id = "Form1" }))*@
+                                @using (Ajax.BeginForm("AddFileDetailsSubmission", "Admin", new AjaxOptions
+                                {
+                                    HttpMethod = "POST",
+                                    OnSuccess = "OnSuccessSubmission",
+                                    OnFailure = "OnFailureSubmission",
+                                    LoadingElementId = "progress",
+                                    OnComplete = "OnComplete"
+                                }, new { @id = "FormDetailSubmission", @enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+
+
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label>Employee Id</label>
+                                        </div>
+                                        @*@Html.LabelFor(model => model._EmpId, "Employee Id", htmlAttributes: new { @class = "control-label col-md-3 required" })*@
+                                        
+                                        
+                                        <div class="col-md-9">
+                                            @*@Html.EditorFor(model => model._EmpId, new { htmlAttributes = new { @class = "form-control", @id = "txtEmpid", @placeholder = "Employee Id" } })
+                                            @Html.ValidationMessageFor(model => model._EmpId, "", new { @class = "text-danger" })*@
+                                            <input type="text" id="employeeId" />
+                                        </div>
+                                    </div>
+
+                                    
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            <label class="control-label required">Upload File(*pdf allowed only)</label>
+                                        </div>
+
+                                        <div class="col-md-9">
+                                            <input type="file" id="AgreementFile_upload" name="File" />
+                                            <label id="lblfileupload" style="color:red;"></label>
+                                        </div>
+
+
+
+                                        @*@Html.TextBoxFor(model => model.UploadAgreement, new { type = "file", name = "UploadAgreement", id = "uploadagreement" })
+                    @Html.ValidationMessageFor(model => model.UploadAgreement, "", new { @class = "text-danger" })
+                    @Html.ValidationMessage("Uploadfirst", new { @class = "text-danger" })*@
+
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <br />
+
+                                    <div class=" col-md-12">
+                                        <div class=" col-md-6">
+                                            <input type="submit" value="Update" class="btn btn-primary btn-block" id="btnUpdate" />
+                                        </div>
+
+                                    </div>
+
+
+                                }
+
+                            </div>
+
+                        </div>
+                        
+                    <!-- Modal footer -->
+                    <div class="modal-footer" style="background-color:#00ace6">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+     <script>
+
+                        $(document).ready(function () {
+
+                            $("#loaderDiv").show();
+                            ShowAssetDetails();
+
+                        });
+                        var responseData = '';
+                        var ShowAssetDetails = function () {
+
+                            $.ajax({
+
+                                type: "POST",
+                                url: "/Admin/ShowAssetDetails",
+                                success: function (response) {
+
+                                    response = JSON.parse(BindDataTable(response));
+
+                                    $("#MyDataTable").append(response)
+
+                                }
+                            });
+                        }
+
+                        var BindDataTable = function (response) {
+
+                            $("#MyDataTable").DataTable({
+
+                                "aaData": response,
+                                "aoColumns": [
+
+                                    { "mData": "id" },
+                                    { "mData": "AssetId" },
+                                    { "mData": "UserName" },
+                                    { "mData": "Designation" },
+                                    {
+                                        "render": function (data, type, full, meta) {
+                                            return '<a  class="btn btn-block btn-primary" name="btnShow" id="btnShow" >View</a>';
+
+                                        }
+                                    },
+                                    {
+                                        "render": function (data, type, full, meta) {
+                                            return '<a  class="btn btn-block btn-primary" name="btnUpdate" id="btnUpdate" >Update</a>';
+
+                                        }
+                                    }
+
+
+
+                                ]
+
+
+
+                            });
+
+
+                            $("#loaderDiv").hide();
+                        }
+
+                        $(document).on("click", "a[name='btnShow']", function () {
+                            // event.preventDefault();
+
+                            var EmployeeId = $(this).closest("tr").find("td").eq(0).html();
+                            $("#EmployeeTable tbody").empty();
+                            $("#AssetTable tbody").empty();
+
+                            $.ajax(
+                                {
+                                    url: "/Admin/ShowEmployeeAssets1",
+                                    contentType: 'application/json; charset=utf-8',
+                                    type: "GET",
+                                    data: { EmployeeId: EmployeeId },
+
+                                    success: function (data) {
+                                        var row = "";
+                                        var row1 = "";
+                                        //var DateDiff = 0;
+                                        //var oneDay = 24 * 60 * 60 * 1000;
+                                        //var years = Math.floor(diff_date / 31536000000);
+                                        //var months = Math.floor((diff_date % 31536000000) / 2628000000);
+                                        //var days = Math.floor(((diff_date % 31536000000) % 2628000000) / 86400000);
+                                        $.each(data, function (index, item) {
+                                            //$("#lblUserName").html(item.emp_name);
+                                            var Warranty_Start = new Date(parseInt((item.warranty_start).match(/\d+/)[0])).toLocaleDateString();
+
+                                            var Warranty_End = new Date(parseInt((item.warranty_end).match(/\d+/)[0])).toLocaleDateString();
+
+                                            var DateOfIssue = new Date(parseInt((item.Dateofissue).match(/\d+/)[0])).toLocaleDateString();
+
+                                            //var timeDiff = Math.abs(item.getTime() - Warranty_End.getTime());
+                                            //var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                                            //alert(diffDays);
+
+                                            row1 = "<tr><td>" + item.emp_name + "</td><td>" + item.email + "</td><td>" + item.department + "</td><td>" + item.DOJ + "</td><td> " + item.DOB + "</td></tr> ";
+                                            row += "<tr><td>" + item.asset_id_sub + "</td><td>" + item.asset_name + "</td><td>" + item.serial_no + "</td><td>" + item.ram + "</td><td>" + item.hdd + "</td><td> " + DateOfIssue + "</td><td>" + Warranty_Start + "</td><td>" + Warranty_End + "</td></tr > ";
+
+                                        });
+
+                                        $("#myModal").modal('show');
+                                        $("#AssetTable tbody").append(row);
+
+                                        $("#EmployeeTable tbody").append(row1);
+
+                                    },
+                                    error: function () { alert("Something went wrong"); }
+                                });
+
+                            function parseDate(input) {
+                                // Transform date from text to date
+                                var parts = input.match(/(\d+)/g);
+                                // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+                                return new Date(parts[0], parts[1] - 1, parts[2]); // months are 0-based
+                            }
+                        });
+
+
+                        $(document).on("click", "a[name='btnUpdate']", function (event) {
+
+                            event.preventDefault();
+                            var EmployeeId = $(this).closest("tr").find("td").eq(0).html();
+                           // alert(EmployeeId);
+                            $("#myModalUpdate").modal('show');
+                            $("#btnSubmit").hide();
+                            $("#btnUpdate").click(function () {
+
+                                alert("Click Update function");
+                                alert(EmployeeId);
+                                $.ajax({
+
+                                    url: "/Admin/GetDetails",
+                                    type: "post",
+                                    contentType:"",
+                                    dataType: "json",
+                                    data: { EmployeeId: EmployeeId },
+                                    success: function (response) {
+                                        alert(response);
+
+                                    },
+                                    error: function(){
+
+                                    }
+
+
+                                })
+
+
+                            })
+
+
+
+
+                        });
+
+
+                    </script>
+
+
+

@@ -1,0 +1,128 @@
+﻿@model IMS_IMS_MODEL.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    .glyphicon-envelope {
+        color: white;
+    }
+
+    .glyphicon-lock {
+        color: white;
+    }
+
+    .glyphicon-user {
+        color: white;
+    }
+
+    #bgcolorspan {
+        background-color: darkturquoise;
+    }
+
+    .required::after {
+        margin: 2px;
+        content: "*";
+        color: red;
+    }
+
+    .ValidationSummary {
+        color: red;
+        background-color: white;
+        border: 1px solid #eea2a2;
+        font-weight: 100;
+        text-align: left;
+        margin: 5px 0;
+        line-height: 1;
+    }
+
+    .valFailure ul {
+        padding-left: 20px;
+    }
+
+        .valFailure ul li {
+            padding-top: 2px;
+        }
+
+    .validation-summary-valid {
+        display: none;
+    }
+</style>
+
+<br />
+<br />
+<div class="container" style="height:400px;width:650px">
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">Login</div>
+        <div class="panel-body">
+            @using (Ajax.BeginForm("Login", "Account", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "OnSuccess",
+                OnFailure = "OnFailure",
+                LoadingElementId = "progress",
+                OnComplete = "OnComplete"
+            }, new { id = "MyForm" }))
+
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(false, "", new { @class = "text-danger ValidationSummary" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="input-group col-md-6">
+                        <span class="input-group-addon" id="bgcolorspan"><i class="glyphicon glyphicon-envelope"></i></span>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "example@gmail.com" } })
+
+                        @*@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })*@
+
+
+
+                    </div>
+
+                </div>
+                <br />
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class=" input-group col-md-6">
+                        <span class="input-group-addon" id="bgcolorspan"><i class="glyphicon glyphicon-lock"></i></span>
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "*************" } })
+                        @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })*@
+                        @*@Html.ValidationMessage("InvalidLogin", new { @class = "text-danger " })*@
+
+                    </div>
+
+
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input type="submit" value="Login" class="btn btn-block btn-primary" />
+                    </div>
+                </div>
+
+            }
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+
+
+
+
+</script>

@@ -1,0 +1,584 @@
+﻿
+@{
+     Layout = "~/Views/Shared/_LayoutAdminLteWater.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+   
+</head>
+<body>
+    <div class="container-fluid">
+        <div id="accordion">
+            <div class="card" id="BASAI" name="">
+                <div class="card-header" id="headingOne">
+                    <h3 class="mb-0">
+                        <button class="btn btn-lg btn-primary btn-block collapsed" id="btn_BASAI" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;BASAI
+                        </button>
+                    </h3>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+
+                    <div class="card-body container-fluid">
+
+                        <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
+                            <thead>
+
+                                <tr style="text-align:center;height:auto">
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:mediumaquamarine">Pump Set</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="PumpingMachineryPumpSet" name="btnPumpSetBasai" role="button"><h6 id="BasaiLocPumpSetCount"></h6></a></td>
+                                    &nbsp;
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:burlywood">Pump Motor</th>
+                                    <td style="background-color:burlywood"><a href="#" class="btn btn-info btn-sm" id="PumpingMachineryMotor" name="btnMotorBasai" role="button"><h6 id="BasaiLocMotorCount"></h6></a></td>
+                                    &nbsp;
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:mediumaquamarine">Panel Board</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelBasai" name="btnPanelBasai" role="button"><h6 id="BasaiLocPBCount"></h6></a></td>
+                                    &nbsp;
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:burlywood">Pipe</th>
+                                    <td style="background-color:burlywood"><a href="#" class="btn btn-info btn-sm" id="btnPipeBasai" name="btnPipeBasai" role="button"><h6 id="BasaiLocPipeCount"></h6></a></td>                                    &nbsp;
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:mediumaquamarine">Valve</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveBasai" name="btnValveBasai" role="button"><h6 id="BasaiLocValveCount"></h6></a></td>
+
+
+                                </tr>
+                                <tr style="text-align:center;height:auto">
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:burlywood">Land</th>
+                                    <td style="background-color:burlywood"><a href="#" class="btn btn-info btn-sm" id="btnLandBasai" name="btnLandBasai" role="button"><h6 id="BasaiLocLandCount"></h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:mediumaquamarine">Building</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingBasai" name="btnBuildingBasai" role="button"><h6 id="BasaiLocBuildingCount"></h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:burlywood">Water Treatment Plant</th>
+                                    <td style="background-color:burlywood"><a href="#" class="btn btn-info btn-sm" id="btnWTPBasai" name="btnWTPBasai" role="button"><h6 id="BasaiLocWTPCount"></h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:mediumaquamarine">Tank</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankBasai" name="btnTankBasai" role="button"><h6 id="BasaiLocTankCount"></h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:burlywood">Power Equipments</th>
+                                    <td style="background-color:burlywood"><a href="#" class="btn btn-info btn-sm" id="btnPEBasai" name="btnPEBasai" role="button"><h6 id="BasaiLocPECount"></h6></a></td>
+
+
+                                </tr>
+
+
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="Chandu Budhera">
+                <div class="card-header" id="headingTwo">
+                    <h3 class="mb-0">
+                        <button class="btn btn-lg btn-primary btn-block collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;CHANDU BUDHERA
+                        </button>
+                    </h3>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
+                            <thead>
+
+                                <tr style="text-align:center;height:auto">
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnSetChandu" name="btnSetChandu" role="button"><h6 id="ChanduLocPumpSetCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorChandu" name="btnMotorBasai" role="button"><h6 id="ChanduLocMotorCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelChandu" name="btnPanelBasai" role="button"><h6 id="ChanduLocPBCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Transformer</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTransformerChandu" name="btnTransformerBasai" role="button"><h6 id="ChanduLocTransformerCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveChandu" name="btnValveBasai" role="button"><h6 id="ChanduLocValveCount">45</h6></a></td>
+                                </tr>
+                                <tr style="text-align:center;height:auto">
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandChandu" name="btnLandBasai" role="button"><h6 id="ChanduLocLandCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingChandu" name="btnBuildingBasai" role="button"><h6 id="ChanduLocBuildingCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPChandu" name="btnWTPBasai" role="button"><h6 id="ChanduLocWTPCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankChandu" name="btnTankBasai" role="button"><h6 id="ChanduLocTankCount">45</h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPEChandu" name="btnPEBasai" role="button"><h6 id="ChanduLocPECount">45</h6></a></td>
+                                </tr>
+
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="DHANWAPUR">
+                <div class="card-header" id="headingThree">
+                    <h3 class="mb-0">
+                        <button class="btn btn-lg btn-primary btn-block collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;DHANWAPUR
+                        </button>
+                    </h3>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
+                            <thead>
+
+                                <tr style="text-align:center;height:auto">
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnSetDHANWAPUR" name="btnSetDHANWAPUR" role="button"><h6 id="DhanwapurLocPumpSetCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorDHANWAPUR" name="btnMotorDHANWAPUR" role="button"><h6 id="DhanwapurLocMotorCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelDHANWAPUR" name="btnPanelDHANWAPUR" role="button"><h6 id="DhanwapurLocPBCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Transformer</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTransformerDHANWAPUR" name="btnTransformerDHANWAPUR" role="button"><h6 id="DhanwapurLocTransformerCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveDHANWAPUR" name="btnValveDHANWAPUR" role="button"><h6 id="DhanwapurLocValveCount">45</h6></a></td>
+                                </tr>
+                                <tr style="text-align:center;height:auto">
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandDHANWAPUR" name="btnLandDHANWAPUR" role="button"><h6 id="DhanwapurLocLandCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingDHANWAPUR" name="btnBuildingDHANWAPUR" role="button"><h6 id="DhanwapurLocBuildingCount"></h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPDHANWAPUR" name="btnWTPDHANWAPUR" role="button"><h6 id="DhanwapurLocWTPCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankDHANWAPUR" name="btnTankDHANWAPUR" role="button"><h6 id="DhanwapurLocTankCount">45</h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPEDHANWAPUR" name="btnPEDHANWAPUR" role="button"><h6 id="DhanwapurLocPECount">45</h6></a></td>
+                                </tr>
+
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="NCRCHANNEL">
+                <div class="card-header" id="headingFour">
+                    <h3 class="mb-0">
+                        <button class="btn btn-lg btn-primary btn-block collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;NCR CHANNEL
+                        </button>
+                    </h3>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
+                            <thead>
+
+                                <tr style="text-align:center;height:auto">
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnSetNCR" name="btnSetNCR" role="button"><h6 id="NCRLocPumpSetCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorNCR" name="btnMotorNCR" role="button"><h6 id="NCRMotorCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelNCR" name="btnPanelNCR" role="button"><h6 id="NCRPanelBoardCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Transformer</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTransformerNCR" name="btnTransformerNCR" role="button"><h6 id="NCRTransformerCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveNCR" name="btnValveNCR" role="button"><h6 id="NCRValveCount">45</h6></a></td>
+                                </tr>
+                                <tr style="text-align:center;height:auto">
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandNCR" name="btnLandNCR" role="button"><h6 id="NCRLandCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingNCR" name="btnBuildingNCR" role="button"><h6 id="NCRBuildingCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPNCR" name="btnWTPNCR" role="button"><h6 id="NCRWTPCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankNCR" name="btnTankNCR" role="button"><h6 id="">45</h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPENCR" name="btnPENCR" role="button"><h6 id="NCRPECount">45</h6></a></td>
+                                </tr>
+
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="BEHRAMPUR">
+                <div class="card-header" id="headingFive">
+                    <h3 class="mb-0">
+                        <button class="btn btn-lg btn-primary btn-block collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;BEHRAMPUR
+                        </button>
+                    </h3>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBehrampurLocation" style="width:100%; text-align:center">
+                            <thead>
+
+                                <tr style="text-align:center;height:auto">
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnSetBehrampur" name="btnSetBehrampur" role="button"><h6 id="BehrampurLocPumpSetCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorBehrampur" name="btnMotorBehrampur" role="button"><h6 id="BehrampurLocMotorCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelBehrampur" name="btnPanelBehrampur" role="button"><h6 id="BehrampurPanelCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Transformer</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTransformerBehrampur" name="btnTransformerBehrampur" role="button"><h6 id="BehrampurLocTransformerCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveBehrampur" name="btnValveBehrampur" role="button"><h6 id="BehrampurValveCount">45</h6></a></td>
+                                </tr>
+                                <tr style="text-align:center;height:auto">
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandBehrampur" name="btnLandBehrampur" role="button"><h6 id="BehrampurLandCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingBehrampur" name="btnBuildingBehrampur" role="button"><h6 id="BehrampurBuildingCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPBehrampur" name="btnWTPBehrampur" role="button"><h6 id="BehrampurWTPCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankBehrampur" name="btnTankBehrampur" role="button"><h6 id="BehrampurTankCount">45</h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPEBehrampur" name="btnPEBehrampur" role="button"><h6 id="BehrampurPECount">45</h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pipe</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPEBehrampur" name="btnPEBehrampur" role="button"><h6 id="BehrampurPECount">45</h6></a></td>
+                                </tr>
+
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" id="SECTOR-51">
+                <div class="card-header" id="headingSix">
+                    <h3 class="mb-0">
+                        <button class="btn btn-sm btn-primary btn-block collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;SECTOR-51
+                        </button>
+                    </h3>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
+                            <thead>
+
+                                <tr style="text-align:center;height:auto">
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnSetSector51" name="btnSetSector51" role="button"><h6 id="Sector51LocPumpSetCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorSector51" name="btnMotorSector51" role="button"><h6 id="Sector51LocmotorCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelSector51" name="btnPanelSector51" role="button"><h6 id="Sector51locPanelCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Transformer</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveSector51" name="btnValveSector51" role="button"><h6 id="Sector51LocTransformerCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveSector51" name="btnValveSector51" role="button"><h6 id="Sector51LocValveCount">45</h6></a></td>
+                                </tr>
+                                <tr style="text-align:center;height:auto">
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandSector51" name="btnLandSector51" role="button"><h6 id="Sector51LandCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingSector51" name="btnBuildingSector51" role="button"><h6 id="Sector51LocBuildingCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPSector51" name="btnWTPSector51" role="button"><h6 id="Sector51LocWTPCount">45</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankSector51" name="btnTankSector51" role="button"><h6 id="Sector51TankCount">45</h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPESector51" name="btnPESector51" role="button"><h6 id="Sector51LocPECount">45</h6></a></td>
+                                </tr>
+
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*ModelPopup Here*@
+        <div id="myModalPumpSetDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">PumpSet Details</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        @{Html.RenderPartial("ShowPumpSetDetails"); }
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+      $(document).on("click", "a[name='btnPumpSetBasai']", function (event) {
+        event.preventDefault();
+         @*$('#renderbody').load('@Url.Action("ManageUserWBS","WBS")');*@
+         alert("Button Clicked");
+          $("#myModalPumpSetDetails").modal("show");
+
+     });
+
+
+    //$(document).on("click", '.card', function (event) {
+    //    event.preventDefault();
+    //    alert("Acoord clicked");
+
+    //    var Location = $(this).attr('id');
+
+    //    alert(Location);
+    //    if (Location == "BASAI") {
+
+    //        var PumpSetBasai = $("PumpingMachineryPumpSet").attr('id');
+    //        alert("hii "+PumpSetBasai);
+    //    };
+
+    //});
+  
+
+        
+        //$('#accordion').on('click', '#BASAI', function () {
+
+        //var Location = $(this).attr('id');
+        //alert(Location);
+
+         
+        //});
+
+</script>
+
+<script>
+     $.ajax({
+
+            url: "/WBS/AssetCountDetailsPumpSet/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+               
+                $("#BasaiLocPumpSetCount").append(data);
+
+            }
+
+
+     });
+
+    $.ajax({
+
+            url: "/WBS/AssetCountDetailsPumpMotor/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+               
+                $("#BasaiLocMotorCount").append(data);
+
+            }
+
+
+    });
+
+    $.ajax({
+
+            url: "/WBS/AssetCountDetailsValve/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+               
+                $("#BasaiLocValveCount").append(data);
+
+            }
+
+
+    });
+
+    $.ajax({
+
+            url: "/WBS/AssetCountDetailsPE/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+               
+                $("#BasaiLocPECount").append(data);
+
+            }
+
+
+    });
+
+    $.ajax({
+
+            url: "/WBS/AssetCountDetailsWTP/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+               
+                $("#BasaiLocWTPCount").append(data);
+
+            }
+
+
+    });
+
+    $.ajax({
+
+            url: "/WBS/AssetCountDetailsTank/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+               
+                $("#BasaiLocTankCount").append(data);
+
+            }
+
+
+    });
+
+    $.ajax({
+
+            url: "/WBS/AssetCountDetailsPipe/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+               
+                $("#BasaiLocPipeCount").append(data);
+
+            }
+
+
+    });
+
+    $.ajax({
+
+            url: "/WBS/AssetCountDetailsLand/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+               
+                $("#BasaiLocLandCount").append(data);
+
+            }
+
+
+    });
+
+    
+    $.ajax({
+
+            url: "/WBS/AssetCountDetailsPanelBoard/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+               
+                $("#BasaiLocPBCount").append(data);
+
+            }
+
+
+    });
+
+    $.ajax({
+
+            url: "/WBS/AssetCountDetailsBuilding/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+               
+                $("#BasaiLocBuildingCount").append(data);
+
+            }
+
+
+        });
+
+   
+
+</script>

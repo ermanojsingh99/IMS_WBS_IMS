@@ -1,0 +1,311 @@
+﻿
+@model IMS_IMS_MODEL.ValveModel
+
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+<script>
+    $('.txtMakeValve').bind('keyup blur', function () {
+        var node = $(this);
+        node.val(node.val().replace(/[^a-zA-Z ]/g, ''));
+    });
+</script>
+
+
+@using (Ajax.BeginForm("Valve", "WBS", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnSuccess",
+    OnFailure = "OnFailure",
+    LoadingElementId = "progress",
+    OnComplete = "OnComplete"
+}, new { @id = "FormValve" }))
+{
+    @Html.AntiForgeryToken()
+
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container-fluid">
+        <div class="row" style="display:none">
+
+
+            <div class="form-group green-border-focus col-md-6 ">
+                @Html.LabelFor(model => model.Location, "", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @*@Html.DropDownListFor(model => model.Location, Enumerable.Empty<SelectListItem>(), "--Select Location--", new { @class = "form-control", @id = "location1" })*@
+                    @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control locationddlValve", placeholder = "Item Code", @id = "Location" } })
+                    @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.ItemName, "", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control itemnameddlValve" } })
+                    @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.SubLocation, "Sub Location", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.SubLocation, Enumerable.Empty<SelectListItem>(), "---Select---", new { @class = "form-control", @id = "SubLocation" })
+
+                    @Html.ValidationMessageFor(model => model.SubLocation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group green-border-focus col-md-6 ">
+                @Html.LabelFor(model => model.ValveType, "Item Type", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.ValveType, Enumerable.Empty<SelectListItem>(), "--Select Valve Type--", new { @class = "form-control", @id = "ValveType" })
+                    @Html.ValidationMessageFor(model => model.ValveType, "", new { @class = "text-danger" })
+
+
+                </div>
+            </div>
+
+          
+
+
+        </div>
+
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Size, "Size", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @*@Html.DropDownListFor(model => model.Size, Enumerable.Empty<SelectListItem>(), "--Select Category--", new { @class = "form-control", @id = "Category1" })*@
+                    @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control", placeholder = "Size" } })
+                    @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Make, "Make", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control txtMakeValve", placeholder = "Make", @id = "Make" } })
+                    @Html.ValidationMessageFor(model => model.Make, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Quantity, "Quantity", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Quantity", @id = "Quantity" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+          
+
+        </div>
+        <div class="row">
+            <div class="form-group green-border-focus col-md-12">
+                @Html.LabelFor(model => model.Description, "Remarks", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control green-border-focus", @placeholder = "Write Something ...", @id = "description", rows = 3, cols = 90, @value = "Description", @title = "Description" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class=" col-md-12">
+            <div class=" col-md-6">
+                <input type="submit" value="Submit Details" class="col-md-offset-6 btn btn-success btn-block" id="btnSubmit" />
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+}
+<hr class="style-eight" />
+<div class=" col-md-6 offset-md-4">
+    @Html.ActionLink(" Download XLSX File", "ExportSpeardSheetValve", "WBS", null, new { @style = "text-transform:capitalize;", @class = "btn btn-success btn-lg  fa fa-file-excel-o large pull-right" })
+    <h6 id="ItemName" style="color:Highlight;font-weight:900"><span style="color:Highlight;font-weight:900">ITEM NAME :</span> @ViewBag.ValveDetails</h6>
+</div>
+
+<div class="container-fluid" style="background-color:lightgrey">
+    <table class="table table-bordered table-hover table-responsive table-striped" id="MyDataTableValve" style="width:100%; text-align:center;border:1px solid">
+        <thead>
+            <tr style="text-align:center">
+                <th style="text-align:center">Item Code</th>
+
+                @*<th style="text-align:center">Item Name</th>
+                <th style="text-align:center">Location</th>*@
+                <th style="text-align:center">Valve Type</th>
+                <th style="text-align:center">Size</th>
+                <th style="text-align:center">Make</th>
+                <th style="text-align:center">Quantity</th>
+                <th style="text-align:center">Status</th>
+                <th style="text-align:center">Description</th>
+
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+
+    </table>
+    <div style="text-align:center;display:none" id="loaderDiv">
+        <img src="~/Content/images/circle-3.gif" width="70" />
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("#loaderDiv").show();
+        ShowValveDetails();
+         $("#MyDataTableValve").DataTable().clear();
+        $("#MyDataTableValve").DataTable().destroy();
+
+    });
+    var responseData = '';
+    var ShowValveDetails = function () {
+
+        $.ajax({
+
+            type: "POST",
+            url: "/WBS/ShowValveDetails",
+            success: function (response) {
+
+                response = JSON.parse(BindDataTableValve(response));
+
+                $("#MyDataTableValve").append(response)
+
+            }
+        });
+    }
+
+    var BindDataTableValve = function (response) {
+
+       
+
+        $("#MyDataTableValve").DataTable({
+
+            "aaData": response,
+            "aoColumns": [
+
+                { "mData": "ItemCode" },
+                //{ "mData": "ItemName" },
+                //{ "mData": "Location" },
+                { "mData": "ValveType" },
+                { "mData": "Size" },
+                { "mData": "Make" },
+                { "mData": "Quantity" },
+                { "mData": "Status" },
+                { "mData": "Description" }
+
+
+            ]
+
+
+
+        });
+
+
+        $("#loaderDiv").hide();
+    }
+
+
+</script>
+
+
+<script>
+
+   $(document).ready(function () {
+
+        var SessionValueLocation = '@Request.RequestContext.HttpContext.Session["location"]';
+
+
+    if (typeof (Storage) !== "undefined") {
+        var ItemNameStore = window.localStorage.getItem('ItemNameStorage');
+       // var LocationStore = window.localStorage.getItem('LocationStorage');
+
+        $(".itemnameddlValve").val(ItemNameStore);
+        $(".locationddlValve").val(SessionValueLocation);
+
+
+
+    }
+    else {
+        alert("This browser does  not support local storage");
+    }
+ });
+</script>
+
+
+
+
+<script>
+
+    function OnSuccess(result) {
+
+        console.log(result);
+        if (result.result == true) {
+
+            toastr.success("Asset Added Successfully", "Message", { timeOut: 4000 });
+            window.localStorage.removeItem("ItemNameStorage");
+            window.localStorage.removeItem("LocationStorage");
+            setTimeout(function () { location.reload(); }, 1000);
+        }
+        else if (result.result == false) {
+
+            toastr.warning("All Fields are Required !!", "Error Message ", { timeOut: 5000 });
+        }
+    }
+
+
+    function OnFailure(result) {
+
+        toastr.error("Something Went Wrong", "Error Message");
+
+
+    }
+    function OnComplete(result) {
+
+
+        document.getElementById("FormValve").reset();
+
+
+    }
+
+
+</script>
+
+<script>
+
+    $.getJSON("/WBS/DDLTypeOfValve", function (data) {
+        $.each(data, function (i, data) {      // bind the dropdown list using json result
+            $('<option>',
+                {
+                    value: data.ValveType,
+                    text: data.ValveType
+                }).html(data.ValveType).appendTo("#ValveType");
+        });
+    });
+</script>
+<script>
+
+
+
+    $.getJSON("/WBS/DDLSubLocation", function (data) {
+        $.each(data, function (i, data) {      // bind the dropdown list using json result
+            $('<option>',
+                {
+                    value: data.SubLocation,
+                    text: data.SubLocation
+                }).html(data.status).appendTo("#SubLocation");
+        });
+    });
+</script>

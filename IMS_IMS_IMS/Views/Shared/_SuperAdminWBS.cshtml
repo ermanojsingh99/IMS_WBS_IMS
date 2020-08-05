@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmda | WBS</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*@Scripts.Render("~/admin-lte/modernizr")*@
+
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+    <link href="~/Content/css/jquery.dataTables.css" rel="stylesheet" />
+    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @*<script src="~/Scripts/AdminRegistration.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/CustomDatetimePicker.js"></script>
+    <script src="~/Scripts/CustomCommonScript.js"></script>
+    <script type="text/javascript" src="~/Scripts/CountAssetsFunctions.js"></script>
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/tether.js"></script>
+    <script src="~/Scripts/toastr.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <link href="~/admin-lte/css/AdminLTE.css" rel="stylesheet" />
+    <link href="~/admin-lte/css/skins/skin-blue.css" rel="stylesheet" />
+    <link href="~/admin-lte/css/skins/skin-blue.min.css" rel="stylesheet" />
+    <link href="~/admin-lte/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Content/css/footer_index.css" rel="stylesheet" />
+
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    @*<link rel="stylesheet" href="~/admin-lte/bower_components/bootstrap/dist/css/bootstrap.min.css">*@
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/admin-lte/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/admin-lte/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+
+    <link href="~/admin-lte/dist/css/adminlte.min.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/admin-lte/dist/css/skins/_all-skins.min.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="~/admin-lte/bower_components/morris.js/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="~/admin-lte/bower_components/jvectormap/jquery-jvectormap.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="~/admin-lte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/admin-lte/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="~/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+    @*<script src="~/admin-lte/bower_components/jquery/dist/jquery.min.js"></script>
+
+        <script src="~/admin-lte/bower_components/jquery-ui/jquery-ui.min.js"></script>*@
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    @*<script src="~/admin-lte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>*@
+    <!-- Morris.js charts -->
+    <script src="~/admin-lte/bower_components/raphael/raphael.min.js"></script>
+    <script src="~/admin-lte/bower_components/morris.js/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/admin-lte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="~/admin-lte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/admin-lte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/admin-lte/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/admin-lte/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/admin-lte/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="~/admin-lte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="~/admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/admin-lte/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/admin-lte/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/admin-lte/dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/admin-lte/dist/js/demo.js"></script>
+
+    <style type="text/css">
+        .ListItemColor {
+            color: darkcyan;
+        }
+    </style>
+</head>
+
+
+<body class="hold-transition skin-blue sidebar-mini fixed">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="index2.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>A</b>LT</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"> <img height="50" width="50" src='@Url.Content("~/Image/gmda_logo_trans.png")' /><b>SuperAdmin</b> WBS</span>
+
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <!-- User Account Menu -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
+                                    <img src="~/admin-lte/img/avatar.png" class="user-image" alt="User Image">
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+
+
+                                    <span class="hidden-xs">Welcome @User.Identity.Name</span>
+
+
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header">
+                                        <img src="~/admin-lte/img/avatar.png" class="img-circle" alt="User Image">
+
+                                        <p>
+
+                                            @User.Identity.Name
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <li class="user-body">
+                                        <div class="row">
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">User</a>
+                                            </div>
+
+                                        </div>
+                                        <!-- /.row -->
+                                    </li>
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer" style="background-color:lightseagreen">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="~/Account/Logout" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="~/admin-lte/img/avatar.png" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p> @User.Identity.Name</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="active treeview">
+                        <a href="#" name="SuperAdminWBSHomePage">
+                            <i class="fa fa-home"></i> <span>Home</span>
+                            @*<span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>*@
+                        </a>
+                        @*<ul class="treeview-menu">
+                                <li class="active"><a href="index.html"><i class="fa fa-circle-o ListItemColor"></i> Dashboard v1</a></li>
+                                <li><a href="index2.html"><i class="fa fa-circle-o ListItemColor"></i> Dashboard v2</a></li>
+                            </ul>*@
+                    </li>
+
+                   
+                   
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+
+            <section class="container-fluid" id="renderbody">
+                @RenderBody()
+
+            </section>
+            <br />
+            
+                        <div class="panel-body" id="DivRenderUserUpdation">
+                        </div>
+        </div>
+                
+  
+                            <!-- /.content -->
+         
+                        <!-- /.content-wrapper -->
+                        <footer class="main-footer">
+                            <div class="pull-right hidden-xs">
+                                <b>Version</b> 2.4.13
+                            </div>
+                            <strong>Copyright &copy; 2017 <a href="https://www.gmda.gov.in" target="_blank">Gurugram Metropolitan Development Authority </a>.</strong> All rights
+                            reserved.
+                        </footer>
+
+
+
+                    </div>
+
+                    @Scripts.Render("~/admin-lte/js")
+                    @Scripts.Render("~/bundles/jqueryval")
+                    @Scripts.Render("~/Script")
+                    @RenderSection("scripts", required: false)
+                    <!-- ./wrapper -->
+                    <!-- jQuery 3 -->
+
+</body>
+</html>
+
+<script>
+
+
+     $(document).on("click", "a[name='ManageUser_name']", function (event) {
+        event.preventDefault();
+         $('#renderbody').load('@Url.Action("ManageUserWBS","WBS")');
+
+     });
+
+     $(document).on("click", "a[name='AddDetails_Admin']", function (event) {
+        event.preventDefault();
+         $('#renderbody').load('@Url.Action("AddDetailsAdmin","WBSAdmin")');
+
+    });
+
+
+     $(document).on("click", "a[name='SuperAdminWBSHomePage']", function (event) {
+         event.preventDefault();
+        
+         '@Url.Action("AddDetailsAdmin","WBSAdmin")';
+         
+
+     });
+
+    
+
+</script>

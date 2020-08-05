@@ -1,0 +1,225 @@
+﻿@model IMS_IMS_MODEL.AssetDetailsFileIdModel
+@*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>*@
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+@*<link type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet" />*@
+@*<script src="https://use.fontawesome.com/d94f445648.js"></script>*@
+<style type="text/css">
+    .required::after{
+        margin:2px;
+        content:"*";
+        color:red;
+    }
+
+</style>
+
+<div class="panel panel-success">
+
+    <div class="panel-body">
+        @*@using (Html.BeginForm("AddFileDetailsSubmission","Admin",FormMethod.Post, new { @enctype = "multipart/form-data", @id = "Form1" }))*@
+        @using (Ajax.BeginForm("AddFileDetailsSubmission", "Admin", new AjaxOptions
+        {
+            HttpMethod = "POST",
+            OnSuccess = "OnSuccessSubmission",
+            OnFailure = "OnFailureSubmission",
+            LoadingElementId = "progress",
+            OnComplete = "OnComplete"
+        }, new { @id = "FormDetailSubmission", @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model._EmpId, "Employee Id", htmlAttributes: new { @class = "control-label col-md-3 required" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model._EmpId, new { htmlAttributes = new { @class = "form-control", @id = "txtEmpid", @placeholder = "Employee Id" } })
+                    @Html.ValidationMessageFor(model => model._EmpId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model._AssetId, "Asset Id", htmlAttributes: new { @class = "control-label col-md-3 required" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model._AssetId, new { htmlAttributes = new { @class = "form-control", @id = "txtAssetid", @placeholder = "Asset Id" } })
+                    @Html.ValidationMessageFor(model => model._AssetId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label class="control-label required">Upload File(*pdf allowed only)</label>
+                </div>
+
+                <div class="col-md-9">
+                    <input type="file" id="AgreementFile_upload" name="File"/>
+                    <label id="lblfileupload" style="color:red;"></label>
+                </div>
+
+
+
+                @*@Html.TextBoxFor(model => model.UploadAgreement, new { type = "file", name = "UploadAgreement", id = "uploadagreement" })
+                    @Html.ValidationMessageFor(model => model.UploadAgreement, "", new { @class = "text-danger" })
+                    @Html.ValidationMessage("Uploadfirst", new { @class = "text-danger" })*@
+
+            </div>
+            <br />
+            <br />
+            <br />
+
+            <div class=" col-md-12">
+                <div class=" col-md-6">
+                    <input type="submit" value="Submit Details" class="btn btn-primary btn-block" id="btnSubmit" />
+                </div>
+               
+            </div>
+          
+
+        }
+
+    </div>
+</div>
+<script>
+
+
+
+    //$(document).ready(function () {
+    //    $("#btnSubmit").click(function () {
+
+    //        var request = new XMLHttpRequest();
+    //        var dataObject = {
+
+    //            AssetId: $("#txtAssetid").val(),
+    //            EmpId: $("#txtEmpid").val(),
+    //            File: $("#AgreementFile_upload").val(),
+
+
+    //        }
+    //        request.open("POST", "/Admin/AddFileDetailsSubmission", true);
+    //        request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    //        request.setRequestHeader('Content-Length', JSON.stringify(dataObject).length);
+    //        request.onreadystatechange = function () {
+    //            if (request.readyState == 4 && request.status == 200) {
+    //                //alert(request.responseText);
+
+    //                toastr.success(result, "Successs Message", { timeOut: 6000 });
+    //                console.log(result);
+    //            }
+    //        }
+    //        request.send(JSON.stringify(dataObject));
+    //    });
+
+
+    //});
+
+    function OnSuccessSubmission(result) {
+
+        console.log(result);
+        if (result.result == "Asset Added Successfully") {
+
+            toastr.success(result.result, "Message");
+            document.getElementById("FormDetailSubmission").reset();
+        }
+        else if (result.result == "Employee not exist in GMDA") {
+
+            toastr.error(result.result, "Error Message", { timeOut: 10000 });
+        }
+        else if (result.result == "Data Already Exist") {
+            toastr.error("Data Already Exist !!", "Error Message", { timeOut: 10000 });
+
+        }
+        else if (result.result == "Upload file first") {
+           
+            alert("Upload File First");
+
+        }
+        else {
+            toastr.error("Something Went wrong !!", "Error Message", { timeOut: 10000 });
+        }
+
+
+    }
+
+
+    function OnFailureSubmission(result) {
+
+        toastr.error("Something Went Wrong", "Error Message");
+
+
+    }
+
+
+
+    //nvfnvfjknvfl
+     //$(document).ready(function () {
+
+     //    $("#btnSubmit").click(function (e) {
+
+
+
+     //       if ($("#txtAssetid").val() == "" || $("#txtEmpid").val() == "" || $("#AgreementFile_upload").val() == "") {
+     //           toastr.error("All Fields are required", "Error Message", { timeOut: 5000 });
+
+     //       }
+     //       else {
+
+     //           var dataObject = {
+
+     //               AssetId: $("#txtAssetid").val(),
+     //               EmpId: $("#txtEmpid").val(),
+     //               File: $("#AgreementFile_upload").val(),
+
+
+     //           }
+
+     //           $.ajax({
+     //                request = new XMLHttpRequest();
+
+     //               url: "/Admin/AddFileDetailsSubmission",
+     //               dataType: "json",
+     //               type: "post",
+     //               contentType: "applicatioin/json;charset=utf-8",
+     //               data: JSON.stringify(dataObject),
+     //               success: function (response) {
+
+     //                   if (response.AlreadyExistMessage) {
+     //                       toastr.error("Data Already Exist", "Error !", { timeOut: 6000 });
+     //                       console.log(response);
+     //                   }
+     //                 else  if (response.AssetId != null) {
+     //                       toastr.success("Data saved successfully", "Message", { timeOut: 6000 });
+     //                       console.log(response);
+
+     //                   }
+     //                   else {
+
+     //                       toastr.error("Data not saved ", "Error !", { timeOut: 6000 });
+     //                       console.log(response);
+     //                   }
+
+
+
+     //               },
+     //               error: function () {
+     //                   toastr.error("Someting Went wrong", "Error !", { timeOut: 6000 });
+     //               }
+
+
+     //           });
+     //        }
+
+     //   });
+
+
+     // });
+
+
+
+
+</script>

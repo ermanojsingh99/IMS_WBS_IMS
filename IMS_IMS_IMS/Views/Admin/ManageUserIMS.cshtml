@@ -1,0 +1,504 @@
+﻿@{
+    Layout = "~/Views/Shared/_SuperAdminIMS.cshtml";
+
+}
+<style type="text/css">
+    .required::after {
+        margin: 2px;
+        content: "*";
+        color: red;
+    }
+
+    .modal-dialog {
+        width: 600px;
+        height: 600px !important;
+    }
+</style>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+<br />
+<br />
+<div class="container-fluid">
+    <button type="button" id="btnAddNewUser" name="btnAddNewUser" value="Add New" class="btn btn-success  pull-left">Add New User <span class="fa fa-plus-square" aria-hidden="true" style="padding-top:3px"></span></button>
+    <br />
+    <table class="display" id="MyDataTable" style="width:100%; text-align:center;border:1px solid">
+        <thead>
+            <tr style="text-align:center">
+                <th style="text-align:center">User Name</th>
+                <th style="text-align:center">Email</th>
+                <th style="text-align:center">Password</th>
+                <th style="text-align:center">Confirm Password</th>
+
+                <th style="text-align:center">Account Create On</th>
+
+                <th style="text-align:center">Action</th>
+                <th style="text-align:center">Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+
+    </table>
+    <div style="text-align:center;display:none" id="loaderDiv">
+        <img src="~/Content/images/circle-3.gif" width="70" />
+    </div>
+
+
+    @*EditFormStarts*@
+
+    <div id="myModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                    <h4 class="modal-title" id="ModalTitle">Edit Asset Details</h4>
+                </div>
+                <div class="modal-body">
+                    @{Html.RenderPartial("EditManageUserIMS"); }
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background-color:#00ace6">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModalAddNewUser" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                    <h4 class="modal-title" id="ModalTitle">Create New User</h4>
+                </div>
+                <div class="modal-body">
+
+                    @{Html.RenderPartial("CreateAdmin"); }
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background-color:#00ace6">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("#loaderDiv").show();
+
+
+        ShowAssetDetails();
+
+
+    });
+    var responseData = '';
+    var ShowAssetDetails = function () {
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Admin/ManageUserIMSDetails",
+            success: function (response) {
+
+                response = JSON.parse(BindDataTable(response));
+
+                $("#MyDataTable").append(response)
+
+            }
+        });
+    }
+
+    var BindDataTable = function (response) {
+
+        $("#MyDataTable").DataTable({
+
+            "aaData": response,
+            "aoColumns": [
+                { "mData": "Username" },
+                { "mData": "email" },
+                { "mData": "password" },
+                { "mData": "ConfirmPassword" },
+
+                { "mData": "accountCreateOn" },
+
+
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<a  class="btn btn-block btn-primary" name="btnEditUser" id="btnEditUser" >Edit <i class="fa fa-edit"></i></a>';
+
+                    }
+                },
+
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<a class="btn btn-block btn-danger delete" name="btnDeleteUser" id="btnDeleteUser" >Delete <i class="fa fa-trash"></i></a>';
+
+                    }
+                }
+
+
+
+
+            ]
+
+
+
+        });
+
+
+        $("#loaderDiv").hide();
+    }
+
+
+
+
+    $(document).on("click", "a[name='btnChangeOwnership']", function (event) {
+
+        event.preventDefault();
+
+        var AssetId = $(this).closest("tr").find("td").eq(0).html();
+
+
+        $("#myModalUpdateOwnerShip").modal('show');
+
+        $("#btnChangeOwner").click(function (event) {
+            event.preventDefault();
+
+            var TextBoxValidation = $("#txtEmpidOwnerShipChange").val();
+            if (TextBoxValidation == "") {
+
+                alert("Employee Id field is required");
+            }
+            else {
+                var EmployeeId = $("#txtEmpidOwnerShipChange").val();
+
+                var EditDetails = {
+
+                    AssetId: AssetId,
+                    EmployeeId: EmployeeId
+                }
+                var data = JSON.stringify(EditDetails);
+
+                $.ajax({
+
+
+                    url: "/Admin/UpdateOwnership",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: "json",
+                    data: data,
+                    success: function (data) {
+
+                        if (data != null) {
+
+                            toastr.success("Asset ID : " + "<b>" + data.AssetId + "</b>" + " Transffered to Employee " + "<b>" + data.result + "</b>", "Message", { timeOut: 3000 });
+                            $("#myModalUpdateOwnerShip").modal('hide');
+                            // window.location.href = "/Admin/ShowEmployeeAssets1";
+                            // $("#AssetTable").ajax.reload();
+                            // $("#AssetTable tbody").append(row);
+                            // $("#EmployeeTable").ajax.re
+                            //$("#AssetTable tbody").empty();
+
+                        }
+                        // toastr.success("Asset Transfered Successfully", "Message");
+                        else {
+
+                            toastr.error("Something went wrong inner", "Error Message");
+                        }
+
+                    },
+                    error: function () {
+                        toastr.error("Something went wrong", "Error Message");
+                    }
+
+
+                });
+
+            }
+
+
+
+        });
+
+
+    });
+
+
+    $(document).on("click", "a[name='btnEditUser']", function (event) {
+
+        event.preventDefault();
+
+        var Email = $(this).closest("tr").find("td").eq(1).html();
+
+
+        $.ajax({
+
+            url: "/Admin/EditUserGetDetails",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            data: { Email: Email },
+            success: function (result) {
+
+
+                $('#txthdnUserId').val(result[0].Userid);
+                $('#txtUserName').val(result[0].Username);
+                $('#txtEmail').val(result[0].email);
+                $('#txtPassword').val(result[0].pass);
+                $('#txtRetypePass').val(result[0].retypePass);
+
+
+                $("#myModalEdit").modal('show');
+
+
+
+            },
+
+            error: function () {
+
+            }
+
+
+        });
+
+    });
+
+
+    $(document).on("click", "a[name='btnDeleteUser']", function (event) {
+
+        event.preventDefault();
+        if (confirm("Do You want to Delete")) {
+
+            var Email = $(this).closest("tr").find("td").eq(1).html();
+
+            $.ajax({
+
+                url: "/Admin/DeleteUserWBS",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                data: { Email: Email },
+                success: function (result) {
+
+                    if (result.message != "") {
+
+                        toastr.success(result.message, "Message");
+
+
+                    }
+                    else {
+
+                        toastr.error("Somthing Went wrong", "Error Message");
+                    }
+
+
+
+
+                },
+
+                error: function () {
+
+                }
+
+
+
+
+            });
+        }
+
+    });
+
+
+    //$('#UpdateAsset').click(function (e) {
+    //    e.preventDefault();
+    //    var empObj = {
+    //        EmpId: $('#hdnEmpId').val(),
+    //        AssetId_unique: $('#txtAssetId').val(),
+    //        AssetName: $('#txtAssetName').val(),
+    //        SerialNo: $('#txtSerialNo').val(),
+    //        IpAddress: $('#txtIP').val(),
+    //        MacAddress: $('#txtMac').val(),
+    //        HDD: $('#txtHDD').val(),
+    //        RAM: $('#txtRAM').val(),
+    //        processor: $('#txtProcessor').val(),
+    //        WarrantyStart: $('#txtWarrantyStart').val(),
+    //        WarrantyEnd: $('#txtWarrantyEnd').val(),
+    //        DateOfIssue: $('#txtDateOfIssue').val()
+    //    };
+    //    console.log(empObj);
+
+    //    $.ajax({
+
+    //        url: "/Admin/EditAssetDetails",
+    //        type: "POST",
+    //        contentType: 'application/json; charset=utf-8',
+    //        dataType: "json",
+    //        data: JSON.stringify(empObj),
+    //        success: function (result) {
+
+    //            if (result.message != "") {
+
+    //                toastr.success(result.message, "Message");
+
+
+    //            }
+    //            else {
+
+    //                toastr.error("Empty field not allowed", "Error Message");
+    //            }
+
+    //        },
+    //        error: function () {
+
+    //            toastr.error("Something went wrong", "Error Message");
+
+
+    //        }
+    //    });
+    //});
+
+
+</script>
+
+
+
+<script>
+
+    $('#UpdateUserIMS').click(function (e) {
+        e.preventDefault();
+        var USerEditDetails = {
+            UserId: $('#txthdnUserId').val(),
+            UserName: $('#txtUserName').val(),
+            Email: $('#txtEmail').val(),
+            Password: $('#txtPassword').val(),
+            RetypePassword: $('#txtRetypePass').val(),
+
+
+
+        };
+
+
+        $.ajax({
+
+            url: "/Admin/UpdateUserIMS",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            data: JSON.stringify(USerEditDetails),
+            success: function (result) {
+
+                if (result.message != "") {
+
+                    toastr.success(result.message, "Message");
+
+
+                }
+                else {
+
+                    toastr.error("Empty field not allowed", "Error Message");
+                }
+
+            },
+            error: function () {
+
+                toastr.error("Something went wrong", "Error Message");
+
+
+            }
+        });
+    });
+
+
+</script>
+<script>
+
+//    $(document).ready({
+//        $("#btnAddNewUser").click(function () {
+
+//        }) ;
+
+
+//});
+
+    $(document).ready(function () {
+
+
+        $( "#btnAddNewUser" ).click(function() {
+
+             $('#myModalAddNewUser').modal('show')
+
+});
+
+    });
+
+
+
+
+    @*$(document).on("click", "a[name='btnAddNewUser']", function (event) {
+
+       event.preventDefault();
+       alert("Clicked");
+
+    $('#AddNewUserDiv').dialog({
+        autoOpen: true,
+        position: { my: "center", at: "top+350", of: window },
+        width: 900,
+        resizable: false,
+        title: 'Add New User',
+        modal: true,
+        open: function () {
+            $(this).load('@Url.Action("AdminRegistration", "Account")');
+        },
+        buttons: {
+            "Add User": function () {
+                addUserInfo();
+            },
+            Cancel: function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+    return false;
+});*@
+@*function addUserInfo() {
+    $.ajax({
+        url: '@Url.Action("AdminRegistration", "Account")',
+        type: 'GET',
+        data: $("#MyForm").serialize(),
+        dataType:'html',
+        success: function (response) {
+            console.log(response);
+            $('#LoadAdminRegPartial').html(response);
+            if (response) {
+                $(':input', '#myForm')
+                  .not(':button, :submit, :reset, :hidden')
+                  .val('')
+                  .removeAttr('checked')
+                    .removeAttr('selected');
+                // $('#myModalAddNewUser').html(response);
+                      //  $('#myModalAddNewUser').dialog('open');
+
+                 $('#myModalAddNewUser').modal('show')
+            }
+        }
+    });
+}*@
+
+
+
+</script>

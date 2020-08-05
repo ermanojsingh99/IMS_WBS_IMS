@@ -1,0 +1,17 @@
+﻿@*@{
+    string CurrentName = Convert.ToString(HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"]);
+    dynamic Layout;
+    switch (CurrentName)
+    {
+        case "User":
+            Layout = "~/Views/Shared/_Layout.cshtml";
+            break;
+        default:
+            //Admin layout
+            Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+            break;
+    }
+}*@
+
+@*In MVC application some time you need to change Layout page according to user role or any other purpose which need to  differentiate between two pages such 
+as for Login page and Admin page. Let's learn about the layout pages step by step.*@

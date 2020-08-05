@@ -1,0 +1,228 @@
+﻿@model IMS_IMS_MODEL.AssetDetailsModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .theader {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-align: center;
+        height: 35px;
+       
+        width:auto;
+        padding:5px;
+    }
+
+    .header {
+        text-align: center;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        height: 25px;
+        color:black;
+    }
+
+    .divbg {
+        background-color: #EADFAB;
+    }
+</style>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">Details</div>
+        <div class="panel-body">
+
+
+
+            <div class="col-md-6 divbg" style="border:1px solid grey; padding:15px;width:900px">
+
+                <div id="divDownload" style="width:auto;height:auto;padding:0px">
+                <a class="btn btn-primary pull-right" id="btndownload" style="height:35px; border:2px solid green; width:auto;padding:8px;">Download(*pdf) Asset Details</a>
+
+                    
+                </div>
+                @*<button type="button" class="btn btn-primary pull-right" id="btndownload">Download File<span><i class="fa fa-cloud-download"></i></span></button>*@
+                <table class="table-striped table-bordered theader" id="MydataTable" style="background-color:white; width:100%; ">
+                    <caption style="text-align:left; font-size:medium;color:black;font-weight:700;background-color:beige;padding:5px">Personal Details</caption>
+                    <thead>
+
+                        <tr>
+                            <th class="header">Employee Id</th>
+                            <th class="header">Name</th>
+                            <th class="header">Email</th>
+                            <th class="header">Department</th>
+                            <th class="header">Designation</th>
+                            <th class="header">Mobile</th>
+
+
+                        </tr>
+
+                    </thead>
+                    <tbody id="tbodyID"></tbody>
+                </table>
+            </div>
+            <br />
+            <hr />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <div class="col-md-12 divbg" style="border:1px solid grey; padding:15px" id="divtable1">
+                <table class="table-striped table-bordered theader" id="MydataTable1" style="background-color:white;width:100%;">
+                    <caption style="text-align:left; font-size:medium;color:black;font-weight:700;background-color:beige;padding:5px">Asset Details</caption>
+                    <thead>
+                        <tr>
+                            <th class="header">ID</th>
+                            <th class="header">Asset Type</th>
+                            <th class="header">Serial No</th>
+                            <th class="header">Warranty Start</th>
+                            <th class="header">Warranty End</th>
+                            <th class="header">Date of Issue</th>
+                            <th class="header">MAC/IMEI</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tbody1"></tbody>
+                </table>
+              
+            </div>
+
+
+        </div>
+
+
+        <div style="text-align:center;display:none" id="loaderDiv">
+            <img src="~/Content/images/circle-3.gif" width="70" />
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function getUrlVars() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+   
+   
+    
+
+
+    $(document).ready(function () {
+
+        var ErpID = getUrlVars()["ErpID"];
+       
+        //$("#MydataTable").hide();
+        //$("#MydataTable1").hide();
+        //$("#divtable").hide();
+        //$("#divtable1").hide();
+      //  $("#btnSearch").click(function () {
+            //$("#MydataTable tbody").empty();
+          //  $("#MydataTable1 tbody").empty();
+            $("#loaderDiv").show();
+           // var id = $("#txtSearch").val();
+        
+      
+            $.ajax({
+
+                type: "GET",
+                url: "http://203.153.42.244:8082/Home/GetDetailsErpId/?ErpID=" + ErpID,
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                data: { ErpID: ErpID },
+                success: function (data) {
+                   // window.history.pushState("Details", "Title", "<w$5&89%88:$&/Home/; ?>/GetDetailsErpId1/" + ErpID);
+                    $("#MydataTable").show();
+                    $("#MydataTable1").show();
+                    $("#divtable").show();
+                    $("#divtable1").show();
+                  
+                   
+                    // $('#blogTable tbody').empty();
+                    var row = "";
+                    var row1 = "";
+                    
+                   // var data1 = "";
+                    $.each(data, function (index, item) {
+                       
+                        row = "<tr><td>" + item.ErpId + "</td><td>" + item.EmpName + "</td><td>" + item.Email + "</td><td>" + item.Department + "</td><td>" + item.Designation + "</td><td>" + item.Mobile + "</td></tr>";
+                       
+                        row1 += "<tr><td>" + item.AssetId + "</td><td>" + item.AssetName + "</td><td>" + item.SerialNo + "</td><td>" + item.WarrantyStart + "</td><td>" + item.WarrantyEnd + "</td><td>" + item.MacId + "</td></tr>";
+                        //data1 = item.AssetName;
+                    
+                    });
+                    $("#MydataTable tbody").append(row);
+                    $("#MydataTable1 tbody").append(row1);
+                    
+                   
+
+                    $("#loaderDiv").hide();
+
+                },
+                error: function (error) {
+                    alert('error; ' + eval(error));
+
+                }
+            });
+
+        //});
+
+    })
+
+   
+
+    $(document).on("click", "a[name='lnkViews']", function (e) {
+        alert("Calling function");
+        var ErpId = $("#txtSearch").val();
+         alert(ErpId);
+            $.ajax(
+            {
+                url: "/Home/DownloadAttachment/",
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                    data: {
+                        ImageName: "abc.pdf"
+                },
+                type: "GET",
+                success: function () {
+                  
+                }
+            });
+
+
+    });
+
+    $("#btndownload").click(function () {
+       
+       // var EmployeeId = $("#txtSearch").val();
+        var EmployeeId = getUrlVars()["ErpID"];
+     
+         $.ajax(
+            {
+                url: "/Home/DownloadPDF/",
+                contentType: 'application/pdf',
+                datatype: 'native',
+                data: { EmpId: EmployeeId},
+                xhrFields: {  responseType: 'blob'},
+                type: "GET",
+                success: function (response) {
+              
+                var link=document.createElement('a');
+                link.href = window.URL.createObjectURL(new Blob([response], { type: "application/pdf" }));
+                link.download = "SignedAgrrement" + new Date() + ".pdf";
+                link.click();
+ 
+                   
+                }
+            });
+    })
+
+    
+</script>

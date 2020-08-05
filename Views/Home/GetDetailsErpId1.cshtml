@@ -1,0 +1,203 @@
+﻿@model IMS_IMS_MODEL.AssetDetailsModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .theader {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-align: center;
+        height: 35px;
+    }
+
+    .header {
+        text-align: center;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        height: 25px;
+    }
+
+    .divbg {
+        background-color: #EADFAB;
+    }
+</style>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">Details</div>
+        <div class="panel-body">
+
+            <div class="col-md-6 divbg" style="border:1px solid grey; padding:20px">
+                <div class="col-md-9">
+                    <span><b>Employee Id / Erp Id :</b></span>
+                    <input type="text" id="txtSearch" name="txtSearch" /><br />
+                </div>
+                <div class="col-md-3">
+                    <input type="button" id="btnSearch" value="Get Details" class="btn btn-block btn-primary" />
+                </div>
+
+
+            </div>
+            <br />
+
+            <hr />
+            <br />
+
+            <div class="col-md-6 divbg" style="border:1px solid grey; padding:15px" id="divtable">
+
+                <a class="btn btn-primary pull-right" id="btndownload" style="height:25px;width:auto;padding-top:initial">Download(*pdf) Asset Details</a>
+                @*<button type="button" class="btn btn-primary pull-right" id="btndownload">Download File<span><i class="fa fa-cloud-download"></i></span></button>*@
+                <table class="table-striped table-bordered theader" id="MydataTable" style="background-color:white; width:100%; ">
+                    <thead>
+                        <tr>
+                            <th class="header">Employee Id</th>
+
+                            <th class="header">Asset Id</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyID"></tbody>
+                </table>
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <div class="col-md-12 divbg" style="border:1px solid grey; padding:15px" id="divtable1">
+                <table class="table-striped table-bordered theader" id="MydataTable1" style="background-color:white;width:100%;">
+                    <caption style="text-align:center; font-size:medium">Asset Details</caption>
+                    <thead>
+                        <tr>
+                            <th class="header">Asset Id</th>
+                            <th class="header">Asset Name</th>
+                            <th class="header">Serial No</th>
+                            <th class="header">Warranty Start</th>
+                            <th class="header">Warranty End</th>
+                            <th class="header">Date of Issue</th>
+                            <th class="header">MAC/IMEI</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="tbody1"></tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+
+        <div style="text-align:center;display:none" id="loaderDiv">
+            <img src="~/Content/images/circle-3.gif" width="70" />
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+
+    $(document).ready(function () {
+        $("#MydataTable").hide();
+        $("#MydataTable1").hide();
+        $("#divtable").hide();
+        $("#divtable1").hide();
+        $("#btnSearch").click(function () {
+            $("#MydataTable tbody").empty();
+            $("#MydataTable1 tbody").empty();
+            $("#loaderDiv").show();
+            var id = $("#txtSearch").val();
+            
+
+            $.ajax({
+
+                type: "GET",
+                url: "/Home/GetDetailsErpId/",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                data: { ErpID: id },
+                success: function (data) {
+                    $("#MydataTable").show();
+                    $("#MydataTable1").show();
+                    $("#divtable").show();
+                    $("#divtable1").show();
+                    console.log(data);
+                    // $('#blogTable tbody').empty();
+                    var row = "";
+                    var row1 = "";
+                   // var data1 = "";
+                    $.each(data, function (index, item) {
+
+                        row = "<tr><td>" + item.ErpId + "</td><td>" + item.AssetId_unique + "</td></tr>";
+                        row1 += "<tr><td>" + item.AssetId + "</td><td>" + item.AssetName + "</td><td>" + item.SerialNo + "</td><td>" + item.WarrantyStart + "</td><td>" + item.WarrantyEnd + "</td><td>" + item.Issuedate + "</td><td>" + item.MacId + "</td></tr>";
+                        //data1 = item.AssetName;
+                    
+                    });
+                    $("#MydataTable tbody").append(row);
+                    $("#MydataTable1 tbody").append(row1);
+                    
+                   
+
+                    $("#loaderDiv").hide();
+
+                },
+                error: function (error) {
+                    alert('error; ' + eval(error));
+
+                }
+            });
+
+        });
+
+    })
+
+
+
+    $(document).on("click", "a[name='lnkViews']", function (e) {
+        alert("Calling function");
+        var ErpId = $("#txtSearch").val();
+         alert(ErpId);
+            $.ajax(
+            {
+                url: "/Home/DownloadAttachment/",
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                    data: {
+                        ImageName: "abc.pdf"
+                },
+                type: "GET",
+                success: function () {
+                    @*//window.location = '@Url.Action("DownloadAttachment", "PostDetail", new { studentId = erp })';*@
+                }
+            });
+
+
+    });
+
+    $("#btndownload").click(function () {
+
+        var EmployeeId = $("#txtSearch").val();
+       
+         $.ajax(
+            {
+                url: "/Home/DownloadPDF/",
+                contentType: 'application/pdf',
+                datatype: 'native',
+                data: { EmpId: EmployeeId},
+                xhrFields: {  responseType: 'blob'},
+                type: "GET",
+                success: function (response) {
+                console.log(response);
+                var link=document.createElement('a');
+                link.href = window.URL.createObjectURL(new Blob([response], { type: "application/pdf" }));
+                link.download = "SignedAgrrement" + new Date() + ".pdf";
+                link.click();
+ 
+                   
+                }
+            });
+    })
+</script>

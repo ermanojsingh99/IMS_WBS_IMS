@@ -1,0 +1,519 @@
+﻿
+@model IMS_IMS_MODEL.AssetDetailsFileIdModel
+@{
+    Layout = "~/Views/Shared/_LayoutAdminLte.cshtml";
+    // Layout = null;
+}
+
+<style type="text/css">
+    .required::after {
+        margin: 2px;
+        content: "*";
+        color: red;
+    }
+</style>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+<div class=" col-md-6 offset-md-4">
+    @Html.ActionLink(" Download XLSX File", "ExportSpeardSheetAssetDetails", "Admin", null, new { @style = "text-transform:capitalize;", @class = "btn btn-success btn-lg  fa fa-file-excel-o large pull-right" })
+    @*<h6 id="ItemName" style="color:Highlight;font-weight:900"><span style="color:Highlight;font-weight:900">ITEM NAME :</span> @ViewBag.PanelBoardDetails</h6>*@
+</div>
+<div class="container-fluid" style="background-color:lightgrey">
+    <table class="display" id="MyDataTable" style="width:100%; text-align:center;border:1px solid">
+        <thead>
+            <tr style="text-align:center">
+                <th style="text-align:center">Employee id</th>
+
+                <th style="text-align:center">Name</th>
+                <th style="text-align:center">Email</th>
+                <th style="text-align:center">Department</th>
+                <th style="text-align:center">Details</th>
+
+                <th style="text-align:center">Print</th>
+
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+
+    </table>
+    <div style="text-align:center;display:none" id="loaderDiv">
+        <img src="~/Content/images/circle-3.gif" width="70" />
+    </div>
+
+    <div class="modal" id="myModal" style="width:auto;height:auto">
+        <div class="modal-dialog" style="width: fit-content;">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header" style="background-color:#00ace6;height:35px;padding-left:10px;padding-top:3px">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:white">Employee Asset Details</h5>
+
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body table-responsive" style="width:auto;height:auto">
+                    <div class="panel panel-success" style="width:550px;height:auto">
+                        <div class="panel-heading" style="height:35px">Personal Details</div>
+                        <table class="table table-bordered table-hover table-striped table-responsive" id="EmployeeTable" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Employee Name</th>
+                                    <th>Designation</th>
+                                    <th>Department</th>
+                                    <th>Date Of Joining</th>
+                                    <th>Date Of Birth</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+
+
+                    </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading" style="height:35px">Asset Details</div>
+                        <table class="table table-bordered table-hover table-responsive table-striped" id="AssetTable">
+                            <thead>
+                                <tr>
+
+                                    <th>Asset Id</th>
+                                    <th>Name</th>
+                                    <th>Serial</th>
+                                    <th>RAM</th>
+                                    <th>HDD</th>
+                                    <th>Issue Date</th>
+                                    <th>W_Start</th>
+                                    <th>W_End</th>
+                                    <th>Action</th>
+                                    <th>Transfer</th>
+
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    @*EditFormStarts*@
+
+    <div id="myModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                    <h4 class="modal-title" id="ModalTitle">Edit Asset Details</h4>
+                </div>
+                <div class="modal-body">
+                    @{Html.RenderPartial("_EditAssetDetails"); }
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background-color:#00ace6">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+    @*EditFormEnds*@
+    <div class="modal" id="myModalUpdateOwnerShip">
+        <div class="modal-dialog" style="width: fit-content;">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header" style="background-color:#00ace6;height:35px;padding-left:10px;padding-top:3px">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:white">Update Details</h5>
+
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" style="width:650px;height:auto">
+                    <div class="panel panel-success table-responsive">
+
+                        <div class="panel-body">
+                            @*@using (Html.BeginForm("AddFileDetailsSubmission","Admin",FormMethod.Post, new { @enctype = "multipart/form-data", @id = "Form1" }))*@
+                            @using (Ajax.BeginForm("UpdateOwnership", "Admin", new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                OnSuccess = "OnSuccessSubmission",
+                                OnFailure = "OnFailureSubmission",
+                                LoadingElementId = "progress",
+                                OnComplete = "OnComplete"
+                            }, new { @id = "FormDetailUpdation", @enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <div class="col-md-3 required">
+                                        <label>Employee Id</label>
+                                    </div>
+                                    @*@Html.LabelFor(model => model._EmpId, "Employee Id", htmlAttributes: new { @class = "control-label col-md-3 required" })*@
+
+
+                                    <div class="input-group col-md-6">
+                                        @Html.EditorFor(model => model._EmpId, new { htmlAttributes = new { @class = "form-control", @id = "txtEmpidOwnerShipChange", @placeholder = "Employee Id whom to Transfer asset" } })
+                                        @Html.ValidationMessageFor(model => model._EmpId, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                                <br />
+                                <div class=" col-md-12">
+                                    <div class=" col-md-6">
+                                        <input type="submit" value="Change Ownership" class="col-md-offset-6 btn btn-primary btn-block" id="btnChangeOwner" />
+                                    </div>
+
+                                </div>
+
+
+                            }
+
+                        </div>
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer" style="background-color:#00ace6">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("#loaderDiv").show();
+        ShowAssetDetails();
+
+
+    });
+    var responseData = '';
+    var ShowAssetDetails = function () {
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Admin/ShowAssetDetails",
+            success: function (response) {
+
+                response = JSON.parse(BindDataTable(response));
+
+                $("#MyDataTable").append(response)
+
+            }
+        });
+    }
+
+    var BindDataTable = function (response) {
+
+        $("#MyDataTable").DataTable({
+
+            "aaData": response,
+            "aoColumns": [
+
+                { "mData": "id" },
+
+                { "mData": "UserName" },
+                { "mData": "Email" },
+                { "mData": "Department" },
+
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<a  class="btn btn-block btn-primary" name="btnView" id="btnView" >View / Update</a>';
+
+                    }
+                },
+
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<a class="btn btn-block btn-primary" name="PrintData" id="PrintData" >Print Details</a>';
+
+                    }
+                }
+
+
+
+
+            ]
+
+
+
+        });
+
+
+        $("#loaderDiv").hide();
+    }
+
+    $(document).on("click", "a[name='btnView']", function (event) {
+        event.preventDefault();
+
+        var EmployeeId = $(this).closest("tr").find("td").eq(0).html();
+        $("#EmployeeTable tbody").empty();
+        $("#AssetTable tbody").empty();
+
+        $.ajax(
+            {
+                url: "/Admin/ShowEmployeeAssets1",
+                contentType: 'application/json; charset=utf-8',
+                type: "GET",
+                data: { EmployeeId: EmployeeId },
+
+                success: function (data) {
+                    var row = "";
+                    var row1 = "";
+                    //var DateDiff = 0;
+                    //var oneDay = 24 * 60 * 60 * 1000;
+                    //var years = Math.floor(diff_date / 31536000000);
+                    //var months = Math.floor((diff_date % 31536000000) / 2628000000);
+                    //var days = Math.floor(((diff_date % 31536000000) % 2628000000) / 86400000);
+                    $.each(data, function (index, item) {
+                        //$("#lblUserName").html(item.emp_name);
+                        var Warranty_Start = new Date(parseInt((item.warranty_start).match(/\d+/)[0])).toLocaleDateString();
+
+                        var Warranty_End = new Date(parseInt((item.warranty_end).match(/\d+/)[0])).toLocaleDateString();
+
+                        var DateOfIssue = new Date(parseInt((item.Dateofissue).match(/\d+/)[0])).toLocaleDateString();
+
+                        //var timeDiff = Math.abs(item.getTime() - Warranty_End.getTime());
+                        //var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                        //alert(diffDays);
+
+
+
+
+                        row1 = "<tr><td>" + item.emp_name + "</td><td>" + item.designation + "</td><td>" + item.department + "</td><td>" + item.DOJ + "</td><td> " + item.DOB + "</td></tr> ";
+                        row += "<tr><td>" + item.asset_id_sub + "</td><td>" + item.asset_name + "</td><td>" + item.serial_no + "</td><td>" + item.ram + "</td><td>" + item.hdd + "</td><td> " + DateOfIssue + "</td><td>" + Warranty_Start + "</td><td>" + Warranty_End + "</td><td> <a class='btn btn-block btn-primary' name='btnEdit' id='btnEdit' >Edit</a></td><td> <a class='btn btn-block btn-primary' name='btnChangeOwnership' id='btnChangeOwnership' >Change Ownership</a></td></tr > ";
+
+                    });
+
+                    $("#myModal").modal('show');
+                    $("#AssetTable tbody").append(row);
+
+                    $("#EmployeeTable tbody").append(row1);
+
+                },
+                error: function () { alert("Something went wrong"); }
+            });
+
+        function parseDate(input) {
+            // Transform date from text to date
+            var parts = input.match(/(\d+)/g);
+            // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+            return new Date(parts[0], parts[1] - 1, parts[2]); // months are 0-based
+        }
+    });
+
+
+    $(document).on("click", "a[name='btnChangeOwnership']", function (event) {
+
+        event.preventDefault();
+
+        var AssetId = $(this).closest("tr").find("td").eq(0).html();
+
+
+        $("#myModalUpdateOwnerShip").modal('show');
+
+        $("#btnChangeOwner").click(function (event) {
+            event.preventDefault();
+
+            var TextBoxValidation = $("#txtEmpidOwnerShipChange").val();
+            if (TextBoxValidation == "") {
+
+                alert("Employee Id field is required");
+            }
+            else {
+                var EmployeeId = $("#txtEmpidOwnerShipChange").val();
+
+                var EditDetails = {
+
+                    AssetId: AssetId,
+                    EmployeeId: EmployeeId
+                }
+                var data = JSON.stringify(EditDetails);
+
+                $.ajax({
+
+
+                    url: "/Admin/UpdateOwnership",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: "json",
+                    data: data,
+                    success: function (data) {
+
+                        if (data != null) {
+
+                            toastr.success("Asset ID : " + "<b>" + data.AssetId + "</b>" + " Transffered to Employee " + "<b>" + data.result + "</b>", "Message", { timeOut: 3000 });
+                            $("#myModalUpdateOwnerShip").modal('hide');
+                            // window.location.href = "/Admin/ShowEmployeeAssets1";
+                            // $("#AssetTable").ajax.reload();
+                            // $("#AssetTable tbody").append(row);
+                            // $("#EmployeeTable").ajax.re
+                            //$("#AssetTable tbody").empty();
+
+                        }
+                        // toastr.success("Asset Transfered Successfully", "Message");
+                        else {
+
+                            toastr.error("Something went wrong inner", "Error Message");
+                        }
+
+                    },
+                    error: function () {
+                        toastr.error("Something went wrong", "Error Message");
+                    }
+
+
+                });
+
+            }
+
+
+
+        });
+
+
+    });
+
+
+    $(document).on("click", "a[name='btnEdit']", function (event) {
+
+        event.preventDefault();
+
+        var AssetId = $(this).closest("tr").find("td").eq(0).html();
+
+
+        $.ajax({
+
+            url: "/Admin/EditGetDetails",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            data: { AssetId: AssetId },
+            success: function (result) {
+
+                $('#hdnEmpId').val(result[0].EmployeeId);
+                $('#txtAssetId').val(result[0].AssetId);
+                $('#txtAssetName').val(result[0].AssetName);
+                $('#txtSerialNo').val(result[0].SerialNo);
+                $('#txtIP').val(result[0].IP);
+                $('#txtMac').val(result[0].MAC);
+                $('#txtHDD').val(result[0].HDD);
+                $('#txtRAM').val(result[0].RAM);
+                $('#txtProcessor').val(result[0].processor);
+
+                $('#txtWarrantyStart').val(result[0].WarrantyStart).toLocaleDateString;
+                $('#txtWarrantyEnd').val(result[0].WarrantyEnd).toLocaleDateString;
+                $('#txtDateOfIssue').val(result[0].DateOfIssue).toLocaleDateString;
+
+
+                //$('#txtWarrantyStart').val(result[0].WarrantyStart);
+                //$('#txtWarrantyEnd').val(result[0].WarrantyEnd);
+                //$('#txtDateOfIssue').val(result[0].DateOfIssue);
+
+
+                $("#myModalEdit").modal('show');
+
+            },
+
+            error: function () {
+
+            }
+
+
+        });
+
+    });
+
+
+    $('#UpdateAsset').click(function (e) {
+        e.preventDefault();
+        var empObj = {
+            EmpId: $('#hdnEmpId').val(),
+            AssetId_unique: $('#txtAssetId').val(),
+            AssetName: $('#txtAssetName').val(),
+            SerialNo: $('#txtSerialNo').val(),
+            IpAddress: $('#txtIP').val(),
+            MacAddress: $('#txtMac').val(),
+            HDD: $('#txtHDD').val(),
+            RAM: $('#txtRAM').val(),
+            processor: $('#txtProcessor').val(),
+            WarrantyStart: $('#txtWarrantyStart').val(),
+            WarrantyEnd: $('#txtWarrantyEnd').val(),
+            DateOfIssue: $('#txtDateOfIssue').val()
+        };
+        console.log(empObj);
+
+        $.ajax({
+
+            url: "/Admin/EditAssetDetails",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            data: JSON.stringify(empObj),
+            success: function (result) {
+
+                if (result.message != "") {
+
+                    toastr.success(result.message, "Message");
+
+
+                }
+                else {
+
+                    toastr.error("Empty field not allowed", "Error Message");
+                }
+
+            },
+            error: function () {
+
+                toastr.error("Something went wrong", "Error Message");
+
+
+            }
+        });
+    });
+
+    $(document).on("click", "a[name='PrintData']", function (event) {
+
+        event.preventDefault();
+        var EmployeeId = $(this).closest("tr").find("td").eq(0).html();
+
+        window.location.href = "http://203.153.42.244:8082/Admin/GetDetailsPrint/?ErpID=" + EmployeeId;
+
+       
+
+    });
+
+
+</script>
+
+
+

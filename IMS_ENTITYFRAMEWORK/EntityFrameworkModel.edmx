@@ -1,0 +1,984 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="INVENTORYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminRegister">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="40" />
+          <Property Name="Password" Type="varchar" MaxLength="200" />
+          <Property Name="RetypePassword" Type="varchar" MaxLength="200" />
+          <Property Name="location" Type="varchar" MaxLength="100" />
+          <Property Name="AccountCreateOn" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="AssetDetails">
+          <Key>
+            <PropertyRef Name="asset_id_sub" />
+            <PropertyRef Name="serial_no" />
+          </Key>
+          <Property Name="emp_id" Type="nvarchar" MaxLength="10" />
+          <Property Name="asset_id_sub" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="asset_name" Type="varchar" MaxLength="50" />
+          <Property Name="serial_no" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ip_address" Type="varchar" MaxLength="50" />
+          <Property Name="mac_address" Type="varchar" MaxLength="50" />
+          <Property Name="ram" Type="varchar" MaxLength="15" />
+          <Property Name="hdd" Type="varchar" MaxLength="15" />
+          <Property Name="Processor" Type="varchar" MaxLength="200" />
+          <Property Name="Dateofissue" Type="date" />
+          <Property Name="warranty_start" Type="date" />
+          <Property Name="warranty_end" Type="date" />
+        </EntityType>
+        <EntityType Name="AssetID">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="emp_id" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="filePath" Type="varchar" MaxLength="200" />
+          <Property Name="filename1" Type="varchar" MaxLength="200" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssetNameList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssetName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="buildingName" Type="varchar" MaxLength="100" />
+          <Property Name="length" Type="float" />
+          <Property Name="breadth" Type="float" />
+          <Property Name="coveredarea" Type="float" />
+          <Property Name="qty" Type="int" />
+          <Property Name="discription" Type="varchar" MaxLength="800" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Insert_DateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SubLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CONTACTUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FNAME" Type="varchar" MaxLength="100" />
+          <Property Name="LNAME" Type="varchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="40" />
+          <Property Name="MOBILE" Type="varchar" MaxLength="10" />
+          <Property Name="REMARK" Type="varchar" MaxLength="700" />
+        </EntityType>
+        <EntityType Name="CreateItemTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCode" Type="int" />
+          <Property Name="locationzone" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ItemType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Make" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UOM" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descript" Type="varchar" MaxLength="700" />
+          <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemListTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Land">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="length" Type="float" />
+          <Property Name="breadth" Type="float" />
+          <Property Name="area" Type="float" />
+          <Property Name="qty" Type="int" />
+          <Property Name="discription" Type="varchar" MaxLength="800" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Insert_DateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SubLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LocationZone">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="locationZone" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PanelBoard">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="capacity" Type="int" />
+          <Property Name="make" Type="varchar" MaxLength="100" />
+          <Property Name="qty" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="discription" Type="varchar" MaxLength="800" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Insert_DateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SubLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pipe">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="PipeType" Type="varchar" MaxLength="50" />
+          <Property Name="diameter" Type="float" />
+          <Property Name="lenght" Type="float" />
+          <Property Name="make" Type="varchar" MaxLength="100" />
+          <Property Name="qty" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="discription" Type="varchar" MaxLength="800" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Insert_DateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SubLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PumpingMachineryMotor">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="BHP" Type="int" />
+          <Property Name="make" Type="varchar" MaxLength="100" />
+          <Property Name="ItemType" Type="varchar" MaxLength="50" />
+          <Property Name="qty" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="discription" Type="varchar" MaxLength="800" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Insert_DateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SubLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PumpingMachineryPumpset">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="discharge" Type="int" />
+          <Property Name="head" Type="int" />
+          <Property Name="make" Type="varchar" MaxLength="100" />
+          <Property Name="qty" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="discription" Type="varchar" MaxLength="800" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Insert_DateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SubLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StorageSediTank">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="height" Type="float" />
+          <Property Name="length" Type="float" />
+          <Property Name="breadth" Type="float" />
+          <Property Name="capacity" Type="float" />
+          <Property Name="qty" Type="int" />
+          <Property Name="discription" Type="varchar" MaxLength="800" />
+          <Property Name="tanktype" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Insert_DateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SubLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Transformer">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="KVA" Type="int" />
+          <Property Name="make" Type="varchar" MaxLength="100" />
+          <Property Name="qty" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="discription" Type="varchar" MaxLength="800" />
+          <Property Name="powertype" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Insert_DateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SubLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserGmda">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="emp_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="255" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="255" />
+          <Property Name="department" Type="nvarchar" MaxLength="255" />
+          <Property Name="designation" Type="nvarchar" MaxLength="255" />
+          <Property Name="DOJ" Type="nvarchar" MaxLength="255" />
+          <Property Name="permanent_Address" Type="varchar" MaxLength="800" />
+          <Property Name="official_email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Valve">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="valveType" Type="varchar" MaxLength="50" />
+          <Property Name="size" Type="int" />
+          <Property Name="make" Type="varchar" MaxLength="100" />
+          <Property Name="qty" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="20" />
+          <Property Name="discription" Type="varchar" MaxLength="800" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Insert_DateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SubLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WaterPumpAssetDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="itemType" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="category" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="itemName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="pumphousename" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="pumphouseWTP" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="pumpreferencename" Type="varchar" MaxLength="100" />
+          <Property Name="retedpower" Type="varchar" MaxLength="50" />
+          <Property Name="reatedhead" Type="varchar" MaxLength="50" />
+          <Property Name="reatedflow" Type="varchar" MaxLength="50" />
+          <Property Name="typeofpump" Type="varchar" MaxLength="50" />
+          <Property Name="make" Type="varchar" MaxLength="50" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UOM" Type="varchar" MaxLength="50" />
+          <Property Name="descript" Type="varchar" MaxLength="600" />
+        </EntityType>
+        <EntityType Name="WTP">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="itemname" Type="varchar" MaxLength="100" />
+          <Property Name="diameter" Type="int" />
+          <Property Name="capacity" Type="float" />
+          <Property Name="qty" Type="int" />
+          <Property Name="discription" Type="varchar" MaxLength="800" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Insert_DateTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="SubLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="INVENTORYModelStoreContainer">
+          <EntitySet Name="AdminRegister" EntityType="Self.AdminRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssetDetails" EntityType="Self.AssetDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssetID" EntityType="Self.AssetID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssetNameList" EntityType="Self.AssetNameList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Building" EntityType="Self.Building" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTACTUS" EntityType="Self.CONTACTUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreateItemTable" EntityType="Self.CreateItemTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemListTable" EntityType="Self.ItemListTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Land" EntityType="Self.Land" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationZone" EntityType="Self.LocationZone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PanelBoard" EntityType="Self.PanelBoard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pipe" EntityType="Self.Pipe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PumpingMachineryMotor" EntityType="Self.PumpingMachineryMotor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PumpingMachineryPumpset" EntityType="Self.PumpingMachineryPumpset" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StorageSediTank" EntityType="Self.StorageSediTank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transformer" EntityType="Self.Transformer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGmda" EntityType="Self.UserGmda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valve" EntityType="Self.Valve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WaterPumpAssetDetails" EntityType="Self.WaterPumpAssetDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WTP" EntityType="Self.WTP" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="INVENTORYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminRegister">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RetypePassword" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AccountCreateOn" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="INVENTORYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminRegister" EntityType="Self.AdminRegister" />
+          <EntitySet Name="UserGmda" EntityType="INVENTORYModel.UserGmda" />
+          <EntitySet Name="AssetNameList" EntityType="INVENTORYModel.AssetNameList" />
+          <EntitySet Name="AssetDetails" EntityType="INVENTORYModel.AssetDetails" />
+          <EntitySet Name="AssetID" EntityType="INVENTORYModel.AssetID" />
+
+          <EntitySet Name="WaterPumpAssetDetails" EntityType="INVENTORYModel.WaterPumpAssetDetails" />
+          <EntitySet Name="CreateItemTable" EntityType="INVENTORYModel.CreateItemTable" />
+          <EntitySet Name="ItemListTable" EntityType="INVENTORYModel.ItemListTable" />
+          <EntitySet Name="LocationZone" EntityType="INVENTORYModel.LocationZone" />
+          <EntitySet Name="PumpingMachineryMotor" EntityType="INVENTORYModel.PumpingMachineryMotor" />
+          <EntitySet Name="PanelBoard" EntityType="INVENTORYModel.PanelBoard" />
+          <EntitySet Name="Transformer" EntityType="INVENTORYModel.Transformer" />
+          <EntitySet Name="Valve" EntityType="INVENTORYModel.Valve" />
+          <EntitySet Name="Land" EntityType="INVENTORYModel.Land" />
+          <EntitySet Name="Building" EntityType="INVENTORYModel.Building" />
+          <EntitySet Name="WTP" EntityType="INVENTORYModel.WTP" />
+          <EntitySet Name="StorageSediTank" EntityType="INVENTORYModel.StorageSediTank" />
+          <EntitySet Name="CONTACTUS" EntityType="INVENTORYModel.CONTACTUS" />
+          <EntitySet Name="Pipe" EntityType="INVENTORYModel.Pipe" />
+          <EntitySet Name="PumpingMachineryPumpset" EntityType="INVENTORYModel.PumpingMachineryPumpset" />
+
+          </EntityContainer>
+        <EntityType Name="UserGmda">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="emp_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="department" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="designation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DOJ" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="permanent_Address" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="official_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AssetNameList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AssetDetails">
+          <Key>
+            <PropertyRef Name="asset_id_sub" />
+            <PropertyRef Name="serial_no" />
+          </Key>
+          <Property Name="emp_id" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="asset_id_sub" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="asset_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="serial_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ip_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mac_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ram" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="hdd" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Processor" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Dateofissue" Type="DateTime" Precision="0" />
+          <Property Name="warranty_start" Type="DateTime" Precision="0" />
+          <Property Name="warranty_end" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="AssetID">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="emp_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="filePath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="filename1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+
+        <EntityType Name="WaterPumpAssetDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="itemType" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="category" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="itemName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="pumphousename" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="pumphouseWTP" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pumpreferencename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="retedpower" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reatedhead" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reatedflow" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="typeofpump" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="make" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descript" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CreateItemTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCode" Type="Int32" />
+          <Property Name="locationzone" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ItemType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Make" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UOM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="descript" Type="String" MaxLength="700" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ItemListTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LocationZone">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="locationZone1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PumpingMachineryMotor">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BHP" Type="Int32" />
+          <Property Name="make" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ItemType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="discription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insert_DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PanelBoard">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="capacity" Type="Int32" />
+          <Property Name="make" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="discription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insert_DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Transformer">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="KVA" Type="Int32" />
+          <Property Name="make" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="discription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="powertype" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insert_DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Valve">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="valveType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="size" Type="Int32" />
+          <Property Name="make" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="discription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insert_DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Land">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="length" Type="Double" />
+          <Property Name="breadth" Type="Double" />
+          <Property Name="area" Type="Double" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="discription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insert_DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Building">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="buildingName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="length" Type="Double" />
+          <Property Name="breadth" Type="Double" />
+          <Property Name="coveredarea" Type="Double" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="discription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insert_DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WTP">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="diameter" Type="Int32" />
+          <Property Name="capacity" Type="Double" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="discription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insert_DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StorageSediTank">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="height" Type="Double" />
+          <Property Name="length" Type="Double" />
+          <Property Name="breadth" Type="Double" />
+          <Property Name="capacity" Type="Double" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="discription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="tanktype" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insert_DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CONTACTUS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="MOBILE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="REMARK" Type="String" MaxLength="700" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Pipe">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PipeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="diameter" Type="Double" />
+          <Property Name="lenght" Type="Double" />
+          <Property Name="make" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="discription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insert_DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PumpingMachineryPumpset">
+          <Key>
+            <PropertyRef Name="itemcode" />
+          </Key>
+          <Property Name="itemcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="itemname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="discharge" Type="Int32" />
+          <Property Name="head" Type="Int32" />
+          <Property Name="make" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="discription" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Insert_DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="SubLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="INVENTORYModelStoreContainer" CdmEntityContainer="INVENTORYEntities">
+          <EntitySetMapping Name="AdminRegister">
+            <EntityTypeMapping TypeName="INVENTORYModel.AdminRegister">
+              <MappingFragment StoreEntitySet="AdminRegister">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="AccountCreateOn" ColumnName="AccountCreateOn" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RetypePassword" ColumnName="RetypePassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGmda">
+            <EntityTypeMapping TypeName="INVENTORYModel.UserGmda">
+              <MappingFragment StoreEntitySet="UserGmda">
+                <ScalarProperty Name="official_email" ColumnName="official_email" />
+                <ScalarProperty Name="permanent_Address" ColumnName="permanent_Address" />
+                <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="emp_name" ColumnName="emp_name" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssetNameList">
+            <EntityTypeMapping TypeName="INVENTORYModel.AssetNameList">
+              <MappingFragment StoreEntitySet="AssetNameList">
+                <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssetDetails">
+            <EntityTypeMapping TypeName="INVENTORYModel.AssetDetails">
+              <MappingFragment StoreEntitySet="AssetDetails">
+                <ScalarProperty Name="warranty_end" ColumnName="warranty_end" />
+                <ScalarProperty Name="warranty_start" ColumnName="warranty_start" />
+                <ScalarProperty Name="Dateofissue" ColumnName="Dateofissue" />
+                <ScalarProperty Name="Processor" ColumnName="Processor" />
+                <ScalarProperty Name="hdd" ColumnName="hdd" />
+                <ScalarProperty Name="ram" ColumnName="ram" />
+                <ScalarProperty Name="mac_address" ColumnName="mac_address" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="serial_no" ColumnName="serial_no" />
+                <ScalarProperty Name="asset_name" ColumnName="asset_name" />
+                <ScalarProperty Name="asset_id_sub" ColumnName="asset_id_sub" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssetID">
+            <EntityTypeMapping TypeName="INVENTORYModel.AssetID">
+              <MappingFragment StoreEntitySet="AssetID">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="filename1" ColumnName="filename1" />
+                <ScalarProperty Name="filePath" ColumnName="filePath" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WaterPumpAssetDetails">
+            <EntityTypeMapping TypeName="INVENTORYModel.WaterPumpAssetDetails">
+              <MappingFragment StoreEntitySet="WaterPumpAssetDetails">
+                <ScalarProperty Name="descript" ColumnName="descript" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="typeofpump" ColumnName="typeofpump" />
+                <ScalarProperty Name="reatedflow" ColumnName="reatedflow" />
+                <ScalarProperty Name="reatedhead" ColumnName="reatedhead" />
+                <ScalarProperty Name="retedpower" ColumnName="retedpower" />
+                <ScalarProperty Name="pumpreferencename" ColumnName="pumpreferencename" />
+                <ScalarProperty Name="pumphouseWTP" ColumnName="pumphouseWTP" />
+                <ScalarProperty Name="pumphousename" ColumnName="pumphousename" />
+                <ScalarProperty Name="itemName" ColumnName="itemName" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="itemType" ColumnName="itemType" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreateItemTable">
+            <EntityTypeMapping TypeName="INVENTORYModel.CreateItemTable">
+              <MappingFragment StoreEntitySet="CreateItemTable">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="descript" ColumnName="descript" />
+                <ScalarProperty Name="UOM" ColumnName="UOM" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="locationzone" ColumnName="locationzone" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemListTable">
+            <EntityTypeMapping TypeName="INVENTORYModel.ItemListTable">
+              <MappingFragment StoreEntitySet="ItemListTable">
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationZone">
+            <EntityTypeMapping TypeName="INVENTORYModel.LocationZone">
+              <MappingFragment StoreEntitySet="LocationZone">
+                <ScalarProperty Name="locationZone1" ColumnName="locationZone" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PumpingMachineryMotor">
+            <EntityTypeMapping TypeName="INVENTORYModel.PumpingMachineryMotor">
+              <MappingFragment StoreEntitySet="PumpingMachineryMotor">
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Insert_DateTime" ColumnName="Insert_DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="BHP" ColumnName="BHP" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PanelBoard">
+            <EntityTypeMapping TypeName="INVENTORYModel.PanelBoard">
+              <MappingFragment StoreEntitySet="PanelBoard">
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Insert_DateTime" ColumnName="Insert_DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transformer">
+            <EntityTypeMapping TypeName="INVENTORYModel.Transformer">
+              <MappingFragment StoreEntitySet="Transformer">
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Insert_DateTime" ColumnName="Insert_DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="powertype" ColumnName="powertype" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="KVA" ColumnName="KVA" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Valve">
+            <EntityTypeMapping TypeName="INVENTORYModel.Valve">
+              <MappingFragment StoreEntitySet="Valve">
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Insert_DateTime" ColumnName="Insert_DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="valveType" ColumnName="valveType" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Land">
+            <EntityTypeMapping TypeName="INVENTORYModel.Land">
+              <MappingFragment StoreEntitySet="Land">
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Insert_DateTime" ColumnName="Insert_DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="breadth" ColumnName="breadth" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Building">
+            <EntityTypeMapping TypeName="INVENTORYModel.Building">
+              <MappingFragment StoreEntitySet="Building">
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Insert_DateTime" ColumnName="Insert_DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="coveredarea" ColumnName="coveredarea" />
+                <ScalarProperty Name="breadth" ColumnName="breadth" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="buildingName" ColumnName="buildingName" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WTP">
+            <EntityTypeMapping TypeName="INVENTORYModel.WTP">
+              <MappingFragment StoreEntitySet="WTP">
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Insert_DateTime" ColumnName="Insert_DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+                <ScalarProperty Name="diameter" ColumnName="diameter" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StorageSediTank">
+            <EntityTypeMapping TypeName="INVENTORYModel.StorageSediTank">
+              <MappingFragment StoreEntitySet="StorageSediTank">
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Insert_DateTime" ColumnName="Insert_DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="tanktype" ColumnName="tanktype" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+                <ScalarProperty Name="breadth" ColumnName="breadth" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTACTUS">
+            <EntityTypeMapping TypeName="INVENTORYModel.CONTACTUS">
+              <MappingFragment StoreEntitySet="CONTACTUS">
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="LNAME" ColumnName="LNAME" />
+                <ScalarProperty Name="FNAME" ColumnName="FNAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pipe">
+            <EntityTypeMapping TypeName="INVENTORYModel.Pipe">
+              <MappingFragment StoreEntitySet="Pipe">
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Insert_DateTime" ColumnName="Insert_DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="lenght" ColumnName="lenght" />
+                <ScalarProperty Name="diameter" ColumnName="diameter" />
+                <ScalarProperty Name="PipeType" ColumnName="PipeType" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PumpingMachineryPumpset">
+            <EntityTypeMapping TypeName="INVENTORYModel.PumpingMachineryPumpset">
+              <MappingFragment StoreEntitySet="PumpingMachineryPumpset">
+                <ScalarProperty Name="SubLocation" ColumnName="SubLocation" />
+                <ScalarProperty Name="Insert_DateTime" ColumnName="Insert_DateTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="head" ColumnName="head" />
+                <ScalarProperty Name="discharge" ColumnName="discharge" />
+                <ScalarProperty Name="itemname" ColumnName="itemname" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="itemcode" ColumnName="itemcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

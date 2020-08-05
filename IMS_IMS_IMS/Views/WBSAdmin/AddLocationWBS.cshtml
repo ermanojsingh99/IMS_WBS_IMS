@@ -1,0 +1,130 @@
+﻿@model IMS_IMS_MODEL.AddLocation
+
+@*<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />*@
+<style>
+
+    .glyphicon-user, .glyphicon-map-marker, .glyphicon-lock, .glyphicon-envelope {
+        color: white;
+    }
+
+
+    #bgcolorspan {
+        background-color: darkturquoise;
+    }
+
+    .required::after {
+        margin: 2px;
+        content: "*";
+        color: red;
+    }
+
+    #containerdiv {
+        height: 550px;
+        width: 800px;
+    }
+
+    #MyForm {
+        text-align: center;
+    }
+
+    .textAlign {
+        text-align: left;
+    }
+</style>
+
+
+
+@using (Ajax.BeginForm("AddLocationWBS", "WBSAdmin", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnSuccess",
+    OnFailure = "OnFailure",
+    LoadingElementId = "progress",
+    OnComplete = "OnComplete"
+}, new { id = "MyFormCreateAdminWBS" }))
+
+{
+
+@*<form id="myForm">*@
+@Html.AntiForgeryToken()
+
+<div class="container-fluid">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LocationName, "Location", htmlAttributes: new { @class = "control-label col-md-3 required" })
+        <div class="col-md-7">
+            @Html.EditorFor(model => model.LocationName, new { htmlAttributes = new { @class = "form-control ", @placeholder = "Location Name", @id = "txtLocationName", autocomplete = "off" } })
+            @Html.ValidationMessageFor(model => model.LocationName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br /><br />
+    
+    <div class="form-group">
+
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add Location" id="AddLocationName" name="AddLocationName" class="btn-block btn btn-primary" />
+
+        </div>
+
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+
+    function OnSuccess(res) {
+
+        console.log(res);
+        if (res == "Location Added Successfully") {
+
+             toastr.success(res.result, "Message", { timeOut: 5000 });
+        }
+
+    }
+
+    //function OnSuccess(result) {
+
+    //    console.log(result);
+    //    if (result.result == "Location Added Successfully") {
+
+    //        toastr.success(result.result, "Message", { timeOut: 5000 });
+    //        document.getElementById("MyFormCreateAdminWBS").reset();
+    //    }
+      
+    //    else if (result.result == "Something Went wrong")
+    //    {
+    //        toastr.error(result.result, "Error Message", { timeOut: 5000 });
+    //    }
+    //    else {
+
+    //        toastr.error("Error Occured", "Error Message", { timeOut: 5000 });
+    //    }
+
+
+    //}
+
+
+    //function OnFailure() {
+
+    //    toastr.error("Error Occured", "Error Message");
+
+
+    //}
+
+    //function OnComplete() {
+
+       // document.getElementById("MyFormCreateUserWBS").reset();
+
+    //}
+
+
+
+</script>

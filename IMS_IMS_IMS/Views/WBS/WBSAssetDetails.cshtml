@@ -1,0 +1,233 @@
+﻿
+@model IMS_IMS_MODEL.WBSItemAssetModel
+@{
+    Layout = "~/Views/Shared/_LayoutUserLteWater.cshtml";
+    // Layout = null;
+}
+
+<style type="text/css">
+    .required::after {
+        margin: 2px;
+        content: "*";
+        color: red;
+    }
+</style>
+
+@*<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />*@
+<br />
+<br />
+<div class="container-fluid">
+    <div class="panel panel-success">
+        <div class="panel-heading" style="height:35px;background-color:lightgrey;font-weight:900">Water Boosting Station Inventory Form</div>
+        <div class="panel-body" id="ItemAndLocation">
+            <div class="row">
+                @*<div class="form-group green-border-focus col-md-6 ">
+                    @Html.LabelFor(model => model.Location, "Location", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.Location, new SelectList(ViewBag.LocationList, "Value", "Text"), "---Select Location ---", new { @class = "form-control", @id = "locationDDL" })
+                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+
+                <div class="form-group green-border-focus col-md-6 col-md-offset-2">
+                    @Html.LabelFor(model => model.ItemName, "Item Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.ItemName,  Enumerable.Empty<SelectListItem>(),"---Select Item Name---", new { @class = "form-control", @id = "itemNameDDL" })
+                        @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+          
+           <hr />
+            <div id="LayoutContainer">
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+
+
+    $(document).ready(function () {
+
+        $("#itemNameDDL").change(function () {
+            
+            var SelectedItemName = $(this).val();
+        
+            if (SelectedItemName == "PumpingMachineryMotor") {
+
+                window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+               // window.localStorage.setItem("LocationStorage", SelectedLocation);
+            
+                 
+                $("#LayoutContainer").load("@Url.Action("PumpingMachineryMotor","WBS")");
+              
+             
+               
+              
+            }
+
+            else if (SelectedItemName == "PumpingMachineryPumpSet")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("PumpingMachineryPumpSet","WBS")");
+              
+
+
+
+            }
+                 else if (SelectedItemName == "PanelBoard")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("PanelBoard","WBS")");
+              
+
+            }
+                 else if (SelectedItemName == "PowerEquipment")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("Transformer","WBS")");
+               
+
+            }
+                 else if (SelectedItemName == "Pipe")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("Pipe","WBS")");
+              
+
+            }
+                 else if (SelectedItemName == "Valve")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("Valve","WBS")");
+                
+
+            }
+                 else if (SelectedItemName == "Land")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("Land","WBS")");
+             
+
+            }
+                 else if (SelectedItemName == "Building")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("Building","WBS")");
+               
+
+            }
+                   else if (SelectedItemName == "Tank")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("StorageAndSedimentationTank","WBS")");
+               
+
+            }
+
+                else if (SelectedItemName == "WaterTreatmentPlant")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("WaterTreatmentPlant","WBS")");
+              
+
+            }
+                 else if (SelectedItemName == "ClearWaterTank")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("ClearWaterTank","WBS")");
+               
+
+            }
+                  else if (SelectedItemName == "GeneratingSet")
+            {
+                 window.localStorage.setItem("ItemNameStorage", SelectedItemName);
+                $("#LayoutContainer").load("@Url.Action("GeneratingSet","WBS")");
+                
+
+            }
+            else { alert("wrong step"); }
+
+            
+
+            
+             });
+
+      
+        });
+         
+
+
+    //  $("btnSubmit").click(function () {
+
+      
+    //        var ItemObj = {
+    //        Location:$('#location').val(),
+    //        ItemName: $('#itemname').val(),
+    //        BHP: $('#BHP').val(),
+    //        Make: $('#Make').val(),
+    //        ItemType: $('#ItemType').val(),
+    //        Quantity: $('#Quantity').val(),
+    //        Status: $('#Status').val(),
+    //        Description: $('#description').val(),
+          
+    //        };
+        
+        
+    //    $.ajax({
+
+    //        url: "/WBS/PumpingMachineryMotor",
+    //        type: "POST",
+    //        contentType: 'application/json; charset=utf-8',
+    //        dataType: "json",
+    //        data: JSON.stringify(ItemObj),
+    //        success: function (result) {
+    //            console.log(result);
+    //            if (result.result == true) {
+
+    //                toastr.success("Asset Added Successfully", "Message");
+
+
+    //            }
+
+    //            else {
+
+    //                toastr.error("Asset not added", "Error Message");
+    //            }
+               
+
+    //        },
+    //        error: function () {
+
+    //            toastr.error("Something went wrong", "Error Message");
+
+
+    //        }
+    //    });
+    //});
+
+
+</script>
+
+<script>
+
+    $.getJSON("/WBS/DDLItemName", function (data) {
+        $.each(data, function (i, data) {      // bind the dropdown list using json result
+            $('<option>',
+                {
+                    value: data.ItemName,
+                    text: data.ItemName
+                }).html(data.ItemName).appendTo("#itemNameDDL");
+        });
+    });
+</script>

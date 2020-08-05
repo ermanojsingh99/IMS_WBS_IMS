@@ -1,0 +1,308 @@
+﻿@*@model IEnumerable<IMS_ENTITYFRAMEWORK.AssetNameList>*@
+@model IMS_IMS_MODEL.AssetDetailsModel
+
+@{
+    ViewBag.Title = "Add New Asset";
+    // Layout = null;
+    Layout = "~/Views/Shared/_LayoutAdminLte.cshtml";
+}
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+@*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<link type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet" />*@
+@*<script src="https://use.fontawesome.com/d94f445648.js"></script>*@
+<style>
+    .glyphicon glyphicon-calendar {
+        color: cornflowerblue;
+        margin-right: 3px;
+    }
+</style>
+<div class="container-fluid">
+    @*<input type="submit" value="Submit text" class="btn btn-block btn-primary" id="btnSubmit1" name="Command" />*@
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#446FB0;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                    <h4 class="modal-title" id="ModalTitle">Add Asset</h4>
+                </div>
+                <div class="modal-body">
+                    @{Html.RenderPartial("AddFileDetailsSubmission"); }
+                    @* @Html.Partial("Test");*@
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <button type="button" id="btnChangeOwnership" value="Change Owner" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Update Ownership <span class="fa fa-plus-square" aria-hidden="true" style="padding-top:3px"></span></button>
+    <button type="button" id="btnAssetId" value="Add New" class="btn btn-success  pull-right" data-toggle="modal" data-target="#myModal">Add New <span class="fa fa-plus-square" aria-hidden="true" style="padding-top:3px"></span></button>
+    @using (Ajax.BeginForm("AddNewAssetDetails", "Admin", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "progress",
+        OnComplete = "OnComplete"
+    }, new { id = "MyFormNewAsset" }))
+
+    {
+
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-primary">
+            <div class="panel panel-heading">Add New Asset</div>
+            <div class="panel-body">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.EmpId, "Employee / ERP Id", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.EmpId, new { htmlAttributes = new { @class = "form-control", placeholder = "Employee or ERP Id" } })
+                        @Html.ValidationMessageFor(model => model.EmpId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.AssetId, "Asset Id", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.AssetId, new { htmlAttributes = new { @class = "form-control", placeholder = "Asset Id <Ex. GMDA0001>" } })
+                        @Html.ValidationMessageFor(model => model.AssetId, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage(" ", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.AssetId_unique, "Asset Id(Unique)", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.AssetId_unique, new { htmlAttributes = new { @class = "form-control", placeholder = "Unique Asset Id Ex.<GMDA0001-1" } })
+                        @Html.ValidationMessageFor(model => model.AssetId_unique, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("AssetExist", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.AssetName, "Asset Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.AssetName, ViewBag.AssetList as SelectList, "--Select Asset--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AssetName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.SerialNo, "Serial No.", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.SerialNo, new { htmlAttributes = new { @class = "form-control", placeholder = "Asset Serial Number" } })
+                        @Html.ValidationMessageFor(model => model.SerialNo, "", new { @class = "text-danger" })
+                        @Html.ValidationMessage("SerialExist", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.IpAddress, "IP Address", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.IpAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "IP Address" } })
+                        @Html.ValidationMessageFor(model => model.IpAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.MacAddress, "MAC Address", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.MacAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "MAC Address" } })
+                        @Html.ValidationMessageFor(model => model.MacAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.HDD, "HDD", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.HDD, new { htmlAttributes = new { @class = "form-control", placeholder = "HDD Configuration" } })
+                        @Html.ValidationMessageFor(model => model.HDD, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.RAM, "RAM", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.RAM, new { htmlAttributes = new { @class = "form-control", placeholder = "RAM Configuration" } })
+                        @Html.ValidationMessageFor(model => model.RAM, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.Processor, "Processor", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Processor, new { htmlAttributes = new { @class = "form-control", placeholder = "Processor Configuration", @id = "Processor" } })
+                        @Html.ValidationMessageFor(model => model.Processor, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.WarrantyStart, "Start Date", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+
+                        @Html.EditorFor(model => model.WarrantyStart, new { htmlAttributes = new { @class = "form-control glyphicon glyphicon-calendar", @id = "WarrantyStart" } })
+                        @Html.ValidationMessageFor(model => model.WarrantyStart, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.WarrantyEnd, "End Date", htmlAttributes: new { @class = "control-label col-md-4 " })
+                    <div class="col-md-8">
+
+                        @Html.EditorFor(model => model.WarrantyEnd, new { htmlAttributes = new { @class = "form-control glyphicon glyphicon-calendar", @id = "WarrantyEnd" } })
+                        @Html.ValidationMessageFor(model => model.WarrantyEnd, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(model => model.DateOfIssue, "Date of Issue", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.DateOfIssue, new { htmlAttributes = new { @class = "form-control glyphicon glyphicon-calendar", @id = "WarrantyEnd" } })
+                        @Html.ValidationMessageFor(model => model.DateOfIssue, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group col-md-12">
+                    <div class="col-md-offset-4 col-md-10">
+                        <input type="submit" value="Submit Details" class="btn btn-block btn-primary" id="btnSubmit" name="Command" />
+
+                    </div>
+
+                    <div style="text-align:center;display:none" id="loaderDiv">
+                        <img src="~/Content/images/circle-3.gif" width="70" />
+                    </div>
+                    <h5 style="color:green;text-align:center">@ViewBag.Issuccess</h5>
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+
+
+}
+
+<script>
+
+
+    function OnSuccess(result) {
+
+        console.log(result);
+        if (result.message == "Asset Added Successfully") {
+
+            toastr.success(result.message, "Message");
+            document.getElementById("MyFormNewAsset").reset();
+        }
+        else {
+
+            toastr.error(result.message, "Error Message", { timeOut: 10000 });
+        }
+
+
+    }
+
+
+    function OnFailure() {
+
+        toastr.error("Error Occured", "Error Message");
+
+
+    }
+
+    //function OnComplete() {
+
+    //  document.getElementById("MyFormNewAsset").reset();
+
+    //}
+
+
+
+
+
+    //$(document).ready(function () {
+    //    $("#btnSubmit").click(function () {
+    //        alert("clicked");
+
+
+    //        $.ajax({
+    //            type: "POST",
+    //            url: "/Admin/AddNewAssetDetails",
+    //            dataType: "json",
+    //            contentType: "application/json;charset=utf-8",
+    //            data: responseData,
+    //            success: function (responseData) {
+    //                 console.log(responseData);
+    //                if (responseData.status) {
+    //                    toastr.success(responseData.message, "Message", { timeOut:5000 });
+
+
+    //                }
+
+    //            },
+
+
+    //        });
+    //    });
+
+
+
+    //});
+
+    //function AjaxPost(formData) {
+
+    //     var AjaxConfig = {
+
+    //         type: "post",
+    //         url: "/Admin/AddFileDetailsSubmission",
+    //         data: new FormData(formData),
+    //         success: function (result) {
+    //             console.log(result);
+    //             alert(result);
+    //            // toastr.success("ADDESDFDFDF", "Message", { timeOut: 5000 });
+    //             toastr["success"](res, "Message", { timeOut: 5000 });
+
+    //             window.location.href="/Admin/AddNewAssetDetails"
+    //         }
+
+
+    //    }
+
+    //     if ($(formData).attr('enctype') == "multipart/form-data") {
+
+    //         AjaxConfig["contentType"] = false;
+    //         AjaxConfig["processData"] = false;
+
+    //     }
+    //     $.ajax(AjaxConfig);
+    //     return false;
+
+    // }
+// statrt function
+
+
+//End function
+
+
+
+</script>

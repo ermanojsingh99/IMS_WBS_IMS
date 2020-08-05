@@ -1,0 +1,1570 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAdminLteWater.cshtml";
+}
+
+<style type="text/css">
+    #modalDialog {
+        width: auto !important;
+        height: auto !important;
+        margin: 25px;
+    }
+</style>
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Index</title>
+
+    </head>
+    <body>*@
+<div class="container-fluid">
+    <div id="accordion">
+        <div class="card" id="BASAI" name="">
+            <div class="card-header" id="headingOne">
+                <h3 class="mb-0">
+                    <button class="btn btn-lg btn-primary btn-block" id="btn_BASAI" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp;BASAI
+                    </button>
+                </h3>
+            </div>
+
+            <div id="collapseOne" class="collapsing" aria-labelledby="headingOne" data-parent="#accordion">
+
+                <div class="card-body container-fluid">
+
+
+                    <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
+                        <thead>
+
+                            <tr style="text-align:center;height:auto">
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:mediumaquamarine">Pump Set</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="PumpingMachineryPumpSet" name="btnPumpSetBasai" role="button"><h6 id="BasaiLocPumpSetCount"></h6></a></td>
+                                &nbsp;
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:burlywood">Pump Motor</th>
+                                <td style="background-color:burlywood"><a href="#" class="btn btn-info btn-sm" id="PumpingMachineryMotor" name="btnMotorBasai" role="button"><h6 id="BasaiLocMotorCount"></h6></a></td>
+                                &nbsp;
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:mediumaquamarine">Panel Board</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelBasai" name="btnPanelBasai" role="button"><h6 id="BasaiLocPBCount"></h6></a></td>
+                                &nbsp;
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:burlywood">Pipe</th>
+                                <td style="background-color:burlywood"><a href="#" class="btn btn-info btn-sm" id="btnPipeBasai" name="btnPipeBasai" role="button"><h6 id="BasaiLocPipeCount"></h6></a></td>
+                                &nbsp;
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:mediumaquamarine">Valve</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveBasai" name="btnValveBasai" role="button"><h6 id="BasaiLocValveCount"></h6></a></td>
+
+
+                            </tr>
+                            <tr style="text-align:center;height:auto">
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:burlywood">Land</th>
+                                <td style="background-color:burlywood"><a href="#" class="btn btn-info btn-sm" id="btnLandBasai" name="btnLandBasai" role="button"><h6 id="BasaiLocLandCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:mediumaquamarine">Building</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingBasai" name="btnBuildingBasai" role="button"><h6 id="BasaiLocBuildingCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:burlywood">Water Treatment Plant</th>
+                                <td style="background-color:burlywood"><a href="#" class="btn btn-info btn-sm" id="btnWTPBasai" name="btnWTPBasai" role="button"><h6 id="BasaiLocWTPCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:mediumaquamarine">Tank</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankBasai" name="btnTankBasai" role="button"><h6 id="BasaiLocTankCount"></h6></a></td>
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px;background-color:burlywood">Power Equipments</th>
+                                <td style="background-color:burlywood"><a href="#" class="btn btn-info btn-sm" id="btnPEBasai" name="btnPEBasai" role="button"><h6 id="BasaiLocPECount"></h6></a></td>
+
+
+                            </tr>
+
+
+                        </thead>
+                        <tbody></tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card" id="ChanduBudhera">
+            <div class="card-header" id="headingTwo">
+                <h3 class="mb-0">
+                    <button class="btn btn-lg btn-primary btn-block" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp;CHANDU BUDHERA
+                    </button>
+                </h3>
+            </div>
+            <div id="collapseTwo" class="collapsing" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
+                        <thead>
+
+                            <tr style="text-align:center;height:auto">
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPumpSetChandu" name="btnPumpSetChandu" role="button"><h6 id="ChanduLocPumpSetCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorChandu" name="btnMotorChandu" role="button"><h6 id="ChanduLocMotorCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelChandu" name="btnPanelChandu" role="button"><h6 id="ChanduLocPBCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Pipe</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPipeChandu" name="btnPipeChandu" role="button"><h6 id="ChanduLocPipeCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveChandu" name="btnValveChandu" role="button"><h6 id="ChanduLocValveCount"></h6></a></td>
+                            </tr>
+                            <tr style="text-align:center;height:auto">
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandChandu" name="btnLandChandu" role="button"><h6 id="ChanduLocLandCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingChandu" name="btnBuildingChandu" role="button"><h6 id="ChanduLocBuildingCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPChandu" name="btnWTPChandu" role="button"><h6 id="ChanduLocWTPCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankChandu" name="btnTankChandu" role="button"><h6 id="ChanduLocTankCount"></h6></a></td>
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPEChandu" name="btnPEChandu" role="button"><h6 id="ChanduLocPECount"></h6></a></td>
+                            </tr>
+
+                        </thead>
+                        <tbody></tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card" id="DHANWAPUR">
+            <div class="card-header" id="headingThree">
+                <h3 class="mb-0">
+                    <button class="btn btn-lg btn-primary btn-block" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp;DHANWAPUR
+                    </button>
+                </h3>
+            </div>
+            <div id="collapseThree" class="collapsing" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
+                        <thead>
+
+                            <tr style="text-align:center;height:auto">
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnSetDHANWAPUR" name="btnSetDHANWAPUR" role="button"><h6 id="DhanwapurLocPumpSetCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorDHANWAPUR" name="btnMotorDHANWAPUR" role="button"><h6 id="DhanwapurLocMotorCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelDHANWAPUR" name="btnPanelDHANWAPUR" role="button"><h6 id="DhanwapurLocPBCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Transformer</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTransformerDHANWAPUR" name="btnTransformerDHANWAPUR" role="button"><h6 id="DhanwapurLocTransformerCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveDHANWAPUR" name="btnValveDHANWAPUR" role="button"><h6 id="DhanwapurLocValveCount">0</h6></a></td>
+                            </tr>
+                            <tr style="text-align:center;height:auto">
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandDHANWAPUR" name="btnLandDHANWAPUR" role="button"><h6 id="DhanwapurLocLandCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingDHANWAPUR" name="btnBuildingDHANWAPUR" role="button"><h6 id="DhanwapurLocBuildingCount"></h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPDHANWAPUR" name="btnWTPDHANWAPUR" role="button"><h6 id="DhanwapurLocWTPCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankDHANWAPUR" name="btnTankDHANWAPUR" role="button"><h6 id="DhanwapurLocTankCount">0</h6></a></td>
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPEDHANWAPUR" name="btnPEDHANWAPUR" role="button"><h6 id="DhanwapurLocPECount">0</h6></a></td>
+                            </tr>
+
+                        </thead>
+                        <tbody></tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="NCRCHANNEL">
+            <div class="card-header" id="headingFour">
+                <h3 class="mb-0">
+                    <button class="btn btn-lg btn-primary btn-block" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp;NCR CHANNEL
+                    </button>
+                </h3>
+            </div>
+            <div id="collapseFour" class="collapsing" aria-labelledby="headingFour" data-parent="#accordion">
+                <div class="card-body">
+
+                    <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
+                        <thead>
+
+                            <tr style="text-align:center;height:auto">
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnSetNCR" name="btnSetNCR" role="button"><h6 id="NCRLocPumpSetCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorNCR" name="btnMotorNCR" role="button"><h6 id="NCRMotorCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelNCR" name="btnPanelNCR" role="button"><h6 id="NCRPanelBoardCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Transformer</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTransformerNCR" name="btnTransformerNCR" role="button"><h6 id="NCRTransformerCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveNCR" name="btnValveNCR" role="button"><h6 id="NCRValveCount">0</h6></a></td>
+                            </tr>
+                            <tr style="text-align:center;height:auto">
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandNCR" name="btnLandNCR" role="button"><h6 id="NCRLandCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingNCR" name="btnBuildingNCR" role="button"><h6 id="NCRBuildingCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPNCR" name="btnWTPNCR" role="button"><h6 id="NCRWTPCount">0</h6></a></td>
+
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankNCR" name="btnTankNCR" role="button"><h6 id="">0</h6></a></td>
+                                <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPENCR" name="btnPENCR" role="button"><h6 id="NCRPECount">0</h6></a></td>
+                            </tr>
+
+                        </thead>
+                        <tbody></tbody>
+
+
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="card" id="BEHRAMPUR">
+                <div class="card-header" id="headingFive">
+                    <h3 class="mb-0">
+                        <button class="btn btn-lg btn-primary btn-block" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;BEHRAMPUR
+                        </button>
+                    </h3>
+                </div>
+                <div id="collapseFive" class="collapsing" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBehrampurLocation" style="width:100%; text-align:center">
+                            <thead>
+
+                                <tr style="text-align:center;height:auto">
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnSetBehrampur" name="btnSetBehrampur" role="button"><h6 id="BehrampurLocPumpSetCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorBehrampur" name="btnMotorBehrampur" role="button"><h6 id="BehrampurLocMotorCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelBehrampur" name="btnPanelBehrampur" role="button"><h6 id="BehrampurPanelCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Transformer</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTransformerBehrampur" name="btnTransformerBehrampur" role="button"><h6 id="BehrampurLocTransformerCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveBehrampur" name="btnValveBehrampur" role="button"><h6 id="BehrampurValveCount">0</h6></a></td>
+                                </tr>
+                                <tr style="text-align:center;height:auto">
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandBehrampur" name="btnLandBehrampur" role="button"><h6 id="BehrampurLandCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingBehrampur" name="btnBuildingBehrampur" role="button"><h6 id="BehrampurBuildingCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPBehrampur" name="btnWTPBehrampur" role="button"><h6 id="BehrampurWTPCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankBehrampur" name="btnTankBehrampur" role="button"><h6 id="BehrampurTankCount">0</h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPEBehrampur" name="btnPEBehrampur" role="button"><h6 id="BehrampurPECount">0</h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pipe</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPEBehrampur" name="btnPEBehrampur" role="button"><h6 id="BehrampurPECount">0</h6></a></td>
+                                </tr>
+
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" ID="SECTOR-51">
+                <div class="card-header" id="headingSix">
+                    <h3 class="mb-0">
+                        <button class="btn btn-sm btn-primary btn-block collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;SECTOR-51
+                        </button>
+                    </h3>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
+                            <thead>
+
+                                <tr style="text-align:center;height:auto">
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnSetSector51" name="btnSetSector51" role="button"><h6 id="Sector51LocPumpSetCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorSector51" name="btnMotorSector51" role="button"><h6 id="Sector51LocmotorCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelSector51" name="btnPanelSector51" role="button"><h6 id="Sector51locPanelCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Transformer</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveSector51" name="btnValveSector51" role="button"><h6 id="Sector51LocTransformerCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveSector51" name="btnValveSector51" role="button"><h6 id="Sector51LocValveCount">0</h6></a></td>
+                                </tr>
+                                <tr style="text-align:center;height:auto">
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandSector51" name="btnLandSector51" role="button"><h6 id="Sector51LandCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingSector51" name="btnBuildingSector51" role="button"><h6 id="Sector51LocBuildingCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPSector51" name="btnWTPSector51" role="button"><h6 id="Sector51LocWTPCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankSector51" name="btnTankSector51" role="button"><h6 id="Sector51TankCount">0</h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPESector51" name="btnPESector51" role="button"><h6 id="Sector51LocPECount">0</h6></a></td>
+                                </tr>
+
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" ID="STPBehrampur">
+                <div class="card-header" id="headingSix">
+                    <h3 class="mb-0">
+                        <button class="btn btn-sm btn-primary btn-block collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;STP Behrampur
+                        </button>
+                    </h3>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableSTPBehrampurLocation" style="width:100%; text-align:center">
+                            <thead>
+
+                                <tr style="text-align:center;height:auto">
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Set</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnSetSTPBehrampur" name="btnSetSTPBehrampur" role="button"><h6 id="STPBehrampurLocPumpSetCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Pump Motor</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnMotorSTPBehrampur" name="btnMotorSTPBehrampur" role="button"><h6 id="STPBehrampurLocmotorCount"></h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Panel Board</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPanelSTPBehrampur" name="btnPanelSTPBehrampur" role="button"><h6 id="STPBehrampurlocPanelCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Transformer</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveSTPBehrampur" name="btnValveSTPBehrampur" role="button"><h6 id="STPBehrampurLocTransformerCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Valve</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnValveSTPBehrampur" name="btnValveSTPBehrampur" role="button"><h6 id="STPBehrampurLocValveCount">0</h6></a></td>
+                                </tr>
+                                <tr style="text-align:center;height:auto">
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Land</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnLandSTPBehrampur" name="btnLandSTPBehrampur" role="button"><h6 id="STPBehrampurLandCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Building</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnBuildingSTPBehrampur" name="btnBuildingSTPBehrampur" role="button"><h6 id="STPBehrampurLocBuildingCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Water Treatment Plant</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnWTPSTPBehrampur" name="btnWTPSTPBehrampur" role="button"><h6 id="STPBehrampurLocWTPCount">0</h6></a></td>
+
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Tank</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnTankSTPBehrampur" name="btnTankSTPBehrampur" role="button"><h6 id="STPBehrampurTankCount">0</h6></a></td>
+                                    <th style="text-align:center;font-weight:600;margin-bottom:7px">Power Equipments</th>
+                                    <td style="background-color:mediumaquamarine"><a href="#" class="btn btn-info btn-sm" id="btnPESTPBehrampur" name="btnPESTPBehrampur" role="button"><h6 id="STPBehrampurLocPECount">0</h6></a></td>
+                                </tr>
+
+                            </thead>
+                            <tbody></tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        @*ModelPopup Pump Set Details Starts *@
+        <div id="myModalPumpSetDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">PumpSet Details</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        @{Html.RenderPartial("ShowPumpSetDetails"); }
+
+
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        @*ModelPopup Pump Set Details Ends *@
+
+        @*ModelPopup Pump Set Details Starts *@
+        <div id="myModalPumpSetDetailsCB" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">PumpSet Details</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        @{Html.RenderPartial("ShowPumpSetDetailsCB"); }
+
+
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        @*ModelPopup Pump Set Details Ends *@
+
+        @*ModelPopup Pump Motor Details Starts *@
+        <div id="myModalPumpMotorDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Water Pump Motor Details</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        @{Html.RenderPartial("ShowWaterPumpMotor"); }
+
+                    </div>
+
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="myModalPumpMotorDetails_Close">Close</button>
+                </div>
+            </div>
+        </div>
+        @*ModelPopup Pump Motor Details Ends *@
+
+        @*ModelPopup Pump Motor Details Starts  CHANDUBUDHERA*@
+        <div id="myModalPumpMotorCB" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Water Pump Motor Details</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        @{Html.RenderPartial("ShowWaterPumpMotorCB"); }
+
+                    </div>
+
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="myModalPumpMotorDetails_Close">Close</button>
+                </div>
+            </div>
+        </div>
+        @*ModelPopup Pump Motor Details Ends CHANDUBUDHERA*@
+
+
+        @*ModelPopup Pump Motor Details Starts STPBEHRAMPUR *@
+        <div id="myModalPumpMotorSTPBehrampur" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Water Pump Motor Details</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        @{Html.RenderPartial("ShowWaterPumpMotorSTPBeh"); }
+
+                    </div>
+
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="myModalPumpMotorDetails_Close">Close</button>
+                </div>
+            </div>
+        </div>
+        @*ModelPopup Pump Motor Details Ends  STPBEHRAMPUR*@
+
+        @*ModelPopup Panel Board Details Starts *@
+
+        <div id="myModalPanelBoardDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Panel Board Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowPanelBoardDetails"); }
+
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+        @*ModelPopup Pipe Details Starts *@
+
+        @*ModelPopup Panel Board Details Starts cb *@
+
+        <div id="myModalPanelBoardDetailsCB" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Panel Board Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowPanelBoardDetailsCB"); }
+
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+
+        @*ModelPopup Pipe Details Starts *@
+
+        <div id="myModalPipeDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Pipe Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowPipeDetails"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+        @*Pipe Modal Pop up ends*@
+
+        @*ModelPopup Pipe Details Starts *@
+
+        <div id="myModalPipeDetailsCB" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Pipe Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowPipeDetailsCB"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+        @*Pipe Modal Pop up ends*@
+
+
+        @*Valve modal Start here*@
+        <div id="myModalValveDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Valve Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowValveDetails"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+        @*Valve modal Ends here*@
+
+        @*Valve modal Start here*@
+        <div id="myModalValveDetailsCB" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Valve Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowValveDetailsCB"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+        @*Valve modal Ends here*@
+
+
+        @*Land modal Start here*@
+        <div id="myModalLandDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Land Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowLandDetails"); }
+
+                    </div>
+                </div>
+
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+
+            </div>
+        </div>
+        @*Land modal Ends here*@
+
+        @*Land modal Start here*@
+        <div id="myModalLandDetailsCB" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Land Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowLandDetailsCB"); }
+
+                    </div>
+                </div>
+
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+
+            </div>
+        </div>
+        @*Land modal Ends here*@
+
+
+        @*Building modal Start here*@
+        <div id="myModalBuildingDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Building Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowBuildingDetails"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        @*Building modal Ends here
+
+            @*Building modal Start here*@
+        <div id="myModalBuildingDetailsCB" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Building Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowBuildingDetailsCB"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        @*Building modal Ends here*@
+
+        @*WTP modal Start here*@
+        <div id="myModalWTPDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">WTP Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("WTPShowDetails"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>>
+        </div>
+        @*WTP modal Ends here
+
+            @*WTP modal Start here*@
+        <div id="myModalWTPDetailsCB" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">WTP Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("WTPShowDetailsCB"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>>
+        </div>
+        @*WTP modal Ends here*@
+
+        @*TANK modal Start here*@
+        <div id="myModalStorageDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Storage Tank Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowStorageTankDetails"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        @*TANK modal Ends here
+
+            @*TANK modal Start here*@
+        <div id="myModalStorageDetailsCB" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Storage Tank Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowStorageTankDetailsCB"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        @*TANK modal Ends here
+
+
+            @*Power Equipment modal Start here*@
+        <div id="myModalPowerEquipmentDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Power Equipment Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowPowerEquipment"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        @*Power Equipment modal Ends here*@
+
+
+        @*Power Equipment modal Start here*@
+        <div id="myModalPowerEquipmentDetailsCB" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" id="modalDialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                        <h4 class="modal-title" id="ModalTitle">Power Equipment Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        @{Html.RenderPartial("ShowPowerEquipmentCB"); }
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color:#00ace6">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        @*Power Equipment modal Ends here*@
+
+        @*---------------------------CHANDU BUDHERA----------------------------------------*@
+
+    </div>
+</div>
+
+@*</body>
+    </html>*@
+<script>
+    // $(document).on("click", '.card', function (event) {
+    // event.preventDefault();
+
+
+    // var LocationName = $(this).attr('id');
+
+    //  window.localStorage.setItem("LocationStorage", LocationName);
+    //var location = window.localStorage.getItem('LocationStorage');
+    //setTimeout(function () { location.reload(); }, 100);
+
+
+    //});
+
+
+
+    $(document).ready(function () {
+
+        // localStorage.clear();
+        //var location = window.localStorage.getItem('LocationStorage');
+        //var Loct = { location: location }
+        //var data = JSON.stringify(Loct);
+
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsPanelBoard/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+
+
+                $("#BasaiLocPBCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsPumpMotor/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+
+                $("#BasaiLocMotorCount").append(data);
+
+            }
+
+
+        });
+        
+
+        $.ajax({
+
+            url: "/WBS/AssetCountPumpMotorSTPBeh/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+
+                $("#STPBehrampurLocmotorCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsPumpSet/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#BasaiLocPumpSetCount").append(data);
+
+            }
+
+
+        });
+
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsValve/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#BasaiLocValveCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsPE/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#BasaiLocPECount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsWTP/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#BasaiLocWTPCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsTank/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#BasaiLocTankCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsPipe/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#BasaiLocPipeCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsLand/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#BasaiLocLandCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsBuilding/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#BasaiLocBuildingCount").append(data);
+
+            }
+        });
+        //--------------------------
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsPanelBoardChanduBudhera/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+
+
+                $("#ChanduLocPBCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsPumpMotorChanduBudhera/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+
+                $("#ChanduLocMotorCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsPumpSetChanduBudhera/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#ChanduLocPumpSetCount").append(data);
+
+            }
+
+
+        });
+
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsValveChanduBudhera/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#ChanduLocValveCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsPEChanduBudhera/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#ChanduLocPECount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsWTPChanduBudhera/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#ChanduLocWTPCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsTankChanduBudhera/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#ChanduLocTankCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsPipeChanduBudhera/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#ChanduLocPipeCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsLandChanduBudhera/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#ChanduLocLandCount").append(data);
+
+            }
+
+
+        });
+
+        $.ajax({
+
+            url: "/WBS/AssetCountDetailsBuildingChanduBudhera/",
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            data: {},
+            type: "GET",
+            success: function (data) {
+
+                $("#ChanduLocBuildingCount").append(data);
+
+            }
+        });
+
+        //--------------------------
+
+
+
+
+    });
+
+
+</script>
+
+
+<script>
+
+    $(document).on("click", "a[name='btnPumpSetBasai']", function (event) {
+
+        event.preventDefault();
+
+        $("#myModalPumpSetDetails").modal("show");
+
+    });
+
+</script>
+
+
+<script>
+
+    $(document).on("click", "a[name='btnMotorBasai']", function (event) {
+
+        event.preventDefault();
+        $("#myModalPumpMotorDetails").modal("show");
+
+    });
+
+
+</script>
+
+
+
+
+
+
+<script>
+    $(document).on("click", "a[name='btnPanelBasai']", function (event) {
+        event.preventDefault();
+        $("#myModalPanelBoardDetails").modal("show");
+
+    });
+
+
+</script>
+
+
+<script>
+    $(document).on("click", "a[name='btnPipeBasai']", function (event) {
+        event.preventDefault();
+
+        $("#myModalPipeDetails").modal("show");
+
+
+
+
+    });
+
+
+</script>
+<script>
+    $(document).on("click", "a[name='btnValveBasai']", function (event) {
+        event.preventDefault();
+
+        $("#myModalValveDetails").modal("show");
+
+
+
+
+    });
+
+
+</script>
+
+<script>
+    $(document).on("click", "a[name='btnLandBasai']", function (event) {
+        event.preventDefault();
+
+        $("#myModalLandDetails").modal("show");
+
+
+
+
+    });
+
+
+</script>
+<script>
+    $(document).on("click", "a[name='btnBuildingBasai']", function (event) {
+        event.preventDefault();
+
+        $("#myModalBuildingDetails").modal("show");
+
+
+
+
+    });
+
+
+</script>
+<script>
+    $(document).on("click", "a[name='btnWTPBasai']", function (event) {
+        event.preventDefault();
+
+        $("#myModalWTPDetails").modal("show");
+
+
+
+
+    });
+
+
+</script>
+<script>
+    $(document).on("click", "a[name='btnTankBasai']", function (event) {
+        event.preventDefault();
+
+        $("#myModalStorageDetails").modal("show");
+
+
+
+
+    });
+
+
+</script>
+
+
+
+<script>
+    $(document).on("click", "a[name='btnPEBasai']", function (event) {
+        event.preventDefault();
+
+        $("#myModalPowerEquipmentDetails").modal("show");
+
+    });
+
+
+</script>
+
+
+
+
+
+<script>
+
+    $(document).on("click", "a[name='btnPumpSetChandu']", function (event) {
+
+        event.preventDefault();
+
+        $("#myModalPumpSetDetails").modal("show");
+
+    });
+
+</script>
+
+
+
+<script>
+    $(document).on("click", "a[name='btnMotorChandu']", function (event) {
+        event.preventDefault();
+
+        $("#myModalPumpMotorCB").modal("show");
+
+    });
+
+
+</script>
+
+
+
+
+
+
+<script>
+    $(document).on("click", "a[name='btnPanelChandu']", function (event) {
+        event.preventDefault();
+        $("#myModalPanelBoardDetailsCB").modal("show");
+
+    });
+
+
+</script>
+
+
+<script>
+    $(document).on("click", "a[name='btnPipeChandu']", function (event) {
+        event.preventDefault();
+
+        $("#myModalPipeDetailsCB").modal("show");
+
+
+
+
+    });
+
+
+</script>
+<script>
+    $(document).on("click", "a[name='btnValveChandu']", function (event) {
+        event.preventDefault();
+
+        $("#myModalValveDetailsCB").modal("show");
+
+
+
+
+    });
+
+
+</script>
+
+<script>
+    $(document).on("click", "a[name='btnLandChandu']", function (event) {
+        event.preventDefault();
+
+        $("#myModalLandDetailsCB").modal("show");
+
+
+
+
+    });
+
+
+</script>
+<script>
+    $(document).on("click", "a[name='btnBuildingChandu']", function (event) {
+        event.preventDefault();
+
+        $("#myModalBuildingDetailsCB").modal("show");
+
+
+
+
+    });
+
+
+</script>
+<script>
+    $(document).on("click", "a[name='btnWTPChandu']", function (event) {
+        event.preventDefault();
+
+        $("#myModalWTPDetailsCB").modal("show");
+
+
+
+
+    });
+
+
+</script>
+<script>
+    $(document).on("click", "a[name='btnTankChandu']", function (event) {
+        event.preventDefault();
+
+        $("#myModalStorageDetailsCB").modal("show");
+
+
+
+
+    });
+
+
+</script>
+
+
+
+<script>
+    $(document).on("click", "a[name='btnPEChandu']", function (event) {
+        event.preventDefault();
+
+        $("#myModalPowerEquipmentDetailsCB").modal("show");
+
+    });
+
+
+</script>
+
+
+<script>
+    $(document).on("click", "a[name='btnMotorSTPBehrampur']", function (event) {
+        event.preventDefault();
+
+        $("#myModalPumpMotorSTPBehrampur").modal("show");
+
+    });
+
+
+</script>
+
+

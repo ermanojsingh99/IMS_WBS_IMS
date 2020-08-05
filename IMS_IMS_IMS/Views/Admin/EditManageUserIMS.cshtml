@@ -1,0 +1,199 @@
+﻿@model IMS_IMS_MODEL.CreateUserEditIMSModel
+
+
+<style type="text/css">
+
+    .field-icon {
+        float: right;
+        margin-left: -25px;
+        margin-top: -25px;
+        position: relative;
+        z-index: 2;
+        color: deepskyblue
+    }
+
+    .container {
+        padding-top: 50px;
+        margin: auto;
+    }
+</style>
+@using (Ajax.BeginForm("UpdateUserIMS", "Admin", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnSuccess",
+    OnFailure = "OnFailure",
+    LoadingElementId = "progress",
+    OnComplete = "OnComplete"
+}, new { id = "MyFormEdit" }))
+
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div style="display:none">
+            @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control", @id = "txthdnUserId", } })
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, "UserName", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @id = "txtUserName", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id = "txtEmail" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, "Password", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "txtPassword" } })
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.RetypePassword, "Confirm Password", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.RetypePassword, new { htmlAttributes = new { @class = "form-control", @id = "txtRetypePass" } })
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-Conpassword"></span>
+                @Html.ValidationMessageFor(model => model.RetypePassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br />
+       
+        <div class="form-group">
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Update" id="UpdateUserIMS" name="UpdateUserIMS" class="btn-block btn btn-primary" />
+
+            </div>
+
+        </div>
+    </div>
+}
+<script>
+
+
+    $(".toggle-password").click(function () {
+
+
+    if ($("#txtPassword").attr("type") == "password") {
+        $("#txtPassword").attr("type", "text");
+        $(this).toggleClass("fa-eye fa-eye-slash");
+  } else {
+        $("#txtPassword").attr("type", "password");
+        $(this).toggleClass("fa-eye fa-eye");
+  }
+});
+    $(".toggle-Conpassword").click(function () {
+
+
+
+    if ($("#txtRetypePass").attr("type") == "password") {
+        $("#txtRetypePass").attr("type", "text");
+        $(this).toggleClass("fa-eye fa-eye");
+  } else {
+        $("#txtRetypePass").attr("type", "password");
+
+         $(this).toggleClass("fa-eye fa-eye-slash");
+  }
+});
+
+
+</script>
+
+<script>
+
+     function OnSuccess(result) {
+
+
+        if (result.message == "Asset Updated Successfully") {
+
+            toastr.success(result.message, "Message");
+
+        }
+        else {
+
+            toastr.error(result.message, "Error Message", { timeOut: 10000 });
+
+        }
+
+
+    }
+
+    function OnComplete() {
+
+        document.getElementById("MyFormEdit").reset();
+
+    }
+
+    function OnFailure() {
+
+        toastr.error("Error Occured", "Error Message");
+
+
+    }
+</script>
+
+@*<script>
+
+        $('#UpdateUserWBS').click(function (e) {
+            e.preventDefault();
+            var USerEditDetails = {
+                UserId:'@Session["UserID"]',
+                UserName: $('#txtUserName').val(),
+                Email: $('#txtEmail').val(),
+                Password: $('#txtPassword').val(),
+                RetypePassword: $('#txtRetypePass').val(),
+                Location: $('#txtLocation').val(),
+                Role: $('#txtRole').val(),
+
+
+            };
+            console.log(USerEditDetails);
+
+            $.ajax({
+
+                url: "/WBS/UpdateUserWBS",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                data: JSON.stringify(USerEditDetails),
+                success: function (result) {
+
+                    if (result.message != "") {
+
+                        toastr.success(result.message, "Message");
+
+
+                    }
+                    else {
+
+                        toastr.error("Empty field not allowed", "Error Message");
+                    }
+
+                },
+                error: function () {
+
+                    toastr.error("Something went wrong", "Error Message");
+
+
+                }
+            });
+        });
+
+
+    </script>*@

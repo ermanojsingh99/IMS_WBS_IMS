@@ -1,0 +1,171 @@
+﻿@model IMS_IMS_MODEL.ContactUsDetailsModal
+
+@{
+    ViewBag.Title = "Contact";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+<style type="text/css">
+
+    #contatti {
+        background-color: #d5f5de;
+        letter-spacing: 2px;
+    }
+
+        #contatti a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+    .contact_text {
+        color: black !important;
+    }
+
+    #author a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .txtq {
+    }
+
+    required::after {
+        margin: 2px;
+        content: "*";
+        color: red;
+    }
+</style>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+<div class="row" id="contatti">
+    <div class="container mt-5">
+        <br />
+        <div class="row">
+            <div class="col-md-5 maps well">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.2048996914536!2d77.04107981504707!3d28.44323909937378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1868f418502b%3A0x1dcce74bcc81e929!2sEminence+Group!5e0!3m2!1sen!2sin!4v1542884876046" width="100%" height="490px" style="border:2px solid #953132"></iframe>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6 well">
+                <h4 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Contact Us</h4>
+                @using (Ajax.BeginForm("Contact", "Home", new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "OnSuccess",
+                    OnFailure = "OnFailure",
+                    LoadingElementId = "progress",
+                    OnComplete = "OnComplete"
+                }, new { @id = "FormContactUs" }))
+                {
+
+                    <div class="row">
+                        <div class="form-group green-border-focus col-md-6 ">
+
+                            @*<input type="text" class="form-control" placeholder="First Name" required>*@
+                            @Html.LabelFor(model => model.FirstName, "FName", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttribute = new { @class = "form-control txtFname", placeholder = "First Name", @id = "fname" } })
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group green-border-focus col-md-6 ">
+
+                            @*<input type="text" class="form-control mt-2" placeholder="Last Name" required>*@
+                            @Html.LabelFor(model => model.LastName, "LName", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.LastName, new { htmlAttribute = new { @class = "form-control txtlname", placeholder = "Last Name", @id = "lname" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group green-border-focus col-md-6">
+
+                            @*<input type="text" class="form-control mt-2" placeholder="Email Address" required>*@
+                            @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Email, new { htmlAttribute = new { @class = "form-control txtEmail", @placeholder = "Email Address", @id = "Email" } })
+
+                            </div>
+                        </div>
+                        <div class="form-group green-border-focus col-md-6">
+                           
+                                @*<input type="number" class="form-control mt-2" placeholder="Mobile" required>*@
+                                @Html.LabelFor(model => model.Mobile, "Mobile", htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Mobile, new { htmlAttribute = new { @class = "form-control txtMobile", @placeholder = "Mobile no", @id = "mobile" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group green-border-focus col-md-12">
+
+                            @*<textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Your Query" rows="3" required></textarea>*@
+                            @Html.LabelFor(model => model.Description, "Query", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Description, new { htmlAttribute = new { @class = "form-control txtDescription", @placeholder = "Description", rows = 3, cols = 90, @value = "Description" } })
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="col-md-12">
+
+                            @*<input type="submit" class="btn btn-primary btn-block" value="Submit Query" />*@
+                            <input type="submit" value="Submit Details" class="col-md-offset-4 btn btn-primary" id="btnSubmit" />
+                        </div>
+
+                        }
+
+
+                      
+                        <br />
+                        <div class=" well">
+                            <h4 style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Contact Details</h4>
+
+                            @*<span class="text-primary contact_text"><i class="fas fa-phone mt-3"></i> +91-9812504401 </span> <br>*@
+                            <span class="text-primary contact_text"><i class="fas fa-phone mt-3"></i> 0124-2746631 </span> <br>
+                            <span class="text-primary contact_text"><i class="fas fa-envelope mt-3"></i> itsupport.gmda@gov.in </span> <br>
+                            <i class="fas fa-globe mt-3"></i> IT DEPARTMENT<br>
+
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>
+
+<script>
+    function OnSuccess(result) {
+
+        console.log(result);
+        if (result.result == true) {
+
+            toastr.success("Query Submitted", "Message", { timeOut: 4000 });
+
+        }
+        else if (result.result == false) {
+
+            toastr.warning("All Fields are Required !!", "Error Message ", { timeOut: 5000 });
+        }
+    }
+
+
+    function OnFailure(result) {
+
+        toastr.error("Something Went Wrong", "Error Message");
+
+
+    }
+    function OnComplete(result) {
+
+
+        document.getElementById("FormContactUs").reset();
+
+
+    }
+
+
+</script>

@@ -1,0 +1,93 @@
+﻿
+@model IEnumerable<IMS_IMS_MODEL.AssetDetailsModel>
+@{
+    Layout = "~/Views/Shared/_LayoutAdminLte.cshtml";
+    // Layout = null;
+}
+
+<div class="container-fluid table-responsive">
+    <table class="table table-bordered display table-responsive" id="MyDataTable" width="100%">
+        <thead>
+            <tr>
+                <th>Employee id</th>
+                <th>Employee Name</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Asset Id</th>
+                <th>Asset Name</th>
+                <th>Serial No</th>
+                <th>IP Address</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+
+    </table>
+    <div style="text-align:center;display:none" id="loaderDiv">
+        <img src="~/Content/images/circle-3.gif" width="70" />
+    </div>
+</div>
+
+
+
+<script>
+
+     $(document).ready(function () {
+
+        $("#loaderDiv").show();
+        ShowAssetDetails();
+    })
+    var responseData = '';
+    var ShowAssetDetails = function () {
+
+        $.ajax({
+
+            type: "Get",
+            url: "/Admin/ShowWSDetails/",
+            success: function (response) {
+
+                response = JSON.parse(BindDataTable(response));
+
+
+
+                $("#MyDataTable").append(response)
+
+
+
+            }
+        })
+    }
+
+    var BindDataTable = function (response) {
+
+        $("#MyDataTable").DataTable({
+
+            "aaData": response,
+            "aoColumns": [
+
+                { "mData": "EmployeeId" },
+                { "mData": "EmployeeName" },
+
+                { "mData": "Department" },
+                { "mData": "Designation" },
+                { "mData": "AssetId" },
+                { "mData": "AssetName" },
+                { "mData": "SerialNo" },
+                { "mData": "IP" }
+
+
+
+            ]
+
+
+
+        });
+
+
+        $("#loaderDiv").hide();
+    }
+
+</script>
+

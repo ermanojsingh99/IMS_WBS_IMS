@@ -1,0 +1,304 @@
+﻿
+@model IMS_IMS_MODEL.PanelBoardModel
+
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+
+<script>
+      $('.txtMakePanel').bind('keyup blur',function(){ 
+    var node = $(this);
+       node.val(node.val().replace(/[^a-zA-Z ]/g, ''));
+   });
+</script>
+
+@using (Ajax.BeginForm("PanelBoard", "WBS", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnSuccess",
+    OnFailure = "OnFailure",
+    LoadingElementId = "progress",
+    OnComplete = "OnComplete"
+}, new { @id = "FormPanelBoard" }))
+{
+    @Html.AntiForgeryToken()
+
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container-fluid">
+        <div class="row " style="display:none">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Location, "Item Code", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control locationddl2", @id = "Location" } })
+                    @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6 ">
+                @Html.LabelFor(model => model.ItemName, "Location", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control itemnameddl2" } })
+                    @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.SubLocation, "Sub Location", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.SubLocation, Enumerable.Empty<SelectListItem>(), "---Select---", new { @class = "form-control", @id = "SubLocation" })
+
+                    @Html.ValidationMessageFor(model => model.SubLocation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6 ">
+                @Html.LabelFor(model => model.Capacity, "Capacity", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control", @placeholder = "Capacity" } })
+                    @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+
+
+                </div>
+
+            </div>
+          
+        </div>
+
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Make, "Make", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control txtMakePanel", placeholder = "Make", @id = "Make" } })
+                    @Html.ValidationMessageFor(model => model.Make, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Quantity, "Quantity", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Quantity", @id = "Quantity" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Status, "Status", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Status, Enumerable.Empty<SelectListItem>(), "--Select Status--", new { @class = "form-control", @id = "Status" })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+          
+
+        </div>
+        <div class="row">
+            <div class="form-group green-border-focus col-md-12">
+                @Html.LabelFor(model => model.Description, "Remarks", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control green-border-focus", @placeholder = "Write Something ...", @id = "description", rows = 3, cols = 90, @value = "Description", @title = "Description" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-12">
+            <div class=" col-md-6">
+                <input type="submit" value="Submit Details" class="col-md-offset-6 btn btn-success btn-block" id="btnSubmit" />
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+}
+
+<hr class="style-eight" />
+
+<div class=" col-md-6 offset-md-4">
+    @Html.ActionLink(" Download XLSX File", "ExportSpeardSheetPanelBoard", "WBS", null, new { @style = "text-transform:capitalize;", @class = "btn btn-success btn-lg  fa fa-file-excel-o large pull-right" })
+    <h6 id="ItemName" style="color:Highlight;font-weight:900"><span style="color:Highlight;font-weight:900">ITEM NAME :</span> @ViewBag.PanelBoardDetails</h6>
+</div>
+<div class="container-fluid" style="background-color:lightgrey">
+    <table class="table table-bordered table-hover table-responsive table-striped" id="MyDataTablePanelBoard" style="width:100%; text-align:center;border:1px solid">
+        <thead>
+            <tr style="text-align:center">
+                <th style="text-align:center">Item Serial</th>
+                
+                @*<th style="text-align:center">Location</th>
+                <th style="text-align:center">Item Name</th>*@
+                <th style="text-align:center">Capacity</th>
+                <th style="text-align:center">Make</th>
+                <th style="text-align:center">Quantity</th>
+                <th style="text-align:center">Status</th>
+                <th style="text-align:center">Description</th>
+
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+
+    </table>
+    <div style="text-align:center;display:none" id="loaderDiv">
+        <img src="~/Content/images/circle-3.gif" width="70" />
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $("#loaderDiv").show();
+        ShowPanelBoardDetails();
+        $("#MyDataTablePanelBoard").DataTable().clear();
+        $("#MyDataTablePanelBoard").DataTable().destroy();
+
+    });
+    var responseData = '';
+    var ShowPanelBoardDetails = function () {
+
+        $.ajax({
+
+            type: "POST",
+            url: "/WBS/ShowPanelBoardDetails",
+            success: function (response) {
+
+                response = JSON.parse(BindDataTablePanelBoard(response));
+
+                $("#MyDataTablePanelBoard").append(response)
+
+            }
+        });
+    }
+
+    var BindDataTablePanelBoard = function (response) {
+
+        
+
+        $("#MyDataTablePanelBoard").DataTable({
+
+            "aaData": response,
+            "aoColumns": [
+
+                { "mData": "ItemCode" },
+                //{ "mData": "Location" },
+                //{ "mData": "ItemName" },
+                { "mData": "Capacity" },
+                { "mData": "Make" },
+                { "mData": "Quantity" },
+                { "mData": "Status" },
+                { "mData": "Description" }
+
+
+            ]
+
+
+
+        });
+
+
+        $("#loaderDiv").hide();
+    }
+
+
+</script>
+
+
+
+<script>
+
+   $(document).ready(function () {
+
+        var SessionValueLocation = '@Request.RequestContext.HttpContext.Session["location"]';
+
+
+    if (typeof (Storage) !== "undefined") {
+        var ItemNameStore = window.localStorage.getItem('ItemNameStorage');
+       // var LocationStore = window.localStorage.getItem('LocationStorage');
+
+        $(".itemnameddl2").val(ItemNameStore);
+        $(".locationddl2").val(SessionValueLocation);
+
+
+
+    }
+    else {
+        alert("This browser does  not support local storage");
+    }
+ });
+</script>
+
+
+<script>
+
+    function OnSuccess(result) {
+
+        console.log(result);
+        if (result.result == true) {
+
+            toastr.success("Asset Added Successfully", "Message", { timeOut: 4000 });
+            window.localStorage.removeItem("ItemNameStorage");
+            window.localStorage.removeItem("LocationStorage");
+            setTimeout(function () { location.reload(); }, 1000);
+        }
+        else if (result.result == false) {
+
+            toastr.warning("All Fields are Required !!", "Error Message ", { timeOut: 5000 });
+        }
+    }
+
+
+    function OnFailure(result) {
+
+        toastr.error("Something Went Wrong", "Error Message");
+
+
+    }
+    function OnComplete(result) {
+
+
+        document.getElementById("FormPanelBoard").reset();
+
+
+    }
+
+
+</script>
+<script>
+    $.getJSON("/WBS/DDLStatus", function (data) {
+        $.each(data, function (i, data) {      // bind the dropdown list using json result
+            $('<option>',
+                {
+                    value: data.status,
+                    text: data.status
+                }).html(data.status).appendTo("#Status");
+        });
+    });
+</script>
+<script>
+
+
+
+    $.getJSON("/WBS/DDLSubLocation", function (data) {
+        $.each(data, function (i, data) {      // bind the dropdown list using json result
+            $('<option>',
+                {
+                    value: data.SubLocation,
+                    text: data.SubLocation
+                }).html(data.status).appendTo("#SubLocation");
+        });
+    });
+</script>

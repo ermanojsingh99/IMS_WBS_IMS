@@ -1,0 +1,168 @@
+﻿
+@model IMS_IMS_MODEL.CreateItemModel
+
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+
+<div class="container-fluid">
+
+    @using (Ajax.BeginForm("CreateItem", "WBS", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "OnSuccess",
+        OnFailure = "OnFailure",
+        LoadingElementId = "progress",
+        OnComplete = "OnComplete"
+    }, new { @id = "FormCreateItem" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row ">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.ItemCode, "Item Code", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ItemCode, new { htmlAttributes = new { @class = "form-control", placeholder = "Item Code" } })
+                    @Html.ValidationMessageFor(model => model.ItemCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6 ">
+                @Html.LabelFor(model => model.Location, "Location", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Location, Enumerable.Empty<SelectListItem>(), "--Select Location--", new { @class = "form-control", @id = "location1" })
+                    @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="form-group green-border-focus col-md-6 ">
+                @Html.LabelFor(model => model.ItemType, "Item Type", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.ItemType, Enumerable.Empty<SelectListItem>(), "--Select Item Type--", new { @class = "form-control", @id = "ItemType1" })
+                    @Html.ValidationMessageFor(model => model.ItemType, "", new { @class = "text-danger" })
+
+
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Category, "Category", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Category, Enumerable.Empty<SelectListItem>(), "--Select Category--", new { @class = "form-control", @id = "Category1" })
+                    @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.ItemName, "Item Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control", placeholder = "Item Name" } })
+                    @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Make, "Make", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Make, new { htmlAttributes = new { @class = "form-control", placeholder = "Make", @id = "Make" } })
+                    @Html.ValidationMessageFor(model => model.Make, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Quantity, "Quantity", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", placeholder = "Quantity", @id = "Quantity" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.UOM, "Unit Of Measurement", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.UOM, new { htmlAttributes = new { @class = "form-control", placeholder = "UOM", @id = "UOM" } })
+                    @Html.ValidationMessageFor(model => model.UOM, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="row">
+            <div class="form-group green-border-focus col-md-6">
+                @Html.LabelFor(model => model.Status, "Status", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.Status, Enumerable.Empty<SelectListItem>(), "--Select Status--", new { @class = "form-control", @id = "Status" })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="form-group green-border-focus col-md-12">
+                @Html.LabelFor(model => model.Description, "Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control green-border-focus", @id = "description", rows = 3, cols = 90, @value = "Description", @title = "Description" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class=" col-md-12">
+            <div class=" col-md-6">
+                <input type="submit" value="Submit Details" class="col-md-offset-6 btn btn-success btn-block" id="btnSubmit" />
+            </div>
+
+        </div>
+
+
+    }
+
+</div>
+
+
+
+<script>
+
+    function OnSuccess(result) {
+
+        console.log(result);
+        if (result.result == "Asset Added Successfully") {
+
+            toastr.success(result.result, "Message");
+            // document.getElementById("FormDetailSubmission").reset();
+        }
+        else if (result.result == "Something Went wrong") {
+
+            toastr.error(result.result, "Error Message", { timeOut: 10000 });
+        }
+
+
+
+        else {
+            toastr.error("Something Went wrong !!", "Error Message", { timeOut: 10000 });
+        }
+
+
+    }
+
+
+    function OnFailure(result) {
+
+        toastr.error("Something Went Wrong", "Error Message");
+
+
+    }
+
+</script>

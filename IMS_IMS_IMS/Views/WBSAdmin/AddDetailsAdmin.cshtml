@@ -1,0 +1,496 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_SuperAdminWBS.cshtml";
+
+}
+
+<style type="text/css">
+    .required::after {
+        margin: 2px;
+        content: "*";
+        color: red;
+    }
+
+    .modal-dialog {
+        width: 600px;
+        height: 600px !important;
+    }
+
+    body {
+        padding-top: 20px;
+    }
+
+    .panel-body .btn:not(.btn-block) {
+        width: 170px;
+        margin-bottom: 25px;
+        margin-right:25px;
+    }
+    #modalDialog{
+
+     width:auto !important;
+     height:auto !important;
+     margin:25px;
+    }
+</style>
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+<br />
+<br />
+<div class="container-fluid">
+    <div class="container-fluid">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span class="glyphicon glyphicon-bookmark"></span> Quick Shortcuts
+                </h3>
+            </div>
+            <div class="panel-body">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                @*<div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <span class="glyphicon glyphicon-bookmark"></span> Quick Shortcuts
+                                        </h3>
+                                    </div>*@
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-md-12 col-md-offset-1">
+                                            <a href="#" class="btn btn-danger btn-lg" id="btnAddLocationName" name="btnAddLocationName" role="button"><span class="glyphicon glyphicon-map-marker"></span> <br />Add Location</a>
+                                            <a href="#" class="btn btn-warning btn-lg" id="btnAddItemName" name="btnAddItemName" role="button"><span class="glyphicon glyphicon-bookmark"></span> <br />Add Item</a>
+                                            <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-signal"></span> <br />Reports</a>
+                                            <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-comment"></span> <br />Comments</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6 col-md-12 col-md-offset-1">
+                                            <a href="#" class="btn btn-success btn-lg" id="btnUserUpdation" name="btnUserUpdation" role="button"><span class="glyphicon glyphicon-user"></span> <br />Manage Users</a>
+                                            <a href="#" class="btn btn-info btn-lg" id="btnAddUser" name="btnAddUser" role="button"><span class="glyphicon glyphicon-plus"></span> <br />Add User</a>
+                                            <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-picture"></span> <br />Photos</a>
+                                            <a href="#" class="btn btn-primary btn-lg" role="button"><span class="glyphicon glyphicon-tag"></span> <br />Tags</a>
+                                        </div>
+                                    </div>
+                                    @*<a href="http://www.jquery2dotnet.com/" class="btn btn-success btn-lg btn-block" role="button"><span class="glyphicon glyphicon-globe"></span> Website</a>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    @*EditFormStarts*@
+
+    <div id="myModalAddItemName" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                    <h4 class="modal-title" id="ModalTitle">Add Item Name</h4>
+                </div>
+                <div class="modal-body">
+                    @{Html.RenderPartial("AddItemName"); }
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background-color:#00ace6">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="myModalAddLocation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                    <h4 class="modal-title" id="ModalTitle">Add Location</h4>
+                </div>
+                <div class="modal-body">
+                    @{Html.RenderPartial("AddLocationWBS"); }
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background-color:#00ace6">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="myModalManagaeUserWBS" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" id="modalDialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                    <h4 class="modal-title" id="ModalTitle">Manage User Details</h4>
+                </div>
+                <div class="modal-body">
+                    <button type="button" id="btnAddNewUser" name="btnAddNewUser" value="Add New" class="btn btn-success  pull-left">Add New User <span class="fa fa-plus-square" aria-hidden="true" style="padding-top:3px"></span></button>
+                    @{Html.RenderPartial("ManageUserWBS"); }
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background-color:#00ace6">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModalAddNewUser" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#00ace6;color:white; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                    <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+                    <h4 class="modal-title" id="ModalTitle">Create User</h4>
+                </div>
+                <div class="modal-body">
+
+                    @{Html.RenderPartial("CreateUser"); }
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer" style="background-color:#00ace6">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+
+    
+
+    $(document).ready(function () {
+
+
+       
+    });
+
+     $(document).on("click", "a[name='btnAddLocationName']", function (event) {
+         event.preventDefault();
+        
+      
+          $('#myModalAddLocation').modal('show')
+
+     });
+    
+
+     $(document).on("click", "a[name='btnAddItemName']", function (event) {
+         event.preventDefault();
+        
+      
+          $('#myModalAddItemName').modal('show')
+
+     });
+
+     $(document).on("click", "a[name='btnAddUser']", function (event) {
+         event.preventDefault();
+        
+      
+          $('#myModalAddNewUser').modal('show')
+
+     });
+    
+     $(document).on("click", "a[name='btnUserUpdation']", function (event) {
+         event.preventDefault();
+        
+      
+          $('#myModalManagaeUserWBS').modal('show')
+
+     });
+
+     $(document).on("click", "a[name='btnAddNewUser']", function (event) {
+         event.preventDefault();
+        
+      
+          $('#myModalAddNewUser').modal('show')
+
+     });
+
+
+    $(document).on("click", "a[name='btnEditUser']", function (event) {
+
+        event.preventDefault();
+
+        var Email = $(this).closest("tr").find("td").eq(1).html();
+
+
+        $.ajax({
+
+            url: "/WBS/EditUserGetDetails",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            data: { Email: Email },
+            success: function (result) {
+
+
+                $('#txthdnUserId').val(result[0].Userid);
+                $('#txtUserName').val(result[0].Username);
+                $('#txtEmail').val(result[0].email);
+                $('#txtPassword').val(result[0].pass);
+                $('#txtRetypePass').val(result[0].retypePass);
+                $('#txtLocation').val(result[0].Location);
+                $('#txtRole').val(result[0].role);
+
+                $("#myModalEdit").modal('show');
+
+
+
+            },
+
+            error: function () {
+
+            }
+
+
+        });
+
+    });
+
+
+    $(document).on("click", "a[name='btnDeleteUser']", function (event) {
+
+        event.preventDefault();
+        if (confirm("Do You want to Delete")) {
+
+            var Email = $(this).closest("tr").find("td").eq(1).html();
+
+            $.ajax({
+
+                url: "/WBS/DeleteUserWBS",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                data: { Email: Email },
+                success: function (result) {
+
+                    if (result.message != "") {
+
+                        toastr.success(result.message, "Message");
+
+
+                    }
+                    else {
+
+                        toastr.error("Somthing Went wrong", "Error Message");
+                    }
+
+
+
+
+                },
+
+                error: function () {
+
+                }
+
+
+
+
+            });
+        }
+
+    });
+
+
+    //$('#UpdateAsset').click(function (e) {
+    //    e.preventDefault();
+    //    var empObj = {
+    //        EmpId: $('#hdnEmpId').val(),
+    //        AssetId_unique: $('#txtAssetId').val(),
+    //        AssetName: $('#txtAssetName').val(),
+    //        SerialNo: $('#txtSerialNo').val(),
+    //        IpAddress: $('#txtIP').val(),
+    //        MacAddress: $('#txtMac').val(),
+    //        HDD: $('#txtHDD').val(),
+    //        RAM: $('#txtRAM').val(),
+    //        processor: $('#txtProcessor').val(),
+    //        WarrantyStart: $('#txtWarrantyStart').val(),
+    //        WarrantyEnd: $('#txtWarrantyEnd').val(),
+    //        DateOfIssue: $('#txtDateOfIssue').val()
+    //    };
+    //    console.log(empObj);
+
+    //    $.ajax({
+
+    //        url: "/Admin/EditAssetDetails",
+    //        type: "POST",
+    //        contentType: 'application/json; charset=utf-8',
+    //        dataType: "json",
+    //        data: JSON.stringify(empObj),
+    //        success: function (result) {
+
+    //            if (result.message != "") {
+
+    //                toastr.success(result.message, "Message");
+
+
+    //            }
+    //            else {
+
+    //                toastr.error("Empty field not allowed", "Error Message");
+    //            }
+
+    //        },
+    //        error: function () {
+
+    //            toastr.error("Something went wrong", "Error Message");
+
+
+    //        }
+    //    });
+    //});
+
+
+</script>
+
+
+
+<script>
+
+    $('#UpdateUserWBS').click(function (e) {
+        e.preventDefault();
+        var USerEditDetails = {
+            UserId: $('#txthdnUserId').val(),
+            UserName: $('#txtUserName').val(),
+            Email: $('#txtEmail').val(),
+            Password: $('#txtPassword').val(),
+            RetypePassword: $('#txtRetypePass').val(),
+            Location: $('#txtLocation').val(),
+            Role: $('#txtRole').val(),
+
+
+        };
+        console.log(USerEditDetails);
+
+        $.ajax({
+
+            url: "/WBS/UpdateUserWBS",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            data: JSON.stringify(USerEditDetails),
+            success: function (result) {
+
+                if (result.message != "") {
+
+                    toastr.success(result.message, "Message");
+
+
+                }
+                else {
+
+                    toastr.error("Empty field not allowed", "Error Message");
+                }
+
+            }
+            
+        });
+    });
+
+
+</script>
+<script>
+
+//    $(document).ready({
+//        $("#btnAddNewUser").click(function () {
+
+//        }) ;
+
+
+//});
+
+    $(document).ready(function () {
+
+
+        $( "#btnAddNewUser" ).click(function() {
+
+             $('#myModalAddNewUser').modal('show')
+
+        });
+
+    });
+
+
+
+
+    @*$(document).on("click", "a[name='btnAddNewUser']", function (event) {
+
+       event.preventDefault();
+       alert("Clicked");
+
+    $('#AddNewUserDiv').dialog({
+        autoOpen: true,
+        position: { my: "center", at: "top+350", of: window },
+        width: 900,
+        resizable: false,
+        title: 'Add New User',
+        modal: true,
+        open: function () {
+            $(this).load('@Url.Action("AdminRegistration", "Account")');
+        },
+        buttons: {
+            "Add User": function () {
+                addUserInfo();
+            },
+            Cancel: function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+    return false;
+});*@
+@*function addUserInfo() {
+    $.ajax({
+        url: '@Url.Action("AdminRegistration", "Account")',
+        type: 'GET',
+        data: $("#MyForm").serialize(),
+        dataType:'html',
+        success: function (response) {
+            console.log(response);
+            $('#LoadAdminRegPartial').html(response);
+            if (response) {
+                $(':input', '#myForm')
+                  .not(':button, :submit, :reset, :hidden')
+                  .val('')
+                  .removeAttr('checked')
+                    .removeAttr('selected');
+                // $('#myModalAddNewUser').html(response);
+                      //  $('#myModalAddNewUser').dialog('open');
+
+                 $('#myModalAddNewUser').modal('show')
+            }
+        }
+    });
+}*@
+
+
+
+</script>

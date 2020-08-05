@@ -1,0 +1,229 @@
+﻿@model IMS_IMS_MODEL.CreateUserModel
+
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+<style>
+
+    .glyphicon-user, .glyphicon-map-marker, .glyphicon-lock, .glyphicon-envelope {
+        color: white;
+    }
+
+
+    #bgcolorspan {
+        background-color: darkturquoise;
+    }
+
+    .required::after {
+        margin: 2px;
+        content: "*";
+        color: red;
+    }
+
+    #containerdiv {
+        height: 550px;
+        width: 800px;
+    }
+
+    #MyForm {
+        text-align: center;
+    }
+
+    .textAlign {
+        text-align: left;
+    }
+</style>
+
+
+
+@using (Ajax.BeginForm("CreateUser", "WBSAdmin", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "OnSuccess",
+    OnFailure = "OnFailure",
+    LoadingElementId = "progress",
+    OnComplete = "OnComplete"
+}, new { id = "MyFormCreateUserWBS" }))
+
+{
+
+    @*<form id="myForm">*@
+    @Html.AntiForgeryToken()
+
+    <div class="container-fluid">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @*<div style="display:none">
+                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control", @id = "txthdnUserId", } })
+            </div>*@
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, "UserName", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @id = "txtUsername",@placeholder="User Name", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @id = "txtemail",@placeholder="Email Address" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, "Password", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "txtPass",@placeholder="Password" } })
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.RetypePassword, "Confirm Password", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.RetypePassword, new { htmlAttributes = new { @class = "form-control", @id = "txtConfirmPass",@placeholder="Confirm Password" } })
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-Conpassword"></span>
+                @Html.ValidationMessageFor(model => model.RetypePassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, "Location", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.DropDownListFor(model => model.Location, new SelectList(ViewBag.LocationList, "Value", "Text"), "---Select Location ---", new { @class = "form-control", @id = "LocationCreateUser1" })
+                @*@Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @id = "txtLocation" } })*@
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Role, "Role", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.DropDownListFor(model => model.Role, Enumerable.Empty<SelectListItem>(), "--Select Role--", new { @class = "form-control", @id = "roleCreateUserWBS" })
+                @*@Html.EditorFor(model => model.Role, new { htmlAttributes = new { @class = "form-control", @id = "txtRole" } })*@
+                @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br /><br />
+        <div class="form-group">
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create User" id="CreateUserWBS" name="CreateUserWBS" class="btn-block btn btn-primary" />
+
+            </div>
+
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+
+    $("#container").width('650px').height('600px');
+
+    function OnSuccess(result) {
+
+        console.log(result);
+        if (result.result == "Registration Successful") {
+
+            toastr.success(result.result, "Message");
+            document.getElementById("MyFormCreateUserWBS").reset();
+        }
+       else if (result.result == "Internet Connection not Available") {
+
+            toastr.warning(result.result, "Warning Message",{ timeOut: 10000 });
+            document.getElementById("MyFormCreateUserWBS").reset();
+        }
+
+        else {
+
+            toastr.error(result.result, "Error Occured", { timeOut: 10000 });
+        }
+
+
+    }
+
+
+    function OnFailure() {
+
+        toastr.error("Error Occured", "Error Message");
+
+
+    }
+
+    function OnComplete() {
+
+        // document.getElementById("MyFormCreateUserWBS").reset();
+
+    }
+
+
+
+</script>
+
+
+<script>
+
+
+    $.getJSON("/WBSAdmin/DDLroleType", function (data) {
+        $.each(data, function (i, data) {      // bind the dropdown list using json result
+            $('<option>',
+                {
+                    value: data.RoleType,
+                    text: data.RoleType
+                }).html(data.RoleType).appendTo("#roleCreateUserWBS");
+        });
+    });
+
+</script>
+
+
+
+@*<script>
+    $("#container").width('800px').height('600px');
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function (e) {
+          // e.preventDefault();
+    //var serializedForm = $(this).serialize();
+            $("#loaderDiv").show();
+
+           //  var data = $("#myForm").serialize();
+            var dataObject = {
+
+                UserName: $("#UserName").val(),
+                EmailAddress: $("#EmailAddress").val(),
+                Password: $("#Password").val(),
+                ConfirmPassword: $("#ConfirmPassword").val(),
+
+            }
+            console.log(dataObject);
+            $.ajax({
+
+                type: "POST",
+                url: "/Account/AdminRegistration",
+               // dataType: "json",
+               // contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(dataObject),
+                success: function (response) {
+                    console.log(response)
+                }
+
+
+            });
+
+        });
+
+
+    });*@
+
+
