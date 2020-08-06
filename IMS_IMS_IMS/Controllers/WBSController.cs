@@ -1206,12 +1206,12 @@ namespace IMS_IMS_IMS.Controllers
                 new DDLSubLocation {Id=2, SubLocation="MPS-120MLD" },
                 new DDLSubLocation {Id=3, SubLocation="MPS-100MLD" },
                 new DDLSubLocation {Id=4, SubLocation="MPS-68MLD" },
-                new DDLSubLocation {Id=5, SubLocation="ChanduBudhera" },
-                new DDLSubLocation {Id=6, SubLocation="Sector-16" },
-                new DDLSubLocation {Id=7, SubLocation="GwalPahari" },
-                new DDLSubLocation {Id=8, SubLocation="Sector-72" },
-                new DDLSubLocation {Id=9, SubLocation="Sector-51" },
-                new DDLSubLocation {Id=10, SubLocation="BASAI" },
+                new DDLSubLocation {Id=5, SubLocation="WTP Chandu Budhera" },
+                new DDLSubLocation {Id=6, SubLocation="Boosting Station Sector-16" },
+                new DDLSubLocation {Id=7, SubLocation="Boosting Station Gwal Pahari" },
+                new DDLSubLocation {Id=8, SubLocation="Boosting Station Sector-72" },
+                new DDLSubLocation {Id=9, SubLocation="Boosting Station Sector-51" },
+                new DDLSubLocation {Id=10, SubLocation="WTP BASAI" },
                 new DDLSubLocation {Id=11, SubLocation="Recycle" },
               
               
