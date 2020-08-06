@@ -13,7 +13,7 @@ namespace IMS_IMS_MODEL
         [Required(ErrorMessage = "Email is required")]
         //[StringLength(16, ErrorMessage = "Must be between 5 and 50 characters", MinimumLength = 5)]
         [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "Must be a valid email")]
-        [Display(Name = "Email Address")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [DataType(DataType.Password)]

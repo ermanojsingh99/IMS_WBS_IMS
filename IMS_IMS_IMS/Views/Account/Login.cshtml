@@ -11,6 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+ body#LoginForm{ background-image:url("https://hdwallsource.com/img/2014/9/blur-26347-27038-hd-wallpapers.jpg"); background-repeat:no-repeat; background-position:center; background-size:auto; padding:10px;}
+
     .glyphicon-envelope {
         color: white;
     }
@@ -54,67 +56,175 @@
     .validation-summary-valid {
         display: none;
     }
+
+ .form-heading { color:#ece7d3; font-size:23px;}
+.panel h2{ color:#444444; font-size:18px; margin:0 0 8px 0;}
+.panel p { color:#777777; font-size:14px; margin-bottom:30px; line-height:24px;}
+    .login-form .form-control {
+        background: #f7f7f7 none repeat scroll 0 0;
+        border: 1px solid #d4d4d4;
+        border-radius: 4px;
+        font-size: 14px;
+        height: 50px;
+        line-height: 50px;
+    }
+    .panel {
+        margin-bottom: 20px;
+        background-color: #ece7d3;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+    .main-div {
+        background: #ece7d3 none repeat scroll 0 0;
+        border-radius: 2px;
+        max-width: 100%;
+        padding: 50px 70px 70px 71px;
+        float: right;
+        margin:5px;
+    }
+
+    .login-form .form-group {
+        margin-bottom: 10px;
+    }
+
+    .login-form {
+        text-align: center;
+    }
+
+    .forgot a {
+        color: #777777;
+        font-size: 14px;
+        text-decoration: underline;
+    }
+.login-form  .btn.btn-primary {
+  background: #f0ad4e none repeat scroll 0 0;
+  border-color: #f0ad4e;
+  color: #ffffff;
+  font-size: 14px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+}
+.forgot {
+  text-align: left; margin-bottom:30px;
+}
+.botto-text {
+  color: #ffffff;
+  font-size: 14px;
+  margin: auto;
+}
+.login-form .btn.btn-primary.reset {
+  background: #ff9900 none repeat scroll 0 0;
+}
+.back { text-align: left; margin-top:10px;}
+.back a {color: #444444; font-size: 13px;text-decoration: none;}
+
+.col-sm-10 {
+    width: 83%;
+    float: right;
+    background-color: white;
+}
+#inputEmail,#inputPassword{
+
+    width:300px;
+}
 </style>
 
 <br />
 <br />
-<div class="container" style="height:400px;width:650px">
-    <div class="panel panel-primary">
-        <div class="panel panel-heading">Login</div>
-        <div class="panel-body">
-            @using (Ajax.BeginForm("Login", "Account", new AjaxOptions
-            {
-                HttpMethod = "POST",
-                OnSuccess = "OnSuccess",
-                OnFailure = "OnFailure",
-                LoadingElementId = "progress",
-                OnComplete = "OnComplete"
-            }, new { id = "MyForm" }))
+<!DOCTYPE html>
 
-            {
-                @Html.AntiForgeryToken()
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Index</title>
 
-                @Html.ValidationSummary(false, "", new { @class = "text-danger ValidationSummary" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="input-group col-md-6">
-                        <span class="input-group-addon" id="bgcolorspan"><i class="glyphicon glyphicon-envelope"></i></span>
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "example@gmail.com" } })
-
-                        @*@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })*@
+    </head>
+    <body id="LoginForm">
 
 
+        <div class="container">
 
+            <div class="row">
+                <div class="col-sm-10 offset-sm-1">
+                    <div class="row">
+                        <div class="col-sm-6" style="background-color:white">
+                            <img src="https://www.gmda.gov.in/asset/images/gmda_logo_trans.png" height="480" width="500" />
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="login-form">
+                                <div class="main-div">
+                                  
+                                    <div class="panel">
+                                        <h1>Login</h1>
+                                        <p>Please enter your email and password</p>
+                                    </div>
+
+                                    @using (Ajax.BeginForm("Login", "Account", new AjaxOptions
+                                    {
+                                        HttpMethod = "POST",
+                                        OnSuccess = "OnSuccess",
+                                        OnFailure = "OnFailure",
+                                        LoadingElementId = "progress",
+                                        OnComplete = "OnComplete"
+                                    }, new { id = "Login" }))
+
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        @Html.ValidationSummary(false, "", new { @class = "text-danger ValidationSummary" })
+                                        <div class="form-group">
+                                            @*@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })*@
+                                            <div class="input-group col-md-12">
+                                                <span class="input-group-addon" id="bgcolorspan"><i class="glyphicon glyphicon-envelope"></i></span>
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "example@gmail.com", @id = "inputEmail" } })
+
+                                                @*@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })*@
+
+
+
+                                            </div>
+
+                                        </div>
+                                        <br />
+
+                                        <div class="form-group">
+                                            @*@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-4" })*@
+                                            <div class=" input-group col-md-12">
+                                                <span class="input-group-addon" id="bgcolorspan"><i class="glyphicon glyphicon-lock"></i></span>
+                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "*************", @id = "inputPassword" } })
+                                                @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })*@
+                                                @*@Html.ValidationMessage("InvalidLogin", new { @class = "text-danger " })*@
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="forgot">
+                                            <a href="#">Forgot password?</a>
+                                        </div>
+                                        <br />
+                                        <div class="form-group">
+                                            <div class="col-md-offset-3 col-md-6">
+                                                <input type="submit" value="Login" class="btn btn-block btn-primary" />
+                                            </div>
+                                        </div>
+
+                                    }
+
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-
                 </div>
-                <br />
+            </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class=" input-group col-md-6">
-                        <span class="input-group-addon" id="bgcolorspan"><i class="glyphicon glyphicon-lock"></i></span>
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "*************" } })
-                        @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })*@
-                        @*@Html.ValidationMessage("InvalidLogin", new { @class = "text-danger " })*@
-
-                    </div>
-
-
-                </div>
-                <br />
-                <div class="form-group">
-                    <div class="col-md-offset-3 col-md-6">
-                        <input type="submit" value="Login" class="btn btn-block btn-primary" />
-                    </div>
-                </div>
-
-            }
-        </div>
-
-    </div>
-</div>
-
+            </div>
+    </body>
+</html>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
