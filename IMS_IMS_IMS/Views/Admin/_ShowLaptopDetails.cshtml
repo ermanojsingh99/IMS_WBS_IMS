@@ -4,9 +4,19 @@
     Layout = "~/Views/Shared/_LayoutAdminLte.cshtml";
     // Layout = null;
 }
+<style>
+    table,
+thead,
+tr,
+tbody,
+th,
+td {
+  text-align: center;
+}
 
-<div class="container-fluid table-responsive">
-    <table class="table table-bordered display" id="MyDataTable" width="100%">
+</style>
+<div class="container-fluid"  style="background-color: lightgrey; margin: 5px">
+    <table class="table table-bordered table-hover table-responsive table-striped" id="MyDataTable" width="100%">
         <thead>
             <tr>
                 <th>Employee id</th>

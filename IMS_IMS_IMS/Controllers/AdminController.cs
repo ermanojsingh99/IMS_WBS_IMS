@@ -229,7 +229,9 @@ namespace IMS_IMS_IMS.Controllers
                                       UserName = c.emp_name,
                                      // Designation = c.designation
                                      Email=c.email,
-                                     Department=c.department
+                                     Department=c.department,
+                                    // AssetIdSub=e.asset_id_sub,
+                                    // SerialNo=e.serial_no
 
                                   }).ToList();
                 return Json(GetDetails, JsonRequestBehavior.AllowGet);

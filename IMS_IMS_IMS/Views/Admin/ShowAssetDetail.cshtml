@@ -11,6 +11,14 @@
         content: "*";
         color: red;
     }
+    table,
+thead,
+tr,
+tbody,
+th,
+td {
+  text-align: center;
+}
 </style>
 
 <script src="~/Scripts/toastr.min.js"></script>
@@ -19,7 +27,7 @@
     @Html.ActionLink(" Download XLSX File", "ExportSpeardSheetAssetDetails", "Admin", null, new { @style = "text-transform:capitalize;", @class = "btn btn-success btn-lg  fa fa-file-excel-o large pull-right" })
     @*<h6 id="ItemName" style="color:Highlight;font-weight:900"><span style="color:Highlight;font-weight:900">ITEM NAME :</span> @ViewBag.PanelBoardDetails</h6>*@
 </div>
-<div class="container-fluid" style="background-color:lightgrey">
+<div class="container-fluid" style="background-color: lightgrey">
     <table class="display" id="MyDataTable" style="width:100%; text-align:center;border:1px solid">
         <thead>
             <tr style="text-align:center">
@@ -28,6 +36,9 @@
                 <th style="text-align:center">Name</th>
                 <th style="text-align:center">Email</th>
                 <th style="text-align:center">Department</th>
+                @*<th style="text-align:center">Asset Id</th>
+                <th style="text-align:center">Serial No.</th>*@
+
                 <th style="text-align:center">Details</th>
 
                 <th style="text-align:center">Print</th>
@@ -243,6 +254,8 @@
                 { "mData": "UserName" },
                 { "mData": "Email" },
                 { "mData": "Department" },
+                //{ "mData": "AssetIdSub" },
+                //{ "mData": "SerialNo" },
 
                 {
                     "render": function (data, type, full, meta) {
