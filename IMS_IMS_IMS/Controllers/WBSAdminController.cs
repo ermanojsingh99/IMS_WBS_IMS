@@ -1512,7 +1512,7 @@ namespace IMS_IMS_IMS.Controllers
 
         }
 
-        protected bool IsInternetConnection()
+        public bool IsInternetConnection()
         {
 
             if(System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())

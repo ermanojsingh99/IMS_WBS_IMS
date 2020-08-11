@@ -4,9 +4,13 @@ using IMS_IMS_IMS.Filter;
 using IMS_IMS_MODEL;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
-
+using System.Net.Mail;
+using System.Net;
+using System.Net.NetworkInformation;
+using System;
 
 namespace IMS_IMS_IMS.Controllers
 {
@@ -14,18 +18,13 @@ namespace IMS_IMS_IMS.Controllers
     public class AccountController : Controller
     {
         Repositories repositories = null;
+        WBSController WBSController = new WBSController();
+        WBSAdminController adminController = new WBSAdminController();
+        INVENTORYEntities context = new INVENTORYEntities();
         public AccountController()
         {
             repositories = new Repositories();
-
-           // var custStr
-           //custStr = ls.getItem("CustomerApplication");
-           // if (custStr == null)
-           // {
-               
-           // }
-
-          
+            
 
         }
         // GET: Account
@@ -217,7 +216,85 @@ namespace IMS_IMS_IMS.Controllers
         FormsAuthentication.SignOut();
         return RedirectToAction("Login","Account");
         }
-     
 
+ 
+
+        [HttpGet]
+
+        public ActionResult ForgotPassword()
+        {
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public  ActionResult ForgotPassword(ForgotPasswordViewModel forgotPasswordViewModel)
+        {
+            var result = "";
+            if (ModelState.IsValid)
+            {
+                bool isExist = WBSController.IsEmailExist(forgotPasswordViewModel.Email);
+                string GetPassword = context.AdminRegister.Where(x => x.Email.Equals(forgotPasswordViewModel.Email)).ToList<AdminRegister>().FirstOrDefault().Password;
+                string GetUserName = context.AdminRegister.Where(x => x.Email.Equals(forgotPasswordViewModel.Email)).ToList<AdminRegister>().FirstOrDefault().UserName;
+                
+                if (isExist == false)
+                {
+                    bool InternetConnection = false;
+                    InternetConnection = adminController.IsInternetConnection();
+                    if (InternetConnection == true)
+                    {
+
+
+                        string from = "er.manojsingh99@gmail.com"; //From address   
+                        string to = forgotPasswordViewModel.Email; //To address    
+
+                        MailMessage message = new MailMessage(from, to);
+
+                        string Timestamp = "" + DateTime.Now.ToString();
+                        string msg = @"<h4>NOTE :</h4> <h3 style='color:green'>Dear " + GetUserName + "  Please use above Password to login </h3>.";
+                        string mailbody = " <h3 style='color:green'>Hello! " + GetUserName + " </h3>" + "<h2 style='color:green'>Your Password is : " + GetPassword + "</h2><br>" + msg;
+
+                        message.Subject = "GMDA Forgot Password";
+                        message.Body = mailbody;
+                        message.BodyEncoding = System.Text.Encoding.UTF8;
+                        message.IsBodyHtml = true;
+                        SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
+                        System.Net.NetworkCredential basicCredential1 = new System.Net.NetworkCredential("er.manojsingh99@gmail.com", "quickinfo123");
+                        client.EnableSsl = true;
+                        client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                        client.UseDefaultCredentials = false;
+                        client.Credentials = basicCredential1;
+
+                        client.Send(message);
+
+
+                        ModelState.Clear();
+                        //ViewBag.Issuccess = "Registration Successful";
+                        result = "Password Sent to Your Email Address";
+                    }
+
+                    else
+                    {
+                        result = "Something Went Wrong";
+                        return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+                    }
+                    }
+
+                    else
+                    {
+                        result = "Internet Connection not Available";
+                        return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+                    }
+
+
+                
+
+            }
+            return Json(new { result = result }, JsonRequestBehavior.AllowGet);
+
+
+
+        }
     }
 }
