@@ -1301,7 +1301,7 @@ namespace IMS_IMS_IMS.Controllers
                         int UserId = repositories.CreateUserWBS(createUserModel1);
                         if (UserId > 0)
                         {
-                            string from = "er.manojsingh99@gmail.com"; //From address   
+                            string from = "gmdagmda9@gmail.com"; //From address   
                             string to = createUserModel1.Email; //To address    
 
                             string userName = createUserModel1.UserName;
@@ -1319,7 +1319,7 @@ namespace IMS_IMS_IMS.Controllers
                             message.BodyEncoding = System.Text.Encoding.UTF8;
                             message.IsBodyHtml = true;
                             SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
-                            System.Net.NetworkCredential basicCredential1 = new System.Net.NetworkCredential("er.manojsingh99@gmail.com", "quickinfo123");
+                            System.Net.NetworkCredential basicCredential1 = new System.Net.NetworkCredential("gmdagmda9@gmail.com", "Gmdait@123");
                             client.EnableSsl = true;
                             client.DeliveryMethod = SmtpDeliveryMethod.Network;
                             client.UseDefaultCredentials = false;

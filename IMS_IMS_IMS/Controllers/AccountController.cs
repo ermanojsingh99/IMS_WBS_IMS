@@ -235,8 +235,6 @@ namespace IMS_IMS_IMS.Controllers
             if (ModelState.IsValid)
             {
                 bool isExist = WBSController.IsEmailExist(forgotPasswordViewModel.Email);
-                string GetPassword = context.AdminRegister.Where(x => x.Email.Equals(forgotPasswordViewModel.Email)).ToList<AdminRegister>().FirstOrDefault().Password;
-                string GetUserName = context.AdminRegister.Where(x => x.Email.Equals(forgotPasswordViewModel.Email)).ToList<AdminRegister>().FirstOrDefault().UserName;
                 
                 if (isExist == false)
                 {
@@ -245,14 +243,16 @@ namespace IMS_IMS_IMS.Controllers
                     if (InternetConnection == true)
                     {
 
+                        string GetPassword = context.AdminRegister.Where(x => x.Email.Equals(forgotPasswordViewModel.Email)).ToList<AdminRegister>().FirstOrDefault().Password;
+                        string GetUserName = context.AdminRegister.Where(x => x.Email.Equals(forgotPasswordViewModel.Email)).ToList<AdminRegister>().FirstOrDefault().UserName;
 
-                        string from = "er.manojsingh99@gmail.com"; //From address   
+                        string from = "gmdagmda9@gmail.com"; //From address   
                         string to = forgotPasswordViewModel.Email; //To address    
 
                         MailMessage message = new MailMessage(from, to);
 
                         string Timestamp = "" + DateTime.Now.ToString();
-                        string msg = @"<h4>NOTE :</h4> <h3 style='color:green'>Dear " + GetUserName + "  Please use above Password to login </h3>.";
+                        string msg = @"<h3 NOTE :  style='color:green'>Dear " + GetUserName + "Above password is your old password  please use this to login.</h3>";
                         string mailbody = " <h3 style='color:green'>Hello! " + GetUserName + " </h3>" + "<h2 style='color:green'>Your Password is : " + GetPassword + "</h2><br>" + msg;
 
                         message.Subject = "GMDA Forgot Password";
@@ -260,7 +260,7 @@ namespace IMS_IMS_IMS.Controllers
                         message.BodyEncoding = System.Text.Encoding.UTF8;
                         message.IsBodyHtml = true;
                         SmtpClient client = new SmtpClient("smtp.gmail.com", 587); //Gmail smtp    
-                        System.Net.NetworkCredential basicCredential1 = new System.Net.NetworkCredential("er.manojsingh99@gmail.com", "quickinfo123");
+                        System.Net.NetworkCredential basicCredential1 = new System.Net.NetworkCredential("gmdagmda9@gmail.com", "Gmdait@123");
                         client.EnableSsl = true;
                         client.DeliveryMethod = SmtpDeliveryMethod.Network;
                         client.UseDefaultCredentials = false;
@@ -276,14 +276,14 @@ namespace IMS_IMS_IMS.Controllers
 
                     else
                     {
-                        result = "Something Went Wrong";
+                        result = "Internet Connection not Available";
                         return Json(new { result = result }, JsonRequestBehavior.AllowGet);
                     }
-                    }
+                }
 
                     else
                     {
-                        result = "Internet Connection not Available";
+                        result = "Email is not registered with us";
                         return Json(new { result = result }, JsonRequestBehavior.AllowGet);
                     }
 
