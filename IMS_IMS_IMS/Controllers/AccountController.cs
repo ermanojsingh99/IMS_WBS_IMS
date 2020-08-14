@@ -252,7 +252,7 @@ namespace IMS_IMS_IMS.Controllers
                         MailMessage message = new MailMessage(from, to);
 
                         string Timestamp = "" + DateTime.Now.ToString();
-                        string msg = @"<h3 NOTE :  style='color:green'>Dear " + GetUserName + "Above password is your old password  please use this to login.</h3>";
+                        string msg = @"<h3 NOTE :  style='color:green'>Dear " + GetUserName + " Above password is your old password  please use this to login.</h3>";
                         string mailbody = " <h3 style='color:green'>Hello! " + GetUserName + " </h3>" + "<h2 style='color:green'>Your Password is : " + GetPassword + "</h2><br>" + msg;
 
                         message.Subject = "GMDA Forgot Password";

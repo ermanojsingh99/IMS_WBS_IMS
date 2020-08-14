@@ -1635,6 +1635,14 @@ namespace IMS_IMS_IMS.Controllers
         }
 
 
+        [HttpGet]
+
+        public ActionResult indexDemoAccordian()
+        {
+            return View();
+        }
+
+
 
     }
 }
