@@ -266,7 +266,7 @@ namespace IMS_IMS_IMS.Controllers
             using (var context = new INVENTORYEntities())
             {
 
-                var GetDetails = (from c in context.Transformer
+                var GetDetails = (from c in context.Transformer.Where(i => i.location == "BASAI")
 
 
                                   select new

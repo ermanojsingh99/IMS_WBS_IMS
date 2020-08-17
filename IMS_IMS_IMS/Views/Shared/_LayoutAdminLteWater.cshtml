@@ -9,23 +9,26 @@
     @Scripts.Render("~/bundles/modernizr")
     @*@Scripts.Render("~/admin-lte/modernizr")*@
 
-
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
-    <link href="~/Content/css/jquery.dataTables.css" rel="stylesheet" />
-    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
-    <script src="~/Scripts/moment.min.js"></script>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    @*<script src="~/Scripts/AdminRegistration.js"></script>*@
+    @*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>*@
+
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/DataTable/jquery.dataTables.js"></script>
+    <link href="~/Content/css/jquery.dataTables.css" rel="stylesheet" />
+
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/esm/popper.js"></script>
+    <script src="~/Scripts/esm/popper.min.js"></script>
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
     <script src="~/Scripts/CustomDatetimePicker.js"></script>
     <script src="~/Scripts/CustomCommonScript.js"></script>
     <script type="text/javascript" src="~/Scripts/CountAssetsFunctions.js"></script>
-    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
     <script src="~/Scripts/tether.js"></script>
     <script src="~/Scripts/toastr.js"></script>
     <script src="~/Scripts/toastr.min.js"></script>
@@ -35,6 +38,8 @@
     <link href="~/admin-lte/css/AdminLTE.min.css" rel="stylesheet" />
     <link href="~/Content/css/footer_index.css" rel="stylesheet" />
 
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -106,13 +111,13 @@
         }
 
         table,
-thead,
-tr,
-tbody,
-th,
-td {
-  text-align: center;
-}
+        thead,
+        tr,
+        tbody,
+        th,
+        td {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -657,8 +662,6 @@ td {
 </script>
 
 <script>
-
-
 
     $(document).on("click", "a[name='panelboard_name']", function (event) {
         event.preventDefault();

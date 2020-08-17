@@ -9,6 +9,15 @@
         height: auto !important;
         margin: 25px;
     }
+
+     .bs-example {
+            margin: 20px;
+        }
+
+        .accordion .fa {
+            margin-right: 0.5rem;
+
+        }
 </style>
 
 @*<!DOCTYPE html>
@@ -20,18 +29,18 @@
 
     </head>
     <body>*@
-<div class="container-fluid">
+<div class="accordion container-fluid">
     <div id="accordion">
         <div class="card" id="BASAI" name="">
             <div class="card-header" id="headingOne">
                 <h3 class="mb-0">
                     <button class="btn btn-lg btn-primary btn-block" id="btn_BASAI" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp;BASAI
+                        <i class="fa fa-plus"></i>&nbsp;BASAI
                     </button>
                 </h3>
             </div>
 
-            <div id="collapseOne" class="collapsing" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
 
                 <div class="card-body container-fluid">
 
@@ -89,11 +98,11 @@
             <div class="card-header" id="headingTwo">
                 <h3 class="mb-0">
                     <button class="btn btn-lg btn-primary btn-block" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp;CHANDU BUDHERA
+                        <i class="fa fa-plus"></i>&nbsp;CHANDU BUDHERA
                     </button>
                 </h3>
             </div>
-            <div id="collapseTwo" class="collapsing" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body">
                     <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
                         <thead>
@@ -143,11 +152,11 @@
             <div class="card-header" id="headingThree">
                 <h3 class="mb-0">
                     <button class="btn btn-lg btn-primary btn-block" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp;DHANWAPUR
+                        <i class="fa fa-plus"></i>&nbsp;DHANWAPUR
                     </button>
                 </h3>
             </div>
-            <div id="collapseThree" class="collapsing" aria-labelledby="headingThree" data-parent="#accordion">
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body">
                     <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
                         <thead>
@@ -198,11 +207,11 @@
             <div class="card-header" id="headingFour">
                 <h3 class="mb-0">
                     <button class="btn btn-lg btn-primary btn-block" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp;NCR CHANNEL
+                        <i class="fa fa-plus"></i>&nbsp;NCR CHANNEL
                     </button>
                 </h3>
             </div>
-            <div id="collapseFour" class="collapsing" aria-labelledby="headingFour" data-parent="#accordion">
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                 <div class="card-body">
 
                     <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBasaiLocation" style="width:100%; text-align:center">
@@ -249,16 +258,16 @@
 
                 </div>
             </div>
-
+        </div>
             <div class="card" id="BEHRAMPUR">
                 <div class="card-header" id="headingFive">
                     <h3 class="mb-0">
                         <button class="btn btn-lg btn-primary btn-block" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;BEHRAMPUR
+                            <i class="fa fa-plus"></i>&nbsp;BEHRAMPUR
                         </button>
                     </h3>
                 </div>
-                <div id="collapseFive" class="collapsing" aria-labelledby="headingFive" data-parent="#accordion">
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
                     <div class="card-body">
                         <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableBehrampurLocation" style="width:100%; text-align:center">
                             <thead>
@@ -307,11 +316,11 @@
                 </div>
             </div>
 
-            <div class="card" ID="SECTOR-51">
+            <div class="card" id="SECTOR-51">
                 <div class="card-header" id="headingSix">
                     <h3 class="mb-0">
-                        <button class="btn btn-sm btn-primary btn-block collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;SECTOR-51
+                        <button class="btn btn-lg btn-primary btn-block" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <i class="fa fa-plus"></i>&nbsp;SECTOR-51
                         </button>
                     </h3>
                 </div>
@@ -362,15 +371,15 @@
                 </div>
             </div>
 
-            <div class="card" ID="STPBehrampur">
-                <div class="card-header" id="headingSix">
+            <div class="card" id="STPBehrampur">
+                <div class="card-header" id="headingSeven">
                     <h3 class="mb-0">
-                        <button class="btn btn-sm btn-primary btn-block collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            <i class="glyphicon glyphicon-map-marker"></i>&nbsp;STP Behrampur
+                        <button class="btn btn-lg btn-primary btn-block" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            <i class="fa fa-plus"></i>&nbsp;STP Behrampur
                         </button>
                     </h3>
                 </div>
-                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
                     <div class="card-body">
                         <table class="table table-bordered table-hover table-responsive table-striped" id="MyTableSTPBehrampurLocation" style="width:100%; text-align:center">
                             <thead>
@@ -419,7 +428,7 @@
 
 
 
-        </div>
+      
 
         @*ModelPopup Pump Set Details Starts *@
         <div id="myModalPumpSetDetails" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -907,23 +916,34 @@
 @*</body>
     </html>*@
 <script>
-    // $(document).on("click", '.card', function (event) {
-    // event.preventDefault();
+     $(document).on("click", '.card', function (event) {
+     event.preventDefault();
 
 
-    // var LocationName = $(this).attr('id');
+     var LocationName = $(this).attr('id');
 
-    //  window.localStorage.setItem("LocationStorage", LocationName);
-    //var location = window.localStorage.getItem('LocationStorage');
-    //setTimeout(function () { location.reload(); }, 100);
-
-
-    //});
+      window.localStorage.setItem("LocationStorage", LocationName);
+         var location = window.localStorage.getItem('LocationStorage');
+         alert(location);
+   // setTimeout(function () { location.reload(); }, 100);
 
 
+    });
+  </script>
 
+<script>
     $(document).ready(function () {
 
+        $(".collapse.show").each(function () {
+            $(this).prev(".card-header").find(".fa").addClass("fa-minus").removeClass("fa-plus");
+        });
+
+        // Toggle plus minus icon on show hide of collapse element
+        $(".collapse").on('show.bs.collapse', function () {
+            $(this).prev(".card-header").find(".fa").removeClass("fa-plus").addClass("fa-minus");
+        }).on('hide.bs.collapse', function () {
+            $(this).prev(".card-header").find(".fa").removeClass("fa-minus").addClass("fa-plus");
+        });
         // localStorage.clear();
         //var location = window.localStorage.getItem('LocationStorage');
         //var Loct = { location: location }
@@ -964,7 +984,7 @@
 
 
         });
-        
+
 
         $.ajax({
 
