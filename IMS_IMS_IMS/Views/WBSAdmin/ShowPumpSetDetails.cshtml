@@ -41,8 +41,8 @@
 <script>
 
     $(document).ready(function () {
-
-
+    //alert(window.localStorage.getItem('LocationStorage'));
+        // localStorage.clear();
         $("#loaderDiv").show();
         ShowPumpSetDetails();
           $("#MyDataTablePumpSet").DataTable().clear();
@@ -51,10 +51,11 @@
     });
   var responseData = '';
     var ShowPumpSetDetails = function () {
-         var location = "BASAI";
+        var location = "";
+        location=window.localStorage.getItem('LocationStorage');
         var Loc = { location: location }
         var data = JSON.stringify(Loc);
-
+        
         $.ajax({
 
             type: "POST",
@@ -80,7 +81,7 @@
 
         $("#MyDataTablePumpSet").DataTable({
 
-
+            responsive: true,
             "aaData": response,
             "aoColumns": [
 

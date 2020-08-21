@@ -57,10 +57,10 @@ h1 {
     }
 
 h1 {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 800;
     line-height: 1.4;
-    color: #734a2c;
+    color: #000;
     letter-spacing: -0.04em;
     text-transform: uppercase;
     position: relative;
